@@ -41,7 +41,7 @@
                         primary: {
                             50: '#eff6ff',
                             100: '#dbeafe',
-                            200: '#bfdbfe',
+                            200: '#FFD600',
                             300: '#93c5fd',
                             400: '#60a5fa',
                             500: '#3b82f6',
@@ -143,20 +143,17 @@
     </div>
 
     <!-- iOS-Compatible Header -->
-    <header class="relative bg-white shadow-lg z-50" style="will-change: transform;">
+    <header class="relative bg-black shadow-lg z-50" style="will-change: transform;">
         <!-- Top Bar -->
-        <div class="bg-primary-700 text-white py-2">
+        <div class=" text-white py-2">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between text-sm">
                     <div class="flex items-center space-x-6">
                         <div class="flex items-center space-x-2">
                             <i class="fas fa-clock text-primary-200"></i>
-                            <span>Open 24/7 for Global Logistics</span>
+                            <span>We Are Open 24/7</span>
                         </div>
-                        <div class="hidden md:flex items-center space-x-2">
-                            <i class="fas fa-phone text-primary-200"></i>
-                            <span>TOLL FREE Support</span>
-                        </div>
+                       
                     </div>
                     <div class="flex items-center space-x-4">
                         <div class="flex items-center space-x-2">
@@ -174,7 +171,7 @@
         </div>
 
         <!-- Main Navigation -->
-        <nav class="bg-white border-b border-gray-200">
+        <nav class="bg-black border-b border-gray-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
                     <!-- Logo -->
@@ -188,14 +185,14 @@
 
                     <!-- Desktop Navigation -->
                     <div class="hidden lg:flex items-center space-x-8">
-                        <a href="/" class="text-gray-900 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-600">
+                        <a href="/" class="text-white hover:text-primary-200 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-200">
                             Home
                         </a>
-                        <a href="about" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-600">
+                        <a href="about" class="text-white hover:text-primary-200 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-200">
                             About
                         </a>
                         <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                            <button class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-600 flex items-center">
+                            <button class="text-white hover:text-primary-200 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-200 flex items-center">
                                 Services
                                 <i class="fas fa-chevron-down ml-1 text-xs"></i>
                             </button>
@@ -228,10 +225,10 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="order" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-600">
+                        <a href="order" class="text-white hover:text-primary-200 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-200">
                             Track Shipment
                         </a>
-                        <a href="contact" class="text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-600">
+                        <a href="contact" class="text-white hover:text-primary-200 px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:border-primary-200">
                             Contact
                         </a>
                     </div>
