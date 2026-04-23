@@ -361,28 +361,26 @@
                         <a href="contact" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Contact</a>
                     </div>
 
-                    <!-- Desktop Right Section (Search + CTA) with burgundy button -->
+                   <!-- Desktop Right Section (Search + CTA) with burgundy button - RydaBikes styled -->
                     <div class="hidden lg:flex lg:items-center desktop-right-actions">
                         <!-- Quick Track Search - Enhanced dropdown with click outside to close -->
                         <div class="relative" x-data="{ open: false }" x-init="() => {
                             $watch('open', (value) => {
                                 if (value) {
-                                    // Add click outside listener when opened
                                     const handleClickOutside = (event) => {
                                         if (!event.target.closest('.search-dropdown-container')) {
                                             open = false;
                                         }
                                     };
                                     setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
-                                    // Store cleanup reference
                                     window.__searchDropdownCleanup = () => document.removeEventListener('click', handleClickOutside);
                                 } else {
                                     if (window.__searchDropdownCleanup) window.__searchDropdownCleanup();
                                 }
                             });
                         }">
-                            <button @click="open = !open" class="p-2 text-gray-400 hover:text-[#FFD600] transition-colors search-dropdown-container">
-                                <i class="fas fa-search text-lg"></i>
+                            <button @click="open = !open" class="p-2.5 text-gray-300 hover:text-[#FFD600] transition-colors search-dropdown-container bg-white/5 rounded-full">
+                                <i class="fas fa-search text-base"></i>
                             </button>
                             <div x-show="open"
                                  x-cloak
@@ -392,17 +390,17 @@
                                 <form method="POST" action="{{ route('trackingresult') }}" class="space-y-4" @click.stop>
                                     @csrf
                                     <div>
-                                        <label class="block text-sm font-semibold text-[#800020] mb-2 flex items-center">
-                                            <i class="fas fa-box mr-2"></i>Track Your Shipment
+                                        <label class="block text-sm font-semibold text-[#800020] mb-2 flex items-center gap-2">
+                                            <i class="fas fa-motorcycle text-[#800020]"></i> Track Your Delivery
                                         </label>
                                         <input type="text"
                                                name="trackingnumber"
-                                               placeholder="Enter tracking number..."
+                                               placeholder="Enter RYD tracking ID"
                                                class="track-input-focus w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all outline-none">
                                     </div>
                                     <button type="submit"
-                                            class="w-full bg-[#800020] text-white py-3 px-4 rounded-xl hover:bg-[#6b001a] transition-all font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                                        <i class="fas fa-search mr-2"></i>Track Now
+                                            class="w-full bg-[#800020] text-white py-3 px-4 rounded-full hover:bg-[#6b001a] transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                        <i class="fas fa-location-dot"></i> Track Now
                                     </button>
                                 </form>
                             </div>
@@ -410,11 +408,10 @@
 
                         <!-- Get Quote Button - Rounded, burgundy, modern -->
                         <a href="contact"
-                           class="bg-[#800020] text-white px-7 py-2.5 rounded-full hover:bg-[#6b001a] transition-all font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2">
-                            <i class="fas fa-paper-plane text-sm"></i> Get Quote
+                           class="bg-[#800020] text-white px-6 py-2.5 rounded-full hover:bg-[#6b001a] transition-all font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2 text-sm">
+                            <i class="fas fa-motorcycle text-sm"></i> Rent / Buy
                         </a>
                     </div>
-
                     <!-- Mobile Controls: Search icon + Animated 2-line hamburger -->
                     <div class="lg:hidden flex items-center space-x-2">
                         <button type="button"
@@ -436,7 +433,7 @@
                 </div>
             </div>
 
-            <!-- Mobile Search (enhanced styling but preserving structure) -->
+            <!-- Mobile Search (restyled for RydaBikes delivery tracking) -->
             <div x-show="searchOpen"
                  x-cloak
                  x-transition:enter="transition ease-out duration-200"
@@ -445,20 +442,22 @@
                  x-transition:leave="transition ease-in duration-150"
                  x-transition:leave-start="opacity-100 translate-y-0"
                  x-transition:leave-end="opacity-0 -translate-y-1"
-                 class="lg:hidden border-t border-gray-800 bg-gray-900 px-4 py-4">
-                <form method="POST" action="{{ route('trackingresult') }}" class="space-y-3">
+                 class="lg:hidden border-t border-gray-800 bg-gradient-to-b from-gray-900 to-black px-5 py-6">
+                <form method="POST" action="{{ route('trackingresult') }}" class="space-y-4">
                     @csrf
                     <div>
-                        <label class="block text-sm font-medium text-[#FFD600] mb-2">Track Your Shipment</label>
+                        <label class="block text-sm font-semibold text-[#FFD600] mb-2 flex items-center gap-2">
+                            <i class="fas fa-motorcycle text-sm"></i> Find Your Delivery
+                        </label>
                         <input type="text"
                                name="trackingnumber"
-                               placeholder="Enter tracking number..."
-                               class="w-full px-4 py-3 border border-gray-700 bg-gray-800 text-white rounded-xl focus:ring-2 focus:ring-[#FFD600] focus:border-transparent transition-all"
+                               placeholder="Enter RYD tracking ID"
+                               class="w-full px-5 py-3.5 border border-gray-700 bg-gray-800 text-white rounded-2xl focus:ring-2 focus:ring-[#FFD600] focus:border-transparent transition-all outline-none text-base"
                                required>
                     </div>
                     <button type="submit"
-                            class="w-full bg-[#800020] text-white py-3 px-4 rounded-xl hover:bg-[#6b001a] transition-colors font-medium">
-                        <i class="fas fa-search mr-2"></i>Track Now
+                            class="w-full bg-[#800020] text-white py-3.5 px-4 rounded-2xl hover:bg-[#6b001a] transition-all duration-300 font-semibold shadow-lg flex items-center justify-center gap-2">
+                        <i class="fas fa-location-dot"></i> Track Delivery
                     </button>
                 </form>
             </div>
@@ -523,6 +522,7 @@
                     </div>
                 </div>
             </div>
+       
         </nav>
 
         <!-- Error Message Banner -->

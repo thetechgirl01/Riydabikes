@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         @if($bikes->isEmpty())
             <div class="text-center py-16">
                 <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -26,46 +26,46 @@
                 <p class="mt-4 text-gray-600 dark:text-gray-300">No bikes available right now. Please check back soon.</p>
             </div>
         @else
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($bikes as $bike)
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden flex flex-col hover:shadow-md transition">
-                        <a href="{{ route('home.bikes.show', $bike->slug) }}" class="block">
-                            <div class="aspect-w-4 aspect-h-3 bg-gray-100 dark:bg-gray-700">
-                                <img src="{{ $bike->image_url }}" alt="{{ $bike->name }}" class="w-full h-56 object-cover">
+                    <div class="group bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out">
+                        <a href="{{ route('home.bikes.show', $bike->slug) }}" class="block relative overflow-hidden bg-white">
+                            <div class="aspect-w-4 aspect-h-3 bg-white p-6">
+                                <img src="{{ $bike->image_url }}" alt="{{ $bike->name }}" class="w-full h-64 object-contain transition-transform duration-500 group-hover:scale-105">
                             </div>
+                            @if($bike->available_for_hire)
+                                <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full bg-[#800020] text-white shadow-md">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-[#FFD600] mr-1.5 animate-pulse"></span>
+                                    Available For Hire
+                                </span>
+                            @else
+                                <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-600 text-white shadow-md">Unavailable For Hire</span>
+                            @endif
                         </a>
                         <div class="p-5 flex-1 flex flex-col">
                             <div class="flex items-start justify-between">
-                                <div>
-                                    <h3 class="font-semibold text-lg text-gray-900 dark:text-white">
-                                        <a href="{{ route('home.bikes.show', $bike->slug) }}" class="hover:underline">{{ $bike->name }}</a>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-1">
+                                        <a href="{{ route('home.bikes.show', $bike->slug) }}" class="hover:text-[#800020] transition-colors duration-200">{{ $bike->name }}</a>
                                     </h3>
                                     @if($bike->brand)
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">{{ $bike->brand }}</p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">{{ $bike->brand }}</p>
                                     @endif
                                 </div>
-                                @if($bike->available_for_hire)
-                                    <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
-                                        Available for Hire
-                                    </span>
-                                @else
-                                    <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-full bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300">Hire unavailable</span>
-                                @endif
                             </div>
 
                             <div class="mt-4 space-y-1">
-                                <p class="text-2xl font-bold text-gray-900 dark:text-white">₦{{ number_format($bike->price, 2) }}</p>
+                                <p class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">₦{{ number_format($bike->price, 2) }}</p>
                                 @if($bike->available_for_hire)
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">or ₦{{ number_format($bike->daily_rate, 2) }} / day</p>
+                                    <p class="text-base font-semibold text-[#800020] dark:text-[#FFD600]">or ₦{{ number_format($bike->daily_rate, 2) }} <span class="text-sm font-normal text-gray-500">/ day</span></p>
                                 @endif
                             </div>
 
-                            <div class="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700">
+                            <div class="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
                                 <a href="{{ route('home.bikes.show', $bike->slug) }}"
-                                   class="w-full inline-flex justify-center items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm font-medium transition">
+                                   class="w-full inline-flex justify-center items-center px-5 py-3 bg-[#800020] hover:bg-[#6b001a] text-white rounded-full text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 gap-2">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                     View Details
-                                    <svg class="w-4 h-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                                 </a>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                 @endforeach
             </div>
 
-            <div class="mt-8">
+            <div class="mt-10">
                 {{ $bikes->links() }}
             </div>
         @endif

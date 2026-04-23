@@ -3,71 +3,77 @@
 @section('title', 'Buy '.$bike->name)
 
 @section('content')
-<div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-10">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-gray-50 dark:bg-gray-900 min-h-screen py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <nav class="mb-6 text-sm">
-            <a href="{{ route('home.bikes.show', $bike->slug) }}" class="text-blue-600 hover:underline dark:text-blue-400">← Back to {{ $bike->name }}</a>
+        <nav class="mb-8 text-sm">
+            <a href="{{ route('home.bikes.show', $bike->slug) }}" class="inline-flex items-center gap-2 text-[#800020] hover:text-[#6b001a] font-medium transition-colors duration-200">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                Back to {{ $bike->name }}
+            </a>
         </nav>
 
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Checkout — {{ $bike->name }}</h1>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Complete Your Purchase</h1>
+        <p class="text-gray-500 dark:text-gray-400 mb-8">Fill in the details below to secure your bike</p>
 
         @if($errors->any())
-            <div class="mb-6 bg-red-50 border-l-4 border-red-400 p-4 dark:bg-red-900/30">
-                <ul class="list-disc list-inside text-sm text-red-700 dark:text-red-300">
+            <div class="mb-6 bg-red-50 border-l-4 border-red-400 rounded-r-xl p-4 dark:bg-red-900/20">
+                <ul class="list-disc list-inside text-sm text-red-700 dark:text-red-300 space-y-1">
                     @foreach($errors->all() as $e) <li>{{ $e }}</li> @endforeach
                 </ul>
             </div>
         @endif
         @if(session('error'))
-            <div class="mb-6 bg-red-50 border-l-4 border-red-400 p-4 dark:bg-red-900/30">
+            <div class="mb-6 bg-red-50 border-l-4 border-red-400 rounded-r-xl p-4 dark:bg-red-900/20">
                 <p class="text-sm text-red-700 dark:text-red-300">{{ session('error') }}</p>
             </div>
         @endif
 
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
             <!-- Order summary -->
-            <div class="px-6 py-4 bg-gray-50 dark:bg-gray-900/40 border-b dark:border-gray-700">
-                <div class="flex items-center gap-4">
-                    <img src="{{ $bike->image_url }}" alt="{{ $bike->name }}" class="w-20 h-20 object-cover rounded-md">
+            <div class="px-6 py-5 bg-gradient-to-r from-gray-50 to-white dark:from-gray-900/60 dark:to-gray-800 border-b dark:border-gray-700">
+                <div class="flex items-center gap-5">
+                    <div class="w-24 h-24 bg-white rounded-xl shadow-md overflow-hidden flex items-center justify-center p-2">
+                        <img src="{{ $bike->image_url }}" alt="{{ $bike->name }}" class="w-full h-full object-contain">
+                    </div>
                     <div class="flex-1">
-                        <p class="font-semibold text-gray-900 dark:text-white">{{ $bike->name }}</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Unit price: ₦{{ number_format($bike->price, 2) }}</p>
+                        <p class="font-bold text-xl text-gray-900 dark:text-white">{{ $bike->name }}</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Unit price: <span class="font-semibold text-[#800020] dark:text-[#FFD600]">₦{{ number_format($bike->price, 2) }}</span></p>
                     </div>
                 </div>
             </div>
 
-            <form method="POST" action="{{ route('home.bikes.buy.store', $bike->slug) }}" enctype="multipart/form-data" class="p-6 space-y-5">
+            <form method="POST" action="{{ route('home.bikes.buy.store', $bike->slug) }}" enctype="multipart/form-data" class="p-6 space-y-6">
                 @csrf
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Quantity</label>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Quantity</label>
                     <input type="number" name="quantity" id="quantity" min="1" max="{{ $bike->stock }}" value="{{ old('quantity', 1) }}" required
-                           class="w-32 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ $bike->stock }} available</p>
+                           class="w-36 rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all py-2.5 px-4">
+                    <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">{{ $bike->stock }} units available</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
                         <input type="text" name="guest_name" value="{{ old('guest_name') }}" required
-                               class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm">
+                               class="w-full rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all py-2.5 px-4">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
                         <input type="email" name="guest_email" value="{{ old('guest_email') }}" required
-                               class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm">
+                               class="w-full rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all py-2.5 px-4">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone</label>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
                         <input type="text" name="guest_phone" value="{{ old('guest_phone') }}" required
-                               class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm">
+                               class="w-full rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all py-2.5 px-4">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Payment Method</label>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Payment Method</label>
                         <select name="payment_method" required
-                                class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm">
-                            <option value="">— select —</option>
+                                class="w-full rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all py-2.5 px-4">
+                            <option value="">— Select payment method —</option>
                             @foreach($dmethods as $m)
                                 <option value="{{ $m->name }}" {{ old('payment_method') == $m->name ? 'selected' : '' }}>{{ $m->name }}</option>
                             @endforeach
@@ -76,38 +82,51 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Shipping Address</label>
-                    <textarea name="shipping_address" rows="2" required
-                              class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm">{{ old('shipping_address') }}</textarea>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Shipping Address</label>
+                    <textarea name="shipping_address" rows="3" required
+                              class="w-full rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all py-2.5 px-4">{{ old('shipping_address') }}</textarea>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">City</label>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">City</label>
                         <input type="text" name="city" value="{{ old('city') }}" required
-                               class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm">
+                               class="w-full rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all py-2.5 px-4">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">State</label>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">State</label>
                         <input type="text" name="state" value="{{ old('state') }}" required
-                               class="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm">
+                               class="w-full rounded-xl border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all py-2.5 px-4">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Upload Payment Proof</label>
-                    <input type="file" name="proof" accept="image/*" required
-                           class="w-full text-sm text-gray-700 dark:text-gray-300">
-                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Screenshot of transfer receipt. JPG / PNG, max 4MB.</p>
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Upload Payment Proof</label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-xl hover:border-[#800020] transition-colors duration-200">
+                        <div class="space-y-1 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4-4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="flex text-sm text-gray-600 dark:text-gray-400">
+                                <label for="proof" class="relative cursor-pointer bg-white dark:bg-gray-700 rounded-md font-medium text-[#800020] hover:text-[#6b001a] focus-within:outline-none">
+                                    <span>Upload a file</span>
+                                    <input id="proof" name="proof" type="file" accept="image/*" required class="sr-only">
+                                </label>
+                                <p class="pl-1">or drag and drop</p>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Transfer receipt screenshot. JPG / PNG up to 4MB</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Total -->
-                <div class="bg-blue-50 dark:bg-blue-900/30 rounded-md p-4 flex justify-between items-center">
-                    <span class="text-sm text-gray-700 dark:text-gray-300">Order Total</span>
-                    <span id="order-total" class="text-2xl font-bold text-gray-900 dark:text-white">₦{{ number_format($bike->price, 2) }}</span>
+                <div class="bg-gradient-to-r from-[#800020]/10 to-transparent dark:from-[#800020]/20 rounded-xl p-5 flex justify-between items-center">
+                    <span class="text-base font-semibold text-gray-700 dark:text-gray-300">Order Total</span>
+                    <span id="order-total" class="text-3xl font-extrabold text-[#800020] dark:text-[#FFD600]">₦{{ number_format($bike->price, 2) }}</span>
                 </div>
 
-                <button type="submit" class="w-full inline-flex justify-center items-center px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-medium transition">
+                <button type="submit" class="w-full inline-flex justify-center items-center gap-2 px-6 py-4 bg-[#800020] hover:bg-[#6b001a] text-white rounded-full font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     Submit Order
                 </button>
             </form>
@@ -122,7 +141,8 @@
         const tot = document.getElementById('order-total');
         function update() {
             const n = Math.max(1, parseInt(qty.value || 1, 10));
-            tot.textContent = '₦' + (unit * n).toLocaleString('en-NG', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            const total = unit * n;
+            tot.textContent = '₦' + total.toLocaleString('en-NG', {minimumFractionDigits: 2, maximumFractionDigits: 2});
         }
         qty.addEventListener('input', update);
     })();

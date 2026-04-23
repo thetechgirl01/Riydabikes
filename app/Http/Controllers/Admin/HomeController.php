@@ -21,6 +21,10 @@ use App\Models\Wdmethod;
 use App\Models\Withdrawal;
 use App\Models\Cp_transaction;
 use App\Models\Tp_Transaction;
+use App\Models\Bike;
+use App\Models\BikePurchase;
+use App\Models\BikeRental;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Kyc;
@@ -32,32 +36,77 @@ class HomeController extends Controller
 {
     /**
      * Show Admin Dashboard.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //sum total deposited
-        $total_deposited = DB::table('deposits')->where('status', 'Processed')->sum('amount');
-        $total_withdrawn = DB::table('withdrawals')->where('status', 'Processed')->sum('amount');
-        $chart_pendepsoit = DB::table('deposits')->where('status', 'Pending')->sum('amount');
-        $chart_pendwithdraw = DB::table('withdrawals')->where('status', 'Pending')->sum('amount');
-        $userlist = User::count();
-        $blockedusers = User::where('status', 'blocked')->count();
+        // Shipment / finance stats (existing)
+        $total_deposited     = DB::table('deposits')->where('status', 'Processed')->sum('amount');
+        $total_withdrawn     = DB::table('withdrawals')->where('status', 'Processed')->sum('amount');
+        $chart_pendepsoit    = DB::table('deposits')->where('status', 'Pending')->sum('amount');
+        $chart_pendwithdraw  = DB::table('withdrawals')->where('status', 'Pending')->sum('amount');
+        $userlist            = User::count();
+        $blockedusers        = User::where('status', 'blocked')->count();
+
+        // ---------- Bike dashboard stats ----------
+        $totalBikes           = Bike::count();
+        $totalBikePurchases   = BikePurchase::count();
+        $totalBikeRentals     = BikeRental::count();
+        $pendingBikePurchases = BikePurchase::where('status', 'Pending')->count();
+        $pendingBikeRentals   = BikeRental::where('status', 'Pending')->count();
+        $activeBikeRentals    = BikeRental::whereIn('status', ['Approved', 'Active'])->count();
+
+        // Revenue from approved/paid orders only
+        $bikePurchaseRevenue = BikePurchase::where('status', 'Approved')->sum('total_amount');
+        $bikeRentalRevenue   = BikeRental::whereIn('status', ['Approved', 'Active', 'Completed'])
+                                          ->sum('total_amount');
+
+        // Latest activity feeds
+        $latestBikePurchases = BikePurchase::with('bike')->latest()->take(4)->get();
+        $latestBikeRentals   = BikeRental::with('bike')->latest()->take(4)->get();
+
+        // Monthly counts for this year's line chart
+        $year = Carbon::now()->year;
+        $bikePurchasesByMonth = [];
+        $bikeRentalsByMonth   = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $bikePurchasesByMonth[] = BikePurchase::whereYear('created_at', $year)
+                ->whereMonth('created_at', $m)->count();
+            $bikeRentalsByMonth[] = BikeRental::whereYear('created_at', $year)
+                ->whereMonth('created_at', $m)->count();
+        }
 
         return view('admin.dashboard', [
             'title' => 'Admin Dashboard',
-            'total_deposited' => $total_deposited,
-            'total_withdrawn' => $total_withdrawn,
-            'numberOfUsers' => $userlist,
-            'blockedusers' => $blockedusers,
-            'chart_pendepsoit' => $chart_pendepsoit,
-            'chart_pendwithdraw' => $chart_pendwithdraw,
-            'inv_plans' => Plans::count(),
-            'active_users' => User::where('status', 'active')->count(),
-            'usersData' => $this->getUsersData(),
-            'latestUsers' => User::latest()->take(5)->get(),
-            'subscribers' => User_plans::where('active', 'yes')->count(),
+
+            // existing data
+            'total_deposited'      => $total_deposited,
+            'total_withdrawn'      => $total_withdrawn,
+            'numberOfUsers'        => $userlist,
+            'blockedusers'         => $blockedusers,
+            'chart_pendepsoit'     => $chart_pendepsoit,
+            'chart_pendwithdraw'   => $chart_pendwithdraw,
+            'inv_plans'            => Plans::count(),
+            'active_users'         => User::where('status', 'active')->count(),
+            'usersData'            => $this->getUsersData(),
+            'latestUsers'          => User::latest()->take(5)->get(),
+            'subscribers'          => User_plans::where('active', 'yes')->count(),
+            'settings'             => Settings::where('id', 1)->first(),
+
+            // bike data
+            'totalBikes'           => $totalBikes,
+            'totalBikePurchases'   => $totalBikePurchases,
+            'totalBikeRentals'     => $totalBikeRentals,
+            'pendingBikePurchases' => $pendingBikePurchases,
+            'pendingBikeRentals'   => $pendingBikeRentals,
+            'activeBikeRentals'    => $activeBikeRentals,
+            'bikePurchaseRevenue'  => $bikePurchaseRevenue,
+            'bikeRentalRevenue'    => $bikeRentalRevenue,
+            'latestBikePurchases'  => $latestBikePurchases,
+            'latestBikeRentals'    => $latestBikeRentals,
+            'bikePurchasesByMonth' => $bikePurchasesByMonth,
+            'bikeRentalsByMonth'   => $bikeRentalsByMonth,
         ]);
     }
 
@@ -76,20 +125,10 @@ class HomeController extends Controller
         $usersInNov = $this->usersMonthlyCount('11');
         $usersInDec = $this->usersMonthlyCount('12');
 
-        // return as array of users
         return [
-            $usersInJan,
-            $usersInFeb,
-            $usersInMar,
-            $usersInApr,
-            $usersInMay,
-            $usersInJun,
-            $usersInJul,
-            $usersInAug,
-            $usersInSep,
-            $usersInOct,
-            $usersInNov,
-            $usersInDec,
+            $usersInJan, $usersInFeb, $usersInMar, $usersInApr,
+            $usersInMay, $usersInJun, $usersInJul, $usersInAug,
+            $usersInSep, $usersInOct, $usersInNov, $usersInDec,
         ];
     }
 
@@ -107,16 +146,14 @@ class HomeController extends Controller
     public function createnewuser()
     {
         $settings = Settings::where('id', '=', '1')->first();
-        $subtxn =substr(strtoupper($settings->site_name),0,3);
+        $subtxn = substr(strtoupper($settings->site_name), 0, 3);
         $number_gen = $this->RandomStringGenerator(8);
         $trackingnumber = "$subtxn-$number_gen";
-            
+
         return view('admin.createnewuser')
             ->with(array(
                 'title' => 'Create a Shipment',
-                'trackingnumber'=>$trackingnumber,
-                
-
+                'trackingnumber' => $trackingnumber,
             ));
     }
 
@@ -128,7 +165,6 @@ class HomeController extends Controller
                 'title' => 'System Plans',
                 'plans' => Plans::where('type', 'Main')->orderby('created_at', 'ASC')->get(),
                 'pplans' => Plans::where('type', 'Promo')->get(),
-
             ));
     }
 
@@ -137,7 +173,6 @@ class HomeController extends Controller
         return view('admin.Plans.newplan')
             ->with(array(
                 'title' => 'Add Investment Plan',
-
             ));
     }
 
@@ -147,7 +182,6 @@ class HomeController extends Controller
             ->with(array(
                 'title' => 'Edit Investment Plan',
                 'plan' => Plans::where('id', $id)->first(),
-
             ));
     }
 
@@ -157,7 +191,6 @@ class HomeController extends Controller
         return view('admin.Users.users')
             ->with(array(
                 'title' => 'All Shipping',
-
             ));
     }
 
@@ -180,7 +213,6 @@ class HomeController extends Controller
             ->with(array(
                 'title' => 'Subscription search result',
                 'subscriptions' => $result,
-
             ));
     }
 
@@ -201,7 +233,6 @@ class HomeController extends Controller
                 'dp' => $dp,
                 'title' => 'Withdrawals search result',
                 'withdrawals' => $result,
-
             ));
     }
 
@@ -213,7 +244,6 @@ class HomeController extends Controller
             ->with(array(
                 'title' => 'Manage users withdrawals',
                 'withdrawals' => Withdrawal::with('duser')->orderBy('id', 'desc')->get(),
-
             ));
     }
 
@@ -244,14 +274,13 @@ class HomeController extends Controller
         return view('admin.about')
             ->with(array(
                 'title' => 'About Onlinetrader',
-
             ));
     }
 
     public function emailServices()
     {
         return view('admin.email.index', [
-            'title' =>  "Email services"
+            'title' => "Email services"
         ]);
     }
 
@@ -263,7 +292,6 @@ class HomeController extends Controller
                 'title' => 'Agent record',
                 'agent' => User::where('id', $agent)->first(),
                 'ag_r' => User::where('ref_by', $agent)->get(),
-
             ));
     }
 
@@ -272,15 +300,12 @@ class HomeController extends Controller
     {
         include 'currencies.php';
         return view('admin.settings')->with(array(
-
             'wmethods' => Wdmethod::where('type', 'withdrawal')->get(),
             'assets' => Asset::all(),
-            //'markets' => markets::all(),
             'cpd' => Cp_transaction::where('id', '=', '1')->first(),
             'currencies' => $currencies,
             'title' => 'System Settings'
         ));
-        //return view('settings')->with(array('title' =>'System Settings'));
     }
 
     public function msubtrade()
@@ -289,7 +314,6 @@ class HomeController extends Controller
             ->with(array(
                 'subscriptions' => Mt4Details::with('tuser')->orderBy('id', 'desc')->paginate(10),
                 'title' => 'Manage Subscription',
-
             ));
     }
 
@@ -300,7 +324,6 @@ class HomeController extends Controller
                 'plans' => User_plans::where('user', $id)->orderBy('id', 'desc')->get(),
                 'user' => User::where('id', $id)->first(),
                 'title' => 'User Investment Plan(s)',
-
             ));
     }
 
@@ -334,13 +357,12 @@ class HomeController extends Controller
             'settings' => Settings::where('id', '=', '1')->first()
         ));
     }
+
     public function madmin()
     {
         return view('admin.madmin')->with(array(
             'admins' => Admin::orderby('id', 'desc')->get(),
             'title' => 'Add new manager',
-
-
         ));
     }
 
@@ -355,7 +377,6 @@ class HomeController extends Controller
 
     public function viewKycApplication($id)
     {
-
         return view('admin.kyc-applications', [
             'title' => 'View KYC Application',
             'kyc' => Kyc::where('id', $id)->with(['user'])->first(),
@@ -367,14 +388,11 @@ class HomeController extends Controller
         return view('admin.Profile.profile')
             ->with(array(
                 'title' => 'Admin Profile',
-
-
             ));
     }
 
     public function managecryptoasset()
     {
-
         return view('admin.Settings.Crypto.pageview', [
             'title' => 'Manage Crypto Asset',
             'moresettings' => SettingsCont::find(1),
@@ -396,7 +414,6 @@ class HomeController extends Controller
             ->with(array(
                 'admin' => Admin::orderby('id', 'desc')->get(),
                 'title' => 'Create a New Task',
-
             ));
     }
 
@@ -407,16 +424,15 @@ class HomeController extends Controller
                 'admin' => Admin::orderby('id', 'desc')->get(),
                 'tasks' => Task::orderby('id', 'desc')->get(),
                 'title' => 'Manage Task',
-
             ));
     }
+
     public function viewtask()
     {
         return view('admin.vtask')
             ->with(array(
                 'tasks' => Task::orderby('id', 'desc')->where('designation', Auth('admin')->User()->id)->get(),
                 'title' => 'View my Task',
-
             ));
     }
 
@@ -429,6 +445,7 @@ class HomeController extends Controller
                 'title' => 'Manage New Registered Clients',
             ));
     }
+
     public function leadsassign()
     {
         return view('admin.lead_asgn')
@@ -437,9 +454,7 @@ class HomeController extends Controller
                     ['assign_to', Auth('admin')->User()->id],
                     ['cstatus', NULL]
                 ])->get(),
-
                 'title' => 'Manage New Registered Clients',
-
             ));
     }
 
@@ -450,21 +465,19 @@ class HomeController extends Controller
             ->with(array(
                 'users' => User::orderby('id', 'desc')->where('cstatus', 'Customer')->get(),
                 'title' => 'Manage shipments',
-
             ));
     }
 
 
     function RandomStringGenerator($n)
-{
-    $generated_string = "";
-    $domain = "12345678900123456789023456789034567890456789056789067890890";
-    $len = strlen($domain);
-    for ($i = 0; $i < $n; $i++) {
-        $index = rand(0, $len - 1);
-        $generated_string = $generated_string . $domain[$index];
+    {
+        $generated_string = "";
+        $domain = "12345678900123456789023456789034567890456789056789067890890";
+        $len = strlen($domain);
+        for ($i = 0; $i < $n; $i++) {
+            $index = rand(0, $len - 1);
+            $generated_string = $generated_string . $domain[$index];
+        }
+        return $generated_string;
     }
-    // Return the random generated string 
-    return $generated_string;
-}
 }

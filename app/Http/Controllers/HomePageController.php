@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Bike;
 use App\Models\Settings;
 use App\Models\Plans;
 use App\Models\Agent;
@@ -32,31 +33,32 @@ use Illuminate\Support\Facades\Auth;
 class HomePageController extends Controller
 {
     public function index(){
-        $settings=Settings::where('id', '=', '1')->first();
-        //sum total deposited
-        $total_deposits = DB::table('deposits')->select(DB::raw("SUM(amount) as total"))->
-        where('status','Processed')->get();
+    $settings=Settings::where('id', '=', '1')->first();
+    //sum total deposited
+    $total_deposits = DB::table('deposits')->select(DB::raw("SUM(amount) as total"))->
+    where('status','Processed')->get();
 
-        //sum total withdrawals
-        $total_withdrawals = DB::table('withdrawals')->select(DB::raw("SUM(amount) as total"))->
-        where('status','Processed')->get();
+    //sum total withdrawals
+    $total_withdrawals = DB::table('withdrawals')->select(DB::raw("SUM(amount) as total"))->
+    where('status','Processed')->get();
 
 
-        return view('home.index')->with(array(
-            'settings' => $settings,
-            'total_users' => User::count(),
-            'plans' => Plans::all(),
-            'total_deposits' => $total_deposits,
-            'total_withdrawals' => $total_withdrawals,
-            'faqs'=> Faq::orderby('id', 'desc')->get(),
-            'test'=> Testimony::orderby('id', 'desc')->get(),
-            'withdrawals' => Withdrawal::orderby('id','DESC')->take(7)->get(),
-            'deposits' => Deposit::orderby('id','DESC')->take(7)->get(),
-            'title' => $settings->site_title,
-            'mplans' => Plans::where('type','Main')->get(),
-            'pplans' => Plans::where('type','Promo')->get(),
-        ));
-    }
+    return view('home.index')->with(array(
+        'settings' => $settings,
+        'total_users' => User::count(),
+        'plans' => Plans::all(),
+        'total_deposits' => $total_deposits,
+        'total_withdrawals' => $total_withdrawals,
+        'faqs'=> Faq::orderby('id', 'desc')->get(),
+        'test'=> Testimony::orderby('id', 'desc')->get(),
+        'withdrawals' => Withdrawal::orderby('id','DESC')->take(7)->get(),
+        'deposits' => Deposit::orderby('id','DESC')->take(7)->get(),
+        'title' => $settings->site_title,
+        'mplans' => Plans::where('type','Main')->get(),
+        'pplans' => Plans::where('type','Promo')->get(),
+        'latestBikes' => Bike::active()->latest()->take(4)->get(),
+    ));
+}
 
     //Licensing and registration route
     public function licensing(){
