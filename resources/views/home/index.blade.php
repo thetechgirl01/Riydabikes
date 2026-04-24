@@ -145,72 +145,206 @@
 
 <!-- Bikes Showcase Section -->
 @if(isset($latestBikes) && $latestBikes->count() > 0)
-<section class="py-20 bg-gray-50">
+<section class="py-20 bg-gray-50 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <span class="inline-block px-4 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold mb-4">
-                <i class="fas fa-motorcycle mr-1"></i> Shop & Hire
+        <div class="text-center mb-12">
+            <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold mb-4">
+                <i class="fas fa-motorcycle mr-1"></i> Ride With Us
             </span>
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Latest Bikes</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Buy outright or hire by the day — quality bikes ready for the road.
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Buy outright or hire by the day — premium bikes ready for the road
             </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach($latestBikes as $bike)
-                <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
-                    <a href="{{ route('home.bikes.show', $bike->slug) }}" class="block relative h-56 overflow-hidden bg-gray-100">
-                        <img src="{{ $bike->image_url }}" alt="{{ $bike->name }}"
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        @if($bike->available_for_hire)
-                            <span class="absolute top-3 right-3 inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-green-500 text-white shadow">
-                                <span class="w-1.5 h-1.5 rounded-full bg-white mr-1.5 animate-pulse"></span>
-                                For Hire
-                            </span>
-                        @endif
-                    </a>
+        <!-- Draggable Slider Container -->
+        <div class="relative group">
+            <!-- Left Navigation Arrow -->
+            <button id="scrollLeftBtn" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 z-20 w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-full shadow-lg hover:bg-[#800020] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed" style="transition: all 0.3s ease;">
+                <i class="fas fa-chevron-left text-gray-700 group-hover:text-white text-sm lg:text-base"></i>
+            </button>
 
-                    <div class="p-5 flex-1 flex flex-col">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-1">
-                            <a href="{{ route('home.bikes.show', $bike->slug) }}" class="hover:text-primary-600 transition-colors">
-                                {{ $bike->name }}
-                            </a>
-                        </h3>
-                        @if($bike->brand)
-                            <p class="text-sm text-gray-500 mb-3">{{ $bike->brand }}</p>
-                        @endif
+            <!-- Right Navigation Arrow -->
+            <button id="scrollRightBtn" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 z-20 w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-full shadow-lg hover:bg-[#800020] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed" style="transition: all 0.3s ease;">
+                <i class="fas fa-chevron-right text-gray-700 group-hover:text-white text-sm lg:text-base"></i>
+            </button>
 
-                        <div class="mt-auto">
-                            <div class="flex items-baseline justify-between mb-4">
-                                <div>
-                                    <p class="text-2xl font-bold text-gray-900">₦{{ number_format($bike->price, 0) }}</p>
+            <!-- Scrollable Cards Container -->
+            <div id="bikesSlider" class="overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing" style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none;">
+                <div class="flex gap-6" style="width: max-content;">
+                    @foreach($latestBikes as $bike)
+                        <div class="w-[280px] sm:w-[320px] lg:w-[350px] flex-shrink-0">
+                            <div class="group/card bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out">
+                                <a href="{{ route('home.bikes.show', $bike->slug) }}" class="block relative overflow-hidden bg-white p-6">
+                                    <div class="aspect-w-4 aspect-h-3 bg-white">
+                                        <img src="{{ $bike->image_url }}" alt="{{ $bike->name }}" class="w-full h-56 object-contain transition-transform duration-500 group-hover/card:scale-105">
+                                    </div>
                                     @if($bike->available_for_hire)
-                                        <p class="text-xs text-gray-500">or ₦{{ number_format($bike->daily_rate, 0) }} / day</p>
+                                        <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full bg-[#800020] text-white shadow-md">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-[#FFD600] mr-1.5 animate-pulse"></span>
+                                            Available Now
+                                        </span>
+                                    @else
+                                        <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-600 text-white shadow-md">For Sale Only</span>
                                     @endif
+                                </a>
+
+                                <div class="p-5 flex-1 flex flex-col">
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex-1">
+                                            <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-1">
+                                                <a href="{{ route('home.bikes.show', $bike->slug) }}" class="hover:text-[#800020] transition-colors duration-200">
+                                                    {{ $bike->name }}
+                                                </a>
+                                            </h3>
+                                            @if($bike->brand)
+                                                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">{{ $bike->brand }}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 space-y-1">
+                                        <p class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">₦{{ number_format($bike->price, 0) }}</p>
+                                        @if($bike->available_for_hire)
+                                            <p class="text-base font-semibold text-[#800020] dark:text-[#FFD600]">or ₦{{ number_format($bike->daily_rate, 0) }} <span class="text-sm font-normal text-gray-500">/ day</span></p>
+                                        @endif
+                                    </div>
+
+                                    <div class="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700">
+                                        <a href="{{ route('home.bikes.show', $bike->slug) }}"
+                                           class="w-full inline-flex justify-center items-center gap-2 px-5 py-3 bg-[#800020] hover:bg-[#6b001a] text-white rounded-full text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            View Details
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-
-                            <a href="{{ route('home.bikes.show', $bike->slug) }}"
-                               class="w-full inline-flex justify-center items-center px-4 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg text-sm font-medium transition-colors">
-                                View Details
-                                <i class="fas fa-arrow-right ml-2 text-xs"></i>
-                            </a>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
         </div>
 
         <div class="text-center mt-12">
             <a href="{{ route('home.bikes.index') }}"
-               class="inline-flex items-center px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all">
+               class="inline-flex items-center gap-2 px-8 py-4 bg-[#800020] hover:bg-[#6b001a] text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
                 Browse All Bikes
-                <i class="fas fa-arrow-right ml-2"></i>
+                <i class="fas fa-arrow-right text-sm"></i>
             </a>
         </div>
     </div>
 </section>
+
+<style>
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    #bikesSlider::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    .cursor-grab {
+        cursor: grab;
+    }
+    
+    .cursor-grabbing {
+        cursor: grabbing;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slider = document.getElementById('bikesSlider');
+        const leftBtn = document.getElementById('scrollLeftBtn');
+        const rightBtn = document.getElementById('scrollRightBtn');
+        
+        if (!slider) return;
+        
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        
+        // Draggable functionality
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('cursor-grabbing');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.classList.remove('cursor-grabbing');
+        });
+        
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.classList.remove('cursor-grabbing');
+        });
+        
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Touch support for mobile
+        slider.addEventListener('touchstart', (e) => {
+            isDown = true;
+            startX = e.touches[0].pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        
+        slider.addEventListener('touchend', () => {
+            isDown = false;
+        });
+        
+        slider.addEventListener('touchmove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Scroll buttons functionality
+        const scrollAmount = 350;
+        
+        function updateButtons() {
+            if (leftBtn && rightBtn) {
+                leftBtn.disabled = slider.scrollLeft <= 0;
+                rightBtn.disabled = slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5;
+            }
+        }
+        
+        if (leftBtn) {
+            leftBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                setTimeout(updateButtons, 300);
+            });
+        }
+        
+        if (rightBtn) {
+            rightBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                setTimeout(updateButtons, 300);
+            });
+        }
+        
+        slider.addEventListener('scroll', updateButtons);
+        updateButtons();
+        
+        // Initial button state
+        setTimeout(updateButtons, 100);
+    });
+</script>
 @endif
 
 <!-- Services Section -->
