@@ -166,6 +166,37 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                             </div>
                                         </div>
 
+                                        <!-- Customer Payment Proof Section (after package photo) -->
+                                        @if($shipment->shipment_source === 'public' && $shipment->payment_proof)
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">Customer Payment Proof</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <span class="badge badge-{{ $shipment->payment_status === 'Approved' ? 'success' : 'warning' }} badge-lg">
+                                                        {{ $shipment->payment_status }}
+                                                    </span>
+                                                </div>
+                                                <p><strong>Payment Method:</strong> {{ $shipment->payment_method }}</p>
+                                                <div class="text-center">
+                                                    <a href="{{ asset($shipment->payment_proof) }}" target="_blank">
+                                                        <img src="{{ asset($shipment->payment_proof) }}" alt="Payment Proof" class="img-fluid rounded" style="max-height: 300px; object-fit: contain;">
+                                                    </a>
+                                                </div>
+                                                
+                                                @if($shipment->payment_status !== 'Approved')
+                                                    <form method="POST" action="{{ route('admin.shipments.approve-payment', $shipment->id) }}" class="mt-3">
+                                                        @csrf
+                                                        <button class="btn btn-success btn-block">
+                                                            <i class="fa fa-check"></i> Approve Payment
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        @endif
+
                                         <div class="card shadow mb-4">
                                             <div class="card-header bg-primary text-white">
                                                 <h5 class="mb-0">Cost Information</h5>

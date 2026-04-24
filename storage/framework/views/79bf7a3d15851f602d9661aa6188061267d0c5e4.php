@@ -49,9 +49,9 @@
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
-                            <a href="contact" class="bg-[#800020] text-white px-8 py-4 rounded-full hover:bg-[#6b001a] transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center gap-2">
-                                Book a Delivery <i class="fas fa-arrow-right"></i>
-                            </a>
+                           <a href="<?php echo e(route('home.shipments.create')); ?>" class="bg-primary-600 text-white px-8 py-4 rounded-full hover:bg-primary-700 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+    Book Delivery <i class="fas fa-arrow-right"></i>
+</a>
                             <a href="contact" class="bg-transparent border-2 border-white lg:border-[#800020] text-white lg:text-[#800020] px-8 py-4 rounded-full hover:bg-[#800020] hover:text-white transition-all duration-300 font-semibold text-lg inline-flex items-center gap-2">
                                 <i class="fas fa-motorcycle"></i> Rent / Buy a Bike
                             </a>

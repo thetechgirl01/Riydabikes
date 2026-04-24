@@ -37,6 +37,8 @@ Route::middleware(['isadmin', '2fa'])->prefix('admin')->group(function () {
                 'title' => 'Edit Shipment'
             ]);
         })->name('admin.shipments.edit');
+        
+
 
         // Update shipment
         Route::post('shipments/update', 'updateShipment')->name('admin.shipments.update');
@@ -46,6 +48,7 @@ Route::middleware(['isadmin', '2fa'])->prefix('admin')->group(function () {
 
         // Process status update
         Route::post('shipments/update-status', 'updateShipmentStatus')->name('admin.shipments.update-status');
+        Route::post('shipments/{id}/approve-payment', [\App\Http\Controllers\Admin\ShipmentController::class, 'approvePayment'])->name('admin.shipments.approve-payment');
 
         // Track history management routes
         Route::put('shipments/track/{id}', 'updateTrackRecord')->name('admin.shipments.track.update');

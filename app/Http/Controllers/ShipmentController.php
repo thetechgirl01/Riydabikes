@@ -1050,4 +1050,46 @@ class ShipmentController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Approve payment for a shipment
+     *
+     * @param int $id Shipment ID
+     * @return \Illuminate\Http\Response
+     */
+    public function approvePayment($id)
+    {
+        $shipment = User::findOrFail($id);
+        $shipment->payment_status = 'Approved';
+        $shipment->save();
+
+        Tp_Transaction::create([
+            'user'    => $shipment->id,
+            'address' => $shipment->location ?? $shipment->take_off_point,
+            'city'    => '',
+            'country' => '',
+            'status'  => 'Payment Received',
+            'comment' => 'Payment confirmed by admin. Shipment will be processed shortly.',
+        ]);
+
+        // Notify the sender
+        try {
+            $settings = \App\Models\Settings::where('id', 1)->first();
+            $email = $shipment->username ?: $shipment->email;
+            $body = "
+                <p>Hi {$shipment->sname},</p>
+                <p>Good news — your payment for shipment <strong>{$shipment->trackingnumber}</strong> has been confirmed.</p>
+                <p>We'll begin processing your delivery now and keep you posted with status updates.</p>
+                <p>Thank you for choosing {$settings->site_name}.</p>";
+            \Illuminate\Support\Facades\Mail::to($email)->send(new \App\Mail\NewNotification(
+                $body,
+                'Payment Confirmed - ' . $shipment->trackingnumber,
+                $shipment->sname
+            ));
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Payment confirm email failed: ' . $e->getMessage());
+        }
+
+        return back()->with('success', 'Payment approved and customer notified.');
+    }
 }

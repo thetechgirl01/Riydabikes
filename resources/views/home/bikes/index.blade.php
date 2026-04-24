@@ -1,23 +1,27 @@
 @extends('layouts.base')
 
-@section('title', 'Bikes')
+@section('title', 'Our Bikes - RydaBikes')
 
 @section('content')
 <div class="bg-gray-50 dark:bg-gray-900 min-h-screen">
-    <!-- Hero -->
-    <div class="relative bg-gradient-to-r from-blue-600 to-indigo-700 py-12 px-4 sm:px-6 lg:px-8 text-white">
-        <div class="max-w-6xl mx-auto">
-            <h1 class="text-3xl md:text-4xl font-bold mb-2">Our Bikes</h1>
-            <p class="text-lg opacity-90">Buy outright or hire by the day.</p>
+    <!-- Page Header -->
+    <section class="relative pt-32 pb-20 bg-[#800020]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-left">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Bikes</h1>
+                <p class="text-lg text-white/80 max-w-2xl">
+                    Buy outright or hire by the day — premium bikes ready for the road
+                </p>
+                <div class="flex items-center gap-2 text-sm text-white/70 mt-6">
+                    <a href="/" class="hover:text-[#FFD600] transition-colors">Home</a>
+                    <i class="fas fa-angle-right text-xs"></i>
+                    <span class="text-white">Bikes</span>
+                </div>
+            </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 overflow-hidden rotate-180" style="transform: translateY(1px);">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-gray-50 dark:fill-gray-900"></path>
-            </svg>
-        </div>
-    </div>
+    </section>
 
-   <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         @if($bikes->isEmpty())
             <div class="text-center py-16">
                 <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

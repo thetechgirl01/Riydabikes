@@ -85,6 +85,16 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                                 <a href="{{ route('admin.shipments.view', $shipment->id) }}" class="font-weight-bold">
                                                     {{ $shipment->trackingnumber }}
                                                 </a>
+
+                                                @if($shipment->shipment_source === 'public')
+                                                    <span class="badge badge-info ml-1" title="Booked online by customer">Online</span>
+                                                @endif
+
+                                                @if($shipment->payment_status && $shipment->shipment_source === 'public')
+                                                    <span class="badge badge-{{ $shipment->payment_status === 'Approved' ? 'success' : 'warning' }} ml-1">
+                                                        Payment: {{ $shipment->payment_status }}
+                                                    </span>
+                                                @endif
                                             </td>
                                             <td>{{ $shipment->sname }}</td>
                                             <td>
@@ -128,7 +138,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                                     <i class="fa fa-print"></i> Print
                                                 </a>
                                                 
-                                                 <form action="{{ route('admin.shipments.delete', $shipment->id) }}" method="POST" style="display: inline-block;"
+                                                <form action="{{ route('admin.shipments.delete', $shipment->id) }}" method="POST" style="display: inline-block;"
                                                       onsubmit="return confirm('Are you sure you want to delete shipment {{ $shipment->trackingnumber }}? This action cannot be undone.')">
                                                     @csrf
                                                     @method('DELETE')

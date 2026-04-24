@@ -320,10 +320,10 @@
                         </a>
                     </div>
 
-                    <!-- Desktop Navigation Links (Left side) with animated underline -->
+                     <!-- Desktop Navigation Links (Left side) with animated underline -->
                     <div class="hidden lg:flex lg:items-center desktop-left-links">
-                        <a href="/" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Home</a>
                         <a href="about" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        
                         <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                             <button class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors flex items-center">
                                 Services
@@ -358,13 +358,17 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="order" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Track Shipment</a>
-                        <a href="contact" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                        
+                        <a href="<?php echo e(route('home.shipments.create')); ?>" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Book Delivery</a>
+                        
+                        <a href="order" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Track Delivery</a>
+                        
+                        <a href="<?php echo e(route('home.bikes.index')); ?>" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Rent / Buy Bikes</a>
                     </div>
 
-                   <!-- Desktop Right Section (Search + CTA) with burgundy button - RydaBikes styled -->
+                    <!-- Desktop Right Section (Search + Contact Button) -->
                     <div class="hidden lg:flex lg:items-center desktop-right-actions">
-                        <!-- Quick Track Search - Enhanced dropdown with click outside to close -->
+                        <!-- Quick Track Search -->
                         <div class="relative" x-data="{ open: false }" x-init="() => {
                             $watch('open', (value) => {
                                 if (value) {
@@ -407,33 +411,12 @@
                             </div>
                         </div>
 
-                        <!-- Get Quote Button - Rounded, burgundy, modern -->
+                        <!-- Contact Button -->
                         <a href="contact"
                            class="bg-[#800020] text-white px-6 py-2.5 rounded-full hover:bg-[#6b001a] transition-all font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2 text-sm">
-                            <i class="fas fa-motorcycle text-sm"></i> Rent / Buy
+                            <i class="fas fa-headset text-sm"></i> Contact
                         </a>
                     </div>
-                    <!-- Mobile Controls: Search icon + Animated 2-line hamburger -->
-                    <div class="lg:hidden flex items-center space-x-2">
-                        <button type="button"
-                                @click="searchOpen = !searchOpen"
-                                class="p-3 text-gray-400 hover:text-[#FFD600] transition-colors">
-                            <i class="fas fa-search text-lg"></i>
-                        </button>
-                        <!-- Custom 2-line hamburger button with smooth X animation -->
-                        <button type="button"
-                                @click="mobileMenuOpen = !mobileMenuOpen"
-                                class="mobile-menu-btn-custom p-3 text-gray-400 hover:text-[#FFD600] transition-colors relative flex items-center justify-center"
-                                aria-label="Toggle menu">
-                            <div class="menu-icon-two-line" :class="{'open': mobileMenuOpen}">
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
             <!-- Mobile Search (restyled for RydaBikes delivery tracking) -->
             <div x-show="searchOpen"
                  x-cloak
@@ -452,7 +435,7 @@
                         </label>
                         <input type="text"
                                name="trackingnumber"
-                               placeholder="Enter RYD tracking ID"
+                               placeholder="Enter RI tracking ID"
                                class="w-full px-5 py-3.5 border border-gray-700 bg-gray-800 text-white rounded-2xl focus:ring-2 focus:ring-[#FFD600] focus:border-transparent transition-all outline-none text-base"
                                required>
                     </div>
