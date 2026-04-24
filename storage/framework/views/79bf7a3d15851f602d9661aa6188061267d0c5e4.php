@@ -151,20 +151,20 @@
             </span>
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Latest Bikes</h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                Buy outright or hire by the day — premium bikes ready for the road
+                Buy outright or hire by the day. Explore our latest arrivals and find your perfect ride today.
             </p>
         </div>
 
         <!-- Draggable Slider Container -->
         <div class="relative group">
             <!-- Left Navigation Arrow -->
-            <button id="scrollLeftBtn" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 z-20 w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-full shadow-lg hover:bg-[#800020] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed" style="transition: all 0.3s ease;">
-                <i class="fas fa-chevron-left text-gray-700 group-hover:text-white text-sm lg:text-base"></i>
+            <button id="scrollLeftBtn" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-6 z-20 w-10 h-10 lg:w-12 lg:h-12 text-black bg-white rounded-full shadow-lg hover:bg-[#800020] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed" style="transition: all 0.3s ease;">
+                <i class="fas fa-chevron-left text-black group-hover:text-white text-sm lg:text-base"></i>
             </button>
 
             <!-- Right Navigation Arrow -->
-            <button id="scrollRightBtn" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 z-20 w-10 h-10 lg:w-12 lg:h-12 bg-white rounded-full shadow-lg hover:bg-[#800020] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed" style="transition: all 0.3s ease;">
-                <i class="fas fa-chevron-right text-gray-700 group-hover:text-white text-sm lg:text-base"></i>
+            <button id="scrollRightBtn" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-6 z-20 w-10 h-10 lg:w-12 lg:h-12 text-black bg-white rounded-full shadow-lg hover:bg-[#800020] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed" style="transition: all 0.3s ease;">
+                <i class="fas fa-chevron-right text-black group-hover:text-white text-sm lg:text-base"></i>
             </button>
 
             <!-- Scrollable Cards Container -->
@@ -349,137 +349,144 @@
 <!-- Services Section -->
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Comprehensive shipping and logistics solutions tailored to your business needs
+        <div class="text-center mb-12">
+            <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold mb-4">
+                <i class="fas fa-cog mr-1"></i> What We Offer
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Premium Services</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Comprehensive solutions tailored to get you where you need to be
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Air Freight -->
-            <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/services/service1.jpg');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-                    <div class="absolute top-4 left-4">
-                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-plane text-white text-xl"></i>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div class="p-5 flex flex-row gap-5 items-start">
+                    <!-- Image/Icon Box -->
+                    <div class="flex-shrink-0">
+                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service1.jpg');"></div>
+                            <i class="fas fa-plane text-3xl text-[#800020] group-hover:text-white transition-all duration-300 hidden absolute"></i>
                         </div>
                     </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Air Freight</h3>
-                    <p class="text-gray-600 mb-4">
-                        <?php echo e($settings->site_name); ?>, as an IATA-endorsed air forwarder, offers professional and reliable global air-freight solutions.
-                    </p>
-                    <a href="services" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center">
-                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
+                    
+                    <!-- Text Content Column -->
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Air Freight</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                            <?php echo e($settings->site_name); ?>, as an IATA-endorsed air forwarder, offers professional and reliable global air-freight solutions.
+                        </p>
+                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                            Learn More 
+                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <!-- Sea/Ocean Freight -->
-            <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/services/service2.jpg');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-                    <div class="absolute top-4 left-4">
-                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-ship text-white text-xl"></i>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div class="p-5 flex flex-row gap-5 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service2.jpg');"></div>
                         </div>
                     </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Sea/Ocean Freight</h3>
-                    <p class="text-gray-600 mb-4">
-                        International ocean freight shipping import and export services. FCL, LCL shipments, port to port or door to door.
-                    </p>
-                    <a href="services" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center">
-                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Sea/Ocean Freight</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                            International ocean freight shipping import and export services. FCL, LCL shipments, port to port or door to door.
+                        </p>
+                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                            Learn More 
+                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <!-- Road Transportation -->
-            <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/services/service3.jpg');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-                    <div class="absolute top-4 left-4">
-                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-truck text-white text-xl"></i>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div class="p-5 flex flex-row gap-5 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service3.jpg');"></div>
                         </div>
                     </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Road Transportation</h3>
-                    <p class="text-gray-600 mb-4">
-                        Highly experienced and dependable, <?php echo e($settings->site_name); ?> is a trusted partner in domestic road transportation.
-                    </p>
-                    <a href="services" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center">
-                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Road Transportation</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                            Highly experienced and dependable, <?php echo e($settings->site_name); ?> is a trusted partner in domestic road transportation.
+                        </p>
+                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                            Learn More 
+                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <!-- Diplomatic Services -->
-            <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/services/service4.jpg');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-                    <div class="absolute top-4 left-4">
-                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-shield-alt text-white text-xl"></i>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div class="p-5 flex flex-row gap-5 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service4.jpg');"></div>
                         </div>
                     </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Diplomatic Bag & Secure Logistics</h3>
-                    <p class="text-gray-600 mb-4">
-                        Global secure mail and equipment delivery service with complete confidence and security.
-                    </p>
-                    <a href="diplomatic" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center">
-                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Diplomatic & Secure Logistics</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                            Global secure mail and equipment delivery service with complete confidence and security.
+                        </p>
+                        <a href="diplomatic" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                            Learn More 
+                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <!-- Warehousing -->
-            <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/services/service5.jpg');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-                    <div class="absolute top-4 left-4">
-                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-warehouse text-white text-xl"></i>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div class="p-5 flex flex-row gap-5 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service5.jpg');"></div>
                         </div>
                     </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Warehousing</h3>
-                    <p class="text-gray-600 mb-4">
-                        Shared and dedicated warehousing solutions supported by state-of-the-art technology and warehouse services.
-                    </p>
-                    <a href="services" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center">
-                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Warehousing</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                            Shared and dedicated warehousing solutions supported by state-of-the-art technology and warehouse services.
+                        </p>
+                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                            Learn More 
+                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <!-- Packaging & Storage -->
-            <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="relative h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/services/service6.jpg');">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-                    <div class="absolute top-4 left-4">
-                        <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-box text-white text-xl"></i>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div class="p-5 flex flex-row gap-5 items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service6.jpg');"></div>
                         </div>
                     </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Packaging & Storage</h3>
-                    <p class="text-gray-600 mb-4">
-                        Professional packaging and storage solutions for raw materials, electronics, and finished goods with cargo insurance.
-                    </p>
-                    <a href="services" class="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center">
-                        Learn More <i class="fas fa-arrow-right ml-2 text-sm"></i>
-                    </a>
+                    <div class="flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Packaging & Storage</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                            Professional packaging and storage solutions for raw materials, electronics, and finished goods with cargo insurance.
+                        </p>
+                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                            Learn More 
+                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
