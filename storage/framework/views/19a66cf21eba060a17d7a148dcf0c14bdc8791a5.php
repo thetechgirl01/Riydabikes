@@ -1,62 +1,35 @@
-<?php
-    if ($settings->redirect_url != null or !empty($settings->redirect_url)) {
-        header("Location: $settings->redirect_url", true, 301);
-        exit();
-    }
-?>
-
-
-<?php $__env->startSection('title', $settings->site_title); ?>
-
+<?php $__env->startSection('title', $settings->site_title . ' - Premium Bike Rental & Delivery Services'); ?>
 
 <?php $content = app('App\Http\Controllers\FrontController'); ?>
 <?php $__env->startSection('content'); ?>
 
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-r from-primary-700 to-primary-800 py-24 md:py-32">
-    <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute inset-0 bg-pattern opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.2\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 animate-slide-up">Our Services</h1>
-            <p class="text-xl text-primary-100 max-w-2xl mx-auto animate-slide-up" style="animation-delay: 0.1s">
-                Comprehensive logistics solutions tailored to your unique shipping needs
+<!-- Page Header -->
+<section class="relative pt-32 pb-20 bg-[#800020]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-left">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Services</h1>
+            <p class="text-lg text-white/80 max-w-2xl">
+                Comprehensive bike rental, sales, and delivery solutions tailored to your needs
             </p>
-            
-            <!-- Breadcrumbs -->
-            <nav class="mt-8 flex justify-center" aria-label="Breadcrumb">
-                <ol class="flex items-center space-x-2 text-sm text-primary-200">
-                    <li>
-                        <a href="/" class="hover:text-white transition-colors">Home</a>
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="h-4 w-4 text-primary-300 mx-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-white font-medium">Our Services</span>
-                    </li>
-                </ol>
-            </nav>
+            <div class="flex items-center gap-2 text-sm text-white/70 mt-6">
+                <a href="/" class="hover:text-[#FFD600] transition-colors">Home</a>
+                <i class="fas fa-angle-right text-xs"></i>
+                <span class="text-white">Our Services</span>
+            </div>
         </div>
-    </div>
-    
-    <!-- Wave Divider -->
-    <div class="absolute bottom-0 left-0 right-0">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="text-white fill-current">
-            <path d="M0,96L80,80C160,64,320,32,480,32C640,32,800,64,960,69.3C1120,75,1280,53,1360,42.7L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
-        </svg>
     </div>
 </section>
 
 <!-- Services Introduction -->
 <section class="py-16 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <span class="text-primary-600 font-semibold tracking-wider uppercase text-sm">What We Offer</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">Comprehensive Logistics Solutions</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                From air freight to specialized diplomatic services, we provide end-to-end logistics solutions designed to meet your unique shipping requirements with efficiency and reliability.
+        <div class="text-center mb-12">
+            <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold mb-4">
+                <i class="fas fa-motorcycle mr-1"></i> What We Offer
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                From bike rentals to fast deliveries and premium sales — we've got you covered
             </p>
         </div>
     </div>
@@ -65,250 +38,116 @@
 <!-- Main Services Grid -->
 <section class="pb-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Air Freight -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="temp/custom/images/services/service1.jpg" alt="Air Freight" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent"></div>
-                    <div class="absolute inset-0 flex items-end p-6">
-                        <h3 class="text-xl text-white font-bold">Air Freight</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Bike Rental -->
+            <div class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                <div class="relative h-56 overflow-hidden bg-gray-100">
+                    <img src="temp/custom/images/services/service1.jpg" alt="Bike Rental" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <div class="w-10 h-10 bg-[#800020] rounded-lg flex items-center justify-center shadow-lg">
+                            <i class="fas fa-calendar-alt text-white text-sm"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="p-6">
-                    <p class="text-gray-600 mb-4">
-                        <?php echo e($settings->site_name); ?>, as an IATA-endorsed air forwarder, offers its customers professional and reliable global, air-freight solutions.
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Bike Rental</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Flexible rental plans — daily, weekly, or monthly. Perfect for commuting, deliveries, or leisure rides.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Express Delivery</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Global Coverage</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Priority Shipping</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Daily Rental</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Weekly Plans</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Monthly Deals</span>
                     </div>
-                    <a href="#" class="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors">
-                        Learn more
-                        <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
+                    <a href="contact" class="inline-flex items-center text-[#800020] font-semibold text-sm group/link">
+                        Learn More
+                        <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- Sea/Ocean Freight -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="temp/custom/images/services/service2.jpg" alt="Sea/Ocean Freight" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent"></div>
-                    <div class="absolute inset-0 flex items-end p-6">
-                        <h3 class="text-xl text-white font-bold">Sea/Ocean Freight</h3>
+            <!-- Fast Delivery -->
+            <div class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                <div class="relative h-56 overflow-hidden bg-gray-100">
+                    <img src="temp/custom/images/services/service2.jpg" alt="Fast Delivery" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <div class="w-10 h-10 bg-[#800020] rounded-lg flex items-center justify-center shadow-lg">
+                            <i class="fas fa-truck-fast text-white text-sm"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="p-6">
-                    <p class="text-gray-600 mb-4">
-                        We offer international ocean freight shipping import and export services. Full container loads or less than container LCL shipments, port to port or door to door.
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Fast Delivery</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Quick and reliable bike delivery service across Lagos and major cities. Same-day delivery available.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">FCL Shipping</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">LCL Options</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Port to Door</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Same-Day</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Real-Time Tracking</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Door to Door</span>
                     </div>
-                    <a href="#" class="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors">
-                        Learn more
-                        <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
+                    <a href="order" class="inline-flex items-center text-[#800020] font-semibold text-sm group/link">
+                        Learn More
+                        <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- Road Transportation -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="temp/custom/images/services/service3.jpg" alt="Road Transportation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent"></div>
-                    <div class="absolute inset-0 flex items-end p-6">
-                        <h3 class="text-xl text-white font-bold">Road Transportation</h3>
+            <!-- Bike Sales -->
+            <div class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                <div class="relative h-56 overflow-hidden bg-gray-100">
+                    <img src="temp/custom/images/services/service3.jpg" alt="Bike Sales" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <div class="w-10 h-10 bg-[#800020] rounded-lg flex items-center justify-center shadow-lg">
+                            <i class="fas fa-motorcycle text-white text-sm"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="p-6">
-                    <p class="text-gray-600 mb-4">
-                        Highly experienced and dependable, <?php echo e($settings->site_name); ?> is a trusted partner in domestic road transportation, offering expert logistics solutions.
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Bike Sales</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        Buy premium quality bikes at competitive prices. Fully inspected and ready to ride.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Same-Day Delivery</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Last Mile</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Regional Coverage</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Premium Quality</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Warranty Included</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Free Delivery</span>
                     </div>
-                    <a href="#" class="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors">
-                        Learn more
-                        <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
+                    <a href="<?php echo e(route('home.bikes.index')); ?>" class="inline-flex items-center text-[#800020] font-semibold text-sm group/link">
+                        Browse Bikes
+                        <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- Diplomatic Services -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="temp/custom/images/services/service4.jpg" alt="Diplomatic Services" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent"></div>
-                    <div class="absolute inset-0 flex items-end p-6">
-                        <h3 class="text-xl text-white font-bold">Diplomatic Bag and Secure Logistics</h3>
+            <!-- Maintenance & Support -->
+            <div class="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                <div class="relative h-56 overflow-hidden bg-gray-100">
+                    <img src="temp/custom/images/services/service4.jpg" alt="Maintenance" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <div class="w-10 h-10 bg-[#800020] rounded-lg flex items-center justify-center shadow-lg">
+                            <i class="fas fa-wrench text-white text-sm"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="p-6">
-                    <p class="text-gray-600 mb-4">
-                        Our service is global, send and receive mail and equipment around the world securely with complete confidence.
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Maintenance & Support</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                        24/7 customer support and maintenance services to keep you on the road safely.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">High Security</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Confidential</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Diplomatic Channels</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">24/7 Support</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Roadside Assistance</span>
+                        <span class="px-2 py-1 bg-[#800020]/10 text-[#800020] text-xs rounded-full">Free Checkups</span>
                     </div>
-                    <a href="diplomatic" class="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors">
-                        Learn more
-                        <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
+                    <a href="contact" class="inline-flex items-center text-[#800020] font-semibold text-sm group/link">
+                        Contact Us
+                        <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
                     </a>
-                </div>
-            </div>
-
-            <!-- Warehousing -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="temp/custom/images/services/service5.jpg" alt="Warehousing" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent"></div>
-                    <div class="absolute inset-0 flex items-end p-6">
-                        <h3 class="text-xl text-white font-bold">Warehousing</h3>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <p class="text-gray-600 mb-4">
-                        We offer shared and dedicated warehousing solutions supported by state of the art technology to as part of our suite of warehouse services.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Inventory Management</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Distribution</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Fulfillment</span>
-                    </div>
-                    <a href="#" class="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors">
-                        Learn more
-                        <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Packaging & Storage -->
-            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl group" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
-                <div class="relative h-60 overflow-hidden">
-                    <img src="temp/custom/images/services/service6.jpg" alt="Packaging & Storage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary-900/70 to-transparent"></div>
-                    <div class="absolute inset-0 flex items-end p-6">
-                        <h3 class="text-xl text-white font-bold">Packaging & Storage</h3>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <p class="text-gray-600 mb-4">
-                        Whether its client's shipments comprise raw materials, electronics or finished goods, we offers the right level of storage and cargo insurance.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Custom Packaging</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Secure Storage</span>
-                        <span class="px-3 py-1 bg-primary-100 text-primary-700 text-xs rounded-full">Cargo Insurance</span>
-                    </div>
-                    <a href="#" class="inline-flex items-center text-primary-600 font-medium hover:text-primary-800 transition-colors">
-                        Learn more
-                        <svg class="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Network Services Section -->
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-4">
-                <div class="rounded-xl overflow-hidden shadow-lg">
-                    <img src="temp/custom/images/services/service-right-1.jpg" alt="Global Network Services" class="w-full h-auto">
-                </div>
-            </div>
-            <div class="lg:col-span-8">
-                <span class="text-primary-600 font-semibold tracking-wider uppercase text-sm">Global Presence</span>
-                <h2 class="text-3xl font-bold text-gray-900 mt-2 mb-6">Network Services</h2>
-                <div class="prose prose-lg text-gray-600">
-                    <p>
-                        Our customers overseas require a global and local responsive secure support network,
-                        which we expertly deliver worldwide. In the United States, we
-                        provide translation and interpretation into more than 60 languages by experts who
-                        understand your legal, political and business environment. Our trusted staff are
-                        security cleared, we can ensure yours are too through our national security vetting
-                        service.
-                    </p>
-                    <p>
-                        Our global regional hubs offer a wide range of mission-critical technology, logistic,
-                        IT and security services to clients and its partners overseas. Through our overseas
-                        secure services to more than 250 diplomatic offices, across 160 countries, we support
-                        around 14,000 staff globally, as well as many more from other government departments
-                        co-located at posts under the One HMG ethos. We provide complete confidence that
-                        information and goods are where they need to be, when they need to be, uncompromised.
-                    </p>
-                    <p>
-                        Our United States based services includes translation,
-                        interpreting and national security vetting. Our translators and interpreters work
-                        from and into more than 60 languages and ensure your message is communicated accurately,
-                        consistently and professionally in a language your audience understands. We provide an
-                        efficient, one-stop shop for all your translation and interpreting requirements and have
-                        subject matter experts who know the legal, political and business environments you are
-                        working in.
-                    </p>
-                </div>
-                
-                <!-- Network Service Highlights -->
-                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-                            <i class="fas fa-globe text-primary-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">Global Coverage</h4>
-                            <p class="text-sm text-gray-600">160+ countries worldwide</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-                            <i class="fas fa-language text-primary-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">Translation Services</h4>
-                            <p class="text-sm text-gray-600">60+ languages supported</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-                            <i class="fas fa-shield-alt text-primary-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">Security Vetting</h4>
-                            <p class="text-sm text-gray-600">National security standards</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-                            <i class="fas fa-building text-primary-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-medium text-gray-900">Diplomatic Offices</h4>
-                            <p class="text-sm text-gray-600">250+ locations served</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -316,65 +155,65 @@
 </section>
 
 <!-- Why Choose Us -->
-<section class="py-16 bg-white">
+<section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <span class="text-primary-600 font-semibold tracking-wider uppercase text-sm">Our Advantages</span>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">Why Choose Our Services</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                With decades of experience in the logistics industry, we offer reliable, secure, and efficient shipping solutions that meet your unique requirements.
+            <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold mb-4">
+                <i class="fas fa-star mr-1"></i> Why Choose Us
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why RydaBikes?</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                We're committed to providing the best bike experience in Nigeria
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-gray-50 rounded-xl p-8 transition-all duration-300 hover:shadow-md">
-                <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-shipping-fast text-primary-600 text-xl"></i>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-2xl p-6 transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <div class="w-12 h-12 bg-[#800020] rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-check-circle text-white text-lg"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Fast & Reliable</h3>
-                <p class="text-gray-600">
-                    Our expedited shipping services ensure your cargo reaches its destination on time, every time, with real-time tracking capabilities.
-                </p>
+                <h3 class="text-lg font-bold text-gray-900 mb-2">Quality Assured</h3>
+                <p class="text-gray-600 text-sm">Every bike is thoroughly inspected and maintained before rental or sale</p>
             </div>
             
-            <div class="bg-gray-50 rounded-xl p-8 transition-all duration-300 hover:shadow-md">
-                <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-lock text-primary-600 text-xl"></i>
+            <div class="bg-white rounded-2xl p-6 transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <div class="w-12 h-12 bg-[#800020] rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-clock text-white text-lg"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Secure Handling</h3>
-                <p class="text-gray-600">
-                    Advanced security protocols and careful handling procedures protect your valuable shipments throughout the entire logistics process.
-                </p>
+                <h3 class="text-lg font-bold text-gray-900 mb-2">Flexible Plans</h3>
+                <p class="text-gray-600 text-sm">Daily, weekly, or monthly rentals — choose what works for you</p>
             </div>
             
-            <div class="bg-gray-50 rounded-xl p-8 transition-all duration-300 hover:shadow-md">
-                <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mb-4">
-                    <i class="fas fa-globe-americas text-primary-600 text-xl"></i>
+            <div class="bg-white rounded-2xl p-6 transition-all duration-300 hover:shadow-lg border border-gray-100">
+                <div class="w-12 h-12 bg-[#800020] rounded-xl flex items-center justify-center mb-4">
+                    <i class="fas fa-headset text-white text-lg"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Global Network</h3>
-                <p class="text-gray-600">
-                    Our extensive international network allows us to deliver seamless logistics solutions across borders with local expertise.
-                </p>
+                <h3 class="text-lg font-bold text-gray-900 mb-2">24/7 Support</h3>
+                <p class="text-gray-600 text-sm">Our team is always available to assist you anytime, anywhere</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Call to Action -->
-<section class="py-20 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">We will take care of your cargo and deliver them safe and on time.</h2>
-            <p class="text-xl text-primary-100 max-w-2xl mx-auto mb-10">
-                Experience premium shipping and logistics services with our dedicated team of professionals.
-            </p>
-            <a href="contact" class="inline-block bg-white text-primary-700 hover:bg-gray-100 px-8 py-4 rounded-lg font-medium transition-colors">
-                Contact Us Now
-            </a>
+<section class="py-16 bg-[#800020]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Ride?</h2>
+            <p class="text-white/80 mb-8">Get your bike today — rent, buy, or request a delivery</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact" class="inline-flex items-center justify-center gap-2 bg-[#FFD600] text-[#800020] px-8 py-3 rounded-full hover:bg-[#e6c200] transition-all duration-300 font-bold shadow-lg">
+                    Rent / Buy a Bike
+                    <i class="fas fa-motorcycle"></i>
+                </a>
+                <a href="order" class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-[#800020] transition-all duration-300 font-bold">
+                    Track Delivery
+                    <i class="fas fa-location-dot"></i>
+                </a>
+            </div>
         </div>
     </div>
 </section>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.base', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\shypdirect\resources\views/home/services.blade.php ENDPATH**/ ?>

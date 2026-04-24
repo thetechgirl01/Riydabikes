@@ -494,349 +494,181 @@
 </section>
 
 <!-- Why Choose Us Section -->
-<section class="py-20 bg-white">
+<section class="py-20 bg-[#800020]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Us</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Trusted by thousands of customers worldwide for reliable and professional logistics solutions
+        <div class="text-center mb-12">
+            <span class="inline-block px-4 py-1.5 bg-[#FFD600]/20 text-[#FFD600] rounded-full text-sm font-semibold mb-4">
+                <i class="fas fa-star mr-1"></i> Why Ride With Us
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Why Choose RydaBikes</h2>
+            <p class="text-xl text-white/80 max-w-2xl mx-auto">
+                Trusted by riders across Nigeria for quality bikes and exceptional service
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Track & Trace -->
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-search-location text-white text-2xl"></i>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Real-Time Tracking -->
+            <div class="group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white transition-all duration-300 border border-white/20 hover:border-[#FFD600]">
+                <div class="flex flex-col items-start text-left">
+                    <div class="w-14 h-14 bg-[#FFD600] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#800020] group-hover:scale-110 transition-all duration-300 shadow-md">
+                        <i class="fas fa-map-marker-alt text-[#800020] text-xl group-hover:text-[#FFD600] transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-gray-900 mb-3 transition-colors">Real-Time Tracking</h3>
+                    <p class="text-white/70 group-hover:text-gray-600 leading-relaxed transition-colors">
+                        Get live updates on your delivery or rental status. Know exactly where your bike is at every step.
+                    </p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Track & Trace</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    Fast and reliable way to check the real-time status of your shipment with our advanced tracking system.
-                </p>
             </div>
 
-            <!-- Secure Warehousing -->
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+            <!-- Premium Quality Bikes -->
+            <div class="group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white transition-all duration-300 border border-white/20 hover:border-[#FFD600]">
+                <div class="flex flex-col items-start text-left">
+                    <div class="w-14 h-14 bg-[#FFD600] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#800020] group-hover:scale-110 transition-all duration-300 shadow-md">
+                        <i class="fas fa-motorcycle text-[#800020] text-xl group-hover:text-[#FFD600] transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-gray-900 mb-3 transition-colors">Premium Quality Bikes</h3>
+                    <p class="text-white/70 group-hover:text-gray-600 leading-relaxed transition-colors">
+                        Every bike in our fleet is carefully inspected, maintained, and ready for the road — safe and reliable.
+                    </p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Secure Warehousing</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    We leverage a network of operational warehousing facilities with state-of-the-art security systems.
-                </p>
             </div>
 
-            <!-- Express Delivery -->
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-shipping-fast text-white text-2xl"></i>
+            <!-- Flexible Rental Plans -->
+            <div class="group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white transition-all duration-300 border border-white/20 hover:border-[#FFD600]">
+                <div class="flex flex-col items-start text-left">
+                    <div class="w-14 h-14 bg-[#FFD600] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#800020] group-hover:scale-110 transition-all duration-300 shadow-md">
+                        <i class="fas fa-calendar-alt text-[#800020] text-xl group-hover:text-[#FFD600] transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-gray-900 mb-3 transition-colors">Flexible Rental Plans</h3>
+                    <p class="text-white/70 group-hover:text-gray-600 leading-relaxed transition-colors">
+                        Daily, weekly, or monthly rentals. Choose what works for you with transparent pricing and no hidden fees.
+                    </p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Express Delivery</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    We service your shipments via a diverse operating infrastructure for fastest delivery times.
-                </p>
             </div>
 
-            <!-- Domestic Services -->
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-truck text-white text-2xl"></i>
+            <!-- Lightning Fast Delivery -->
+            <div class="group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white transition-all duration-300 border border-white/20 hover:border-[#FFD600]">
+                <div class="flex flex-col items-start text-left">
+                    <div class="w-14 h-14 bg-[#FFD600] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#800020] group-hover:scale-110 transition-all duration-300 shadow-md">
+                        <i class="fas fa-truck-fast text-[#800020] text-xl group-hover:text-[#FFD600] transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-gray-900 mb-3 transition-colors">Lightning Fast Delivery</h3>
+                    <p class="text-white/70 group-hover:text-gray-600 leading-relaxed transition-colors">
+                        Get your purchased or rented bike delivered to your doorstep. Same-day delivery available in major cities.
+                    </p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Domestic Services</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    Next business day delivery for time-sensitive parcels with comprehensive domestic coverage.
-                </p>
             </div>
 
-            <!-- Global Coverage -->
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-globe text-white text-2xl"></i>
+            <!-- Secure & Safe -->
+            <div class="group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white transition-all duration-300 border border-white/20 hover:border-[#FFD600]">
+                <div class="flex flex-col items-start text-left">
+                    <div class="w-14 h-14 bg-[#FFD600] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#800020] group-hover:scale-110 transition-all duration-300 shadow-md">
+                        <i class="fas fa-shield-alt text-[#800020] text-xl group-hover:text-[#FFD600] transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-gray-900 mb-3 transition-colors">Secure & Safe</h3>
+                    <p class="text-white/70 group-hover:text-gray-600 leading-relaxed transition-colors">
+                        Your payments and personal information are protected. Every transaction is encrypted and secure.
+                    </p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Global Coverage</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    US, Europe & Worldwide coverage by sea & air. We offer a broad range of international freight services.
-                </p>
             </div>
 
-            <!-- Dedicated Support -->
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <i class="fas fa-headset text-white text-2xl"></i>
+            <!-- 24/7 Customer Support -->
+            <div class="group bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white transition-all duration-300 border border-white/20 hover:border-[#FFD600]">
+                <div class="flex flex-col items-start text-left">
+                    <div class="w-14 h-14 bg-[#FFD600] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#800020] group-hover:scale-110 transition-all duration-300 shadow-md">
+                        <i class="fas fa-headset text-[#800020] text-xl group-hover:text-[#FFD600] transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white group-hover:text-gray-900 mb-3 transition-colors">24/7 Customer Support</h3>
+                    <p class="text-white/70 group-hover:text-gray-600 leading-relaxed transition-colors">
+                        Got questions? Our dedicated support team is available round the clock to assist you with anything.
+                    </p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">24/7 Support</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    Get excellent 24/7 online support and expert advice from our dedicated customer service team.
-                </p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Stats & Achievements Section -->
-<section class="py-20 bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Impact & Achievements</h2>
-            <p class="text-xl text-primary-200 max-w-2xl mx-auto">Delivering excellence across the globe with industry-leading standards</p>
-        </div>
 
-        <!-- Main Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-            <!-- Delivered Packages -->
-            <div class="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/15 transition-all duration-300">
-                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-box text-white text-xl"></i>
-                </div>
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" 
-                     style="transition-delay: 200ms;">
-                    101,273+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    Delivered Packages
-                </div>
-            </div>
-
-            <!-- KM Per Year -->
-            <div class="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/15 transition-all duration-300">
-                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-route text-white text-xl"></i>
-                </div>
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" 
-                     style="transition-delay: 400ms;">
-                    673,754+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    KM Per Year
-                </div>
-            </div>
-
-            <!-- Happy Clients -->
-            <div class="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/15 transition-all duration-300">
-                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-smile text-white text-xl"></i>
-                </div>
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" 
-                     style="transition-delay: 600ms;">
-                    16,714+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    Happy Clients
-                </div>
-            </div>
-
-            <!-- Countries Served -->
-            <div class="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl hover:bg-white/15 transition-all duration-300">
-                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-globe text-white text-xl"></i>
-                </div>
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" 
-                     style="transition-delay: 800ms;">
-                    160+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    Countries Served
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Professional Metrics -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <!-- Delivery Performance -->
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-                <div class="flex items-center mb-4">
-                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                        <i class="fas fa-shipping-fast text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Delivery Performance</h3>
-                </div>
-                <div class="flex items-center mb-2">
-                    <div class="text-3xl font-bold mr-2">99.8%</div>
-                    <div class="text-primary-200">On-Time Delivery</div>
-                </div>
-                <p class="text-sm text-primary-200">Industry-leading on-time delivery performance across all shipping methods</p>
-            </div>
-
-            <!-- Tracking Precision -->
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-                <div class="flex items-center mb-4">
-                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                        <i class="fas fa-search-location text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Tracking Precision</h3>
-                </div>
-                <div class="flex items-center mb-2">
-                    <div class="text-3xl font-bold mr-2">Real-time</div>
-                    <div class="text-primary-200">GPS Accuracy</div>
-                </div>
-                <p class="text-sm text-primary-200">Advanced tracking systems with minute-by-minute updates and GPS precision</p>
-            </div>
-
-            <!-- Customer Satisfaction -->
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 hover:bg-white/15 transition-all duration-300">
-                <div class="flex items-center mb-4">
-                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                        <i class="fas fa-star text-white"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold">Client Satisfaction</h3>
-                </div>
-                <div class="flex items-center mb-2">
-                    <div class="text-3xl font-bold mr-2">4.9/5</div>
-                    <div class="text-primary-200">Average Rating</div>
-                </div>
-                <p class="text-sm text-primary-200">Outstanding client satisfaction across all our logistics services</p>
-            </div>
-        </div>
-
-        <!-- Industry Recognition Row -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Experience -->
-            <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
-                <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <i class="fas fa-calendar-check text-white text-xl"></i>
-                </div>
-                <div>
-                    <div class="stat-number text-2xl font-bold transform translate-y-4 opacity-0 transition-all duration-700" style="transition-delay: 1000ms;">
-                        11+ Years
-                    </div>
-                    <div class="text-primary-200 text-sm">Industry Experience</div>
-                </div>
-            </div>
-
-            <!-- Security Rating -->
-            <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
-                <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <i class="fas fa-shield-alt text-white text-xl"></i>
-                </div>
-                <div>
-                    <div class="stat-number text-2xl font-bold transform translate-y-4 opacity-0 transition-all duration-700" style="transition-delay: 1200ms;">
-                        ISO 27001
-                    </div>
-                    <div class="text-primary-200 text-sm">Security Certification</div>
-                </div>
-            </div>
-
-            <!-- Awards -->
-            <div class="flex items-center bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/15 transition-all duration-300">
-                <div class="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                    <i class="fas fa-trophy text-white text-xl"></i>
-                </div>
-                <div>
-                    <div class="stat-number text-2xl font-bold transform translate-y-4 opacity-0 transition-all duration-700" style="transition-delay: 1400ms;">
-                        8+ Awards
-                    </div>
-                    <div class="text-primary-200 text-sm">Industry Recognition</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Pure JavaScript Intersection Observer for stats animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.remove('translate-y-4', 'opacity-0');
-                        entry.target.classList.add('translate-y-0', 'opacity-100');
-                    }
-                });
-            }, {
-                threshold: 0.5,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            statNumbers.forEach(stat => {
-                observer.observe(stat);
-            });
-        });
-    </script>
-</section>
 
 <!-- Testimonials Section -->
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Hear from our satisfied customers about their experience with our logistics solutions
+        <div class="text-center mb-12">
+            <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold mb-4">
+                <i class="fas fa-heart mr-1"></i> Riders Love Us
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Riders Say</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Real stories from customers who've experienced the RydaBikes difference
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Testimonial 1 -->
-            <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-500 hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-6 border border-gray-100">
+                <div class="flex items-center gap-1 mb-4">
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
                 </div>
-                <blockquote class="text-gray-600 mb-6 leading-relaxed">
-                    "Given my past experiences with other logistics companies, I can say without exception that the services provided by <?php echo e($settings->site_name); ?> greatly exceed industry standards."
+                <blockquote class="text-gray-600 mb-5 leading-relaxed text-sm">
+                    "The bike was in perfect condition and the delivery was super fast. Renting was seamless from start to finish. I'll definitely be using RydaBikes again!"
                 </blockquote>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
-                        MP
+                <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-[#800020] text-base"></i>
                     </div>
                     <div>
-                        <div class="font-semibold text-gray-900">Monique Pete</div>
-                        <div class="text-sm text-gray-500">Logistics Manager, Martrax Inc.</div>
+                        <div class="font-semibold text-gray-900 text-sm">Chidi Okonkwo</div>
+                        <div class="text-xs text-gray-500">Lagos, Nigeria</div>
                     </div>
                 </div>
             </div>
 
             <!-- Testimonial 2 -->
-            <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-500 hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-6 border border-gray-100">
+                <div class="flex items-center gap-1 mb-4">
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
                 </div>
-                <blockquote class="text-gray-600 mb-6 leading-relaxed">
-                    "More than once, <?php echo e($settings->site_name); ?> has 'saved the day', delivering our cargo on time with short notice. They have won my gratitude and loyalty with their 'can do' approach."
+                <blockquote class="text-gray-600 mb-5 leading-relaxed text-sm">
+                    "I bought my first bike from RydaBikes and the experience was amazing. The team was super helpful and the payment process was very secure. Highly recommended!"
                 </blockquote>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
-                        SA
+                <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-[#800020] text-base"></i>
                     </div>
                     <div>
-                        <div class="font-semibold text-gray-900">Steve Anderson</div>
-                        <div class="text-sm text-gray-500">President/Owner, Duplication Factory</div>
+                        <div class="font-semibold text-gray-900 text-sm">Adaeze Nwosu</div>
+                        <div class="text-xs text-gray-500">Abuja, Nigeria</div>
                     </div>
                 </div>
             </div>
 
             <!-- Testimonial 3 -->
-            <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-500 hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+            <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 p-6 border border-gray-100">
+                <div class="flex items-center gap-1 mb-4">
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
+                    <i class="fas fa-star text-[#FFD600] text-sm"></i>
                 </div>
-                <blockquote class="text-gray-600 mb-6 leading-relaxed">
-                    "I am very pleased with the service provided by <?php echo e($settings->site_name); ?>. They find good carriers and use them regularly so we get a high level of service. Their communication is outstanding."
+                <blockquote class="text-gray-600 mb-5 leading-relaxed text-sm">
+                    "The rental process was so easy. I needed a bike for a week and RydaBikes made it happen. Great customer support and the bike was top quality. 10/10!"
                 </blockquote>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
-                        CB
+                <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-[#800020] text-base"></i>
                     </div>
                     <div>
-                        <div class="font-semibold text-gray-900">Cathy Beckman</div>
-                        <div class="text-sm text-gray-500">Logistics Team, Oxea Chemicals</div>
+                        <div class="font-semibold text-gray-900 text-sm">Tunde Balogun</div>
+                        <div class="text-xs text-gray-500">Ibadan, Nigeria</div>
                     </div>
                 </div>
             </div>
@@ -844,50 +676,27 @@
     </div>
 </section>
 
-<!-- Partners Section -->
-<section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Trusted Partners</h2>
-            <p class="text-gray-600">Working with industry leaders to provide the best logistics solutions</p>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-01.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-02.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-03.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-04.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-05.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <!-- Call to Action Section -->
-<section class="py-20 bg-gradient-to-r from-primary-600 to-primary-800">
+<section class="py-20 bg-gradient-to-r from-[#800020] to-[#6b001a]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready to Deliver with Confidence?
+            <span class="inline-block px-4 py-1.5 bg-[#FFD600]/20 text-[#FFD600] rounded-full text-sm font-semibold mb-5">
+                <i class="fas fa-motorcycle mr-1"></i> Get on the Road
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-5">
+                Ready to Ride with RydaBikes?
             </h2>
-            <p class="text-xl text-primary-100 mb-8 leading-relaxed">
-                Get started with our professional logistics services today. Contact us for a free quote and experience the difference.
+            <p class="text-lg text-white/80 mb-8 leading-relaxed">
+                Whether you want to buy, rent, or get a bike delivered — we've got you covered. Start your journey with us today.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="contact" class="bg-white text-primary-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-semibold text-lg shadow-lg">
-                    Get Free Quote
+                <a href="contact" class="inline-flex items-center justify-center gap-2 bg-[#FFD600] text-[#800020] px-8 py-3.5 rounded-full hover:bg-[#e6c200] transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <i class="fas fa-motorcycle"></i> Rent / Buy a Bike
                 </a>
-                <a href="order" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary-600 transition-all duration-300 font-semibold text-lg">
-                    Track Shipment
+                <a href="order" class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-[#FFD600] text-white px-8 py-3.5 rounded-full hover:bg-[#FFD600] hover:text-[#800020] transition-all duration-300 font-bold text-lg">
+                    <i class="fas fa-location-dot"></i> Track Delivery
                 </a>
             </div>
         </div>

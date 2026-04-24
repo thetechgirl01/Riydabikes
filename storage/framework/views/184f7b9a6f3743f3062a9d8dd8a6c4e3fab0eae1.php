@@ -4,79 +4,77 @@
 
 <?php $__env->startSection('content'); ?>
 
-<!-- Hero Section -->
-<section class="relative h-96 flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/about-page-bg.jpg');"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-900/80 to-primary-700/60"></div>
-    
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">About Us</h1>
-        <nav class="flex justify-center" aria-label="Breadcrumb">
-            <ol class="flex items-center space-x-2 text-primary-200">
-                <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
-                <li><i class="fas fa-chevron-right text-xs"></i></li>
-                <li class="text-white">About Us</li>
-            </ol>
-        </nav>
+<!-- Page Header -->
+<section class="relative pt-32 pb-20 bg-[#800020]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-left">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">About RydaBikes</h1>
+            <div class="flex items-center gap-2 text-sm text-white/70">
+                <a href="/" class="hover:text-[#FFD600] transition-colors">Home</a>
+                <i class="fas fa-angle-right text-xs"></i>
+                <span class="text-white">About Us</span>
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- Company Profile Section -->
-<section class="py-20 bg-white">
+<section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <!-- Company Description -->
             <div class="space-y-6">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Company Profile</h2>
-                    <h3 class="text-xl font-semibold text-primary-600 mb-6">
-                        <?php echo e($settings->site_name); ?> is a privately owned, premier international freight forwarder, delivery and logistics service provider.
-                    </h3>
+                    <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold mb-4">
+                        <i class="fas fa-motorcycle mr-1"></i> Our Story
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About <?php echo e($settings->site_name); ?></h2>
+                    <p class="text-lg font-semibold text-[#800020] mb-6">
+                        Premium bike rental, sales, and delivery service across Nigeria.
+                    </p>
                 </div>
                 
                 <div class="space-y-4 text-gray-600 leading-relaxed">
                     <p>
-                        <?php echo e($settings->site_name); ?> has extensive experience handling and delivery sensitive domestic and industrial products including consumer technology products like networking equipment, desktop and mobile computers, servers, cell phones and more.
+                        <?php echo e($settings->site_name); ?> is Nigeria's leading platform for bike rentals, purchases, and fast delivery services. We connect riders with quality bikes for every need — whether you're commuting, delivering goods, or just enjoying the ride.
                     </p>
                     
                     <p>
-                        <?php echo e($settings->site_name); ?> delivers real-time, actionable information reliably and ensures optimal efficiency and on-time activities by utilizing advanced, custom software systems. Fully EDI capable, <?php echo e($settings->site_name); ?>'s systems interface with your trading partners to provide unprecedented product visibility throughout the entire supply chain.
+                        Our mission is simple: make bikes accessible, affordable, and reliable for everyone. From daily rentals to outright purchases, we offer flexible solutions backed by exceptional customer support and a commitment to safety.
                     </p>
                     
                     <p>
-                        Our global regional hubs offer a wide range of mission-critical technology, logistic, IT and security services to clients and its partners overseas. Through our overseas secure services to more than 250 diplomatic offices, across 160 countries, we support around 14,000 staff globally, as well as many more from other government departments co-located at posts under the One HMG ethos.
+                        With a growing fleet of well-maintained bikes and a network of trusted partners, we serve thousands of happy customers across Lagos, Abuja, and other major cities. Every ride with us is safe, secure, and seamless.
                     </p>
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                    <a href="contact" class="bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors font-medium inline-flex items-center justify-center">
+                    <a href="contact" class="inline-flex items-center justify-center gap-2 bg-[#800020] text-white px-6 py-3 rounded-full hover:bg-[#6b001a] transition-all duration-300 font-semibold shadow-md hover:shadow-lg">
                         Get In Touch
-                        <i class="fas fa-arrow-right ml-2"></i>
+                        <i class="fas fa-arrow-right text-sm"></i>
                     </a>
-                    <a href="services" class="border border-primary-600 text-primary-600 px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors font-medium inline-flex items-center justify-center">
+                    <a href="services" class="inline-flex items-center justify-center gap-2 border-2 border-[#800020] text-[#800020] px-6 py-3 rounded-full hover:bg-[#800020] hover:text-white transition-all duration-300 font-semibold">
                         Our Services
+                        <i class="fas fa-motorcycle text-sm"></i>
                     </a>
                 </div>
             </div>
             
-            <!-- Company Images Slider -->
             <div class="relative" x-data="{ currentImage: 0, images: 3 }" x-init="setInterval(() => { currentImage = (currentImage + 1) % images }, 4000)">
-                <div class="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="relative h-96 rounded-2xl overflow-hidden shadow-xl">
                     <div x-show="currentImage === 0" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
-                        <img src="temp/custom/images/slider/company-slide-1.jpg" alt="Company Image 1" class="w-full h-full object-cover">
+                        <img src="temp/custom/images/slider/company-slide-1.jpg" alt="RydaBikes Team" class="w-full h-full object-cover">
                     </div>
                     <div x-show="currentImage === 1" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
-                        <img src="temp/custom/images/slider/company-slide-2.jpg" alt="Company Image 2" class="w-full h-full object-cover">
+                        <img src="temp/custom/images/slider/company-slide-2.jpg" alt="RydaBikes Fleet" class="w-full h-full object-cover">
                     </div>
                     <div x-show="currentImage === 2" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
-                        <img src="temp/custom/images/slider/company-slide-3.jpg" alt="Company Image 3" class="w-full h-full object-cover">
+                        <img src="temp/custom/images/slider/company-slide-3.jpg" alt="RydaBikes Delivery" class="w-full h-full object-cover">
                     </div>
                 </div>
                 
-                <!-- Image Indicators -->
                 <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                     <template x-for="i in images" :key="i">
-                        <button @click="currentImage = i - 1" :class="currentImage === (i - 1) ? 'bg-white' : 'bg-white bg-opacity-50'" class="w-3 h-3 rounded-full transition-all duration-300"></button>
+                        <button @click="currentImage = i - 1" :class="currentImage === (i - 1) ? 'bg-[#800020]' : 'bg-white bg-opacity-50'" class="w-2 h-2 rounded-full transition-all duration-300"></button>
                     </template>
                 </div>
             </div>
@@ -85,341 +83,159 @@
 </section>
 
 <!-- Mission, Vision & Values -->
-<section class="py-20 bg-gray-50">
+<section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Foundation</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Built on strong values and clear vision, driving excellence in logistics
+        <div class="text-center mb-12">
+            <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold mb-4">
+                <i class="fas fa-compass mr-1"></i> Our Foundation
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Drives Us</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Built on strong values and a clear vision for better mobility
             </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Mission -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/about_our_mission.jpg');"></div>
-                <div class="p-8">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-bullseye text-white text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Our Mission</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Connecting people, businesses and communities to a better future – through logistics.
-                    </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="group bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100">
+                <div class="w-14 h-14 bg-[#800020] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#6b001a] group-hover:scale-110 transition-all duration-300">
+                    <i class="fas fa-bullseye text-white text-xl"></i>
                 </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Our Mission</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    To connect people with quality bikes for work, delivery, and leisure — making mobility simple, affordable, and reliable for every Nigerian.
+                </p>
             </div>
             
-            <!-- Vision -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/about_our_vision.jpg');"></div>
-                <div class="p-8">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-eye text-white text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Our Vision</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        To become the world's preferred supply chain logistics company – applying insights, service quality and innovation to create sustainable growth for business and society.
-                    </p>
+            <div class="group bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100">
+                <div class="w-14 h-14 bg-[#800020] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#6b001a] group-hover:scale-110 transition-all duration-300">
+                    <i class="fas fa-eye text-white text-xl"></i>
                 </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Our Vision</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    To become Nigeria's most trusted bike platform — known for quality, safety, and exceptional service in every ride and delivery.
+                </p>
             </div>
             
-            <!-- Values -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div class="h-64 bg-cover bg-center" style="background-image: url('temp/custom/images/about_core_values.jpg');"></div>
-                <div class="p-8">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-heart text-white text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Core Values</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Value Creation – Openness – Integrity – Commitment – Excellence – Mutual Respect – Customer Orientation
-                    </p>
+            <div class="group bg-gray-50 rounded-2xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100">
+                <div class="w-14 h-14 bg-[#800020] rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#6b001a] group-hover:scale-110 transition-all duration-300">
+                    <i class="fas fa-heart text-white text-xl"></i>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Safety & Security -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <!-- Safety -->
-            <div class="space-y-6">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-white text-2xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold text-gray-900">Safety First</h2>
-                </div>
-                
-                <div class="space-y-4 text-gray-600 leading-relaxed">
-                    <p>
-                        At <?php echo e($settings->site_name); ?>, ensuring the safety of our customers, employees and our communities is our priority. We understand the importance of continuous training and are proud of our safety knowledge, experienced staff and ability to exceed industry standards year after year.
-                    </p>
-                    <p>
-                        We have established and continually maintain excellent motor carrier safety ratings and low accident frequencies. As a company, we have a solid safety performance history and will continue to be a leader in the area of safety and compliance.
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4 pt-4">
-                    <div class="text-center p-4 bg-green-50 rounded-lg">
-                        <div class="text-2xl font-bold text-green-600">99.9%</div>
-                        <div class="text-sm text-gray-600">Safety Rating</div>
-                    </div>
-                    <div class="text-center p-4 bg-green-50 rounded-lg">
-                        <div class="text-2xl font-bold text-green-600">24/7</div>
-                        <div class="text-sm text-gray-600">Monitoring</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Security -->
-            <div class="space-y-6">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
-                        <i class="fas fa-lock text-white text-2xl"></i>
-                    </div>
-                    <h2 class="text-3xl font-bold text-gray-900">Advanced Security</h2>
-                </div>
-                
-                <div class="space-y-4 text-gray-600 leading-relaxed">
-                    <p>
-                        At <?php echo e($settings->site_name); ?>, we offer industry-leading asset protection and security compliance programs. We understand that our customers may have important and unique needs related to homeland security regulatory compliance, high-risk products, or brand protection.
-                    </p>
-                    <p>
-                        By leveraging modern and proven technologies, we provide for the integrity of customer assets while in-transit or at one of our facilities. We offer consultation and proactive partnership to ensure that our customers' security needs are met.
-                    </p>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4 pt-4">
-                    <div class="text-center p-4 bg-blue-50 rounded-lg">
-                        <div class="text-2xl font-bold text-blue-600">256-bit</div>
-                        <div class="text-sm text-gray-600">Encryption</div>
-                    </div>
-                    <div class="text-center p-4 bg-blue-50 rounded-lg">
-                        <div class="text-2xl font-bold text-blue-600">ISO</div>
-                        <div class="text-sm text-gray-600">Certified</div>
-                    </div>
-                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Core Values</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Integrity • Reliability • Safety • Customer First • Innovation • Excellence in every delivery and rental.
+                </p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Stats Section -->
-<section class="py-20 bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+<section class="py-20 bg-[#800020]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Achievements</h2>
-            <p class="text-xl text-primary-200">Numbers that speak for our excellence</p>
+        <div class="text-center mb-10">
+            <span class="inline-block px-4 py-1.5 bg-[#FFD600]/20 text-[#FFD600] rounded-full text-sm font-semibold mb-4">
+                <i class="fas fa-chart-line mr-1"></i> By The Numbers
+            </span>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Our Impact So Far</h2>
+            <p class="text-white/80 text-lg">Numbers that tell our story</p>
         </div>
         
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div class="text-center">
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" style="transition-delay: 200ms;">
-                    101,273+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    Delivered Packages
-                </div>
+                <div class="text-4xl md:text-5xl font-bold text-[#FFD600] mb-2">5,000+</div>
+                <div class="text-white/80 text-sm">Happy Riders</div>
             </div>
             
             <div class="text-center">
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" style="transition-delay: 400ms;">
-                    673,754+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    KM Per Year
-                </div>
+                <div class="text-4xl md:text-5xl font-bold text-[#FFD600] mb-2">2,500+</div>
+                <div class="text-white/80 text-sm">Deliveries Completed</div>
             </div>
             
             <div class="text-center">
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" style="transition-delay: 600ms;">
-                    11+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    Years Experience
-                </div>
+                <div class="text-4xl md:text-5xl font-bold text-[#FFD600] mb-2">3+</div>
+                <div class="text-white/80 text-sm">Years of Service</div>
             </div>
             
             <div class="text-center">
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" style="transition-delay: 800ms;">
-                    16,714+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    Happy Clients
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <div class="stat-number text-3xl md:text-4xl font-bold mb-2 transform translate-y-4 opacity-0 transition-all duration-700" style="transition-delay: 1000ms;">
-                    8+
-                </div>
-                <div class="text-primary-200 text-sm md:text-base font-medium">
-                    Industry Awards
-                </div>
+                <div class="text-4xl md:text-5xl font-bold text-[#FFD600] mb-2">98%</div>
+                <div class="text-white/80 text-sm">Customer Satisfaction</div>
             </div>
         </div>
     </div>
-    
-    <script>
-        // Stats animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.remove('translate-y-4', 'opacity-0');
-                        entry.target.classList.add('translate-y-0', 'opacity-100');
-                    }
-                });
-            }, {
-                threshold: 0.5,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            statNumbers.forEach(stat => {
-                observer.observe(stat);
-            });
-        });
-    </script>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Safety & Security Section -->
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Trusted by industry leaders worldwide
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Testimonial 1 -->
-            <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-500 hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold">
+                    <i class="fas fa-shield-alt mr-1"></i> Safety First
+                </span>
+                <h2 class="text-3xl font-bold text-gray-900">Your Safety Is Our Priority</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Every bike in our fleet undergoes rigorous safety checks before hitting the road. We maintain the highest standards to ensure you ride with confidence, whether you're renting, buying, or using our delivery service.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">Weekly inspections</span>
                     </div>
-                </div>
-                <blockquote class="text-gray-600 mb-6 leading-relaxed">
-                    "Given my past experiences with other logistics companies, I can say without exception that the services provided by <?php echo e($settings->site_name); ?> greatly exceed industry standards."
-                </blockquote>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
-                        MP
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">Qualified mechanics</span>
                     </div>
-                    <div>
-                        <div class="font-semibold text-gray-900">Monique Pete</div>
-                        <div class="text-sm text-gray-500">Logistics Manager, Martrax Inc.</div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">GPS tracking</span>
                     </div>
-                </div>
-            </div>
-
-            <!-- Testimonial 2 -->
-            <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-500 hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <blockquote class="text-gray-600 mb-6 leading-relaxed">
-                    "More than once, <?php echo e($settings->site_name); ?> has 'saved the day', delivering our cargo on time with short notice. They have won my gratitude and loyalty with their 'can do' approach."
-                </blockquote>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
-                        SA
-                    </div>
-                    <div>
-                        <div class="font-semibold text-gray-900">Steve Anderson</div>
-                        <div class="text-sm text-gray-500">President/Owner, Duplication Factory</div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">24/7 roadside support</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Testimonial 3 -->
-            <div class="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-500 hover:scale-105">
-                <div class="flex items-center mb-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <blockquote class="text-gray-600 mb-6 leading-relaxed">
-                    "I am very pleased with the service provided by <?php echo e($settings->site_name); ?>. They find good carriers and use them regularly so we get a high level of service. Their communication is outstanding."
-                </blockquote>
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold mr-4">
-                        CB
-                    </div>
-                    <div>
-                        <div class="font-semibold text-gray-900">Cathy Beckman</div>
-                        <div class="text-sm text-gray-500">Logistics Team, Oxea Chemicals</div>
-                    </div>
+            
+            <div class="space-y-6">
+                <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold">
+                    <i class="fas fa-lock mr-1"></i> Secure Transactions
+                </span>
+                <h2 class="text-3xl font-bold text-gray-900">Payments You Can Trust</h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Every payment on RydaBikes is encrypted and secure. We use industry-standard security protocols to protect your personal and financial information.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="px-3 py-1 bg-gray-200 rounded-full text-xs text-gray-700">SSL Encrypted</span>
+                    <span class="px-3 py-1 bg-gray-200 rounded-full text-xs text-gray-700">Fraud Protection</span>
+                    <span class="px-3 py-1 bg-gray-200 rounded-full text-xs text-gray-700">Secure Checkout</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Partners Section -->
-<section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Trusted Partners</h2>
-            <p class="text-gray-600">Working with industry leaders worldwide</p>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-01.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-02.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-03.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-04.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-            <div class="flex justify-center">
-                <img src="temp/custom/images/content/partner-05.png" alt="Partner Logo" class="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Call to Action Section -->
-<section class="py-20 bg-gradient-to-r from-primary-600 to-primary-800">
+<!-- Call to Action -->
+<section class="py-16 bg-gradient-to-r from-[#800020] to-[#6b001a]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                Ready to Experience Excellence?
-            </h2>
-            <p class="text-xl text-primary-100 mb-8 leading-relaxed">
-                Join thousands of satisfied customers who trust us with their logistics needs. Get started with <?php echo e($settings->site_name); ?> today.
-            </p>
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Ride?</h2>
+            <p class="text-white/80 mb-8">Join thousands of happy riders who trust RydaBikes for rentals, purchases, and deliveries.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="contact" class="bg-white text-primary-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-semibold text-lg shadow-lg">
-                    Get Free Quote
+                <a href="contact" class="inline-flex items-center justify-center gap-2 bg-[#FFD600] text-[#800020] px-8 py-3 rounded-full hover:bg-[#e6c200] transition-all duration-300 font-bold shadow-lg">
+                    Rent / Buy a Bike
+                    <i class="fas fa-motorcycle"></i>
                 </a>
-                <a href="services" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary-600 transition-all duration-300 font-semibold text-lg">
-                    Our Services
+                <a href="order" class="inline-flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-[#800020] transition-all duration-300 font-bold">
+                    Track Delivery
+                    <i class="fas fa-location-dot"></i>
                 </a>
             </div>
         </div>
@@ -427,5 +243,4 @@
 </section>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.base', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\shypdirect\resources\views/home/about.blade.php ENDPATH**/ ?>

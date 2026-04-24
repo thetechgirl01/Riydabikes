@@ -548,80 +548,114 @@
 
     <?php echo $__env->yieldContent('content'); ?>
 
-    <!-- Modern Footer with burgundy accents -->
-    <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <!-- Modern Footer with RydaBikes branding - Black background -->
+    <footer class="bg-black text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="lg:col-span-2">
-                    <div class="mb-6">
+                <!-- Brand Column -->
+                <div class="lg:col-span-1">
+                    <div class="mb-5">
                         <img src="<?php echo e(asset('storage/app/public/'.$settings->logo)); ?>"
                              alt="<?php echo e($settings->site_name); ?>"
-                             class="h-12 w-auto mb-4 filter brightness-0 invert">
+                             class="h-10 w-auto mb-4 filter brightness-0 invert">
                     </div>
-                    <h3 class="text-xl font-semibold mb-4 text-white"><?php echo e($settings->site_name); ?></h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Providing Smart Logistics Solutions Across The World. We deliver excellence in shipping,
-                        courier services, and package tracking with our global network of trusted partners.
+                    <h3 class="text-lg font-bold mb-3 text-white"><?php echo e($settings->site_name); ?></h3>
+                    <p class="text-gray-400 text-sm mb-5 leading-relaxed">
+                        Premium bike rental, sales, and delivery services across Nigeria. Your trusted ride partner.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#6b001a] transition-colors">
-                            <i class="fab fa-facebook-f text-white"></i>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-9 h-9 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#FFD600] hover:text-[#800020] transition-all duration-300 group">
+                            <i class="fab fa-facebook-f text-white text-sm group-hover:text-[#800020]"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#6b001a] transition-colors">
-                            <i class="fab fa-twitter text-white"></i>
+                        <a href="#" class="w-9 h-9 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#FFD600] hover:text-[#800020] transition-all duration-300 group">
+                            <i class="fab fa-twitter text-white text-sm group-hover:text-[#800020]"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#6b001a] transition-colors">
-                            <i class="fab fa-linkedin-in text-white"></i>
+                        <a href="#" class="w-9 h-9 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#FFD600] hover:text-[#800020] transition-all duration-300 group">
+                            <i class="fab fa-instagram text-white text-sm group-hover:text-[#800020]"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#6b001a] transition-colors">
-                            <i class="fab fa-instagram text-white"></i>
+                        <a href="#" class="w-9 h-9 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#FFD600] hover:text-[#800020] transition-all duration-300 group">
+                            <i class="fab fa-whatsapp text-white text-sm group-hover:text-[#800020]"></i>
                         </a>
                     </div>
                 </div>
 
+                <!-- Quick Links -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-6 text-white">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="/" class="text-gray-300 hover:text-[#FFD600] transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-[#800020]"></i>Home</a></li>
-                        <li><a href="about" class="text-gray-300 hover:text-[#FFD600] transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-[#800020]"></i>About Us</a></li>
-                        <li><a href="services" class="text-gray-300 hover:text-[#FFD600] transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-[#800020]"></i>Our Services</a></li>
-                        <li><a href="order" class="text-gray-300 hover:text-[#FFD600] transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-[#800020]"></i>Track Shipment</a></li>
-                        <li><a href="contact" class="text-gray-300 hover:text-[#FFD600] transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2 text-[#800020]"></i>Contact Us</a></li>
+                    <h4 class="text-base font-semibold mb-5 text-white border-l-3 border-[#FFD600] pl-3">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/" class="text-gray-400 hover:text-[#FFD600] transition-colors flex items-center text-sm"><i class="fas fa-angle-right text-xs mr-2 text-[#FFD600]"></i>Home</a></li>
+                        <li><a href="about" class="text-gray-400 hover:text-[#FFD600] transition-colors flex items-center text-sm"><i class="fas fa-angle-right text-xs mr-2 text-[#FFD600]"></i>About Us</a></li>
+                        <li><a href="services" class="text-gray-400 hover:text-[#FFD600] transition-colors flex items-center text-sm"><i class="fas fa-angle-right text-xs mr-2 text-[#FFD600]"></i>Our Services</a></li>
+                        <li><a href="order" class="text-gray-400 hover:text-[#FFD600] transition-colors flex items-center text-sm"><i class="fas fa-angle-right text-xs mr-2 text-[#FFD600]"></i>Track Delivery</a></li>
+                        <li><a href="contact" class="text-gray-400 hover:text-[#FFD600] transition-colors flex items-center text-sm"><i class="fas fa-angle-right text-xs mr-2 text-[#FFD600]"></i>Contact Us</a></li>
                     </ul>
                 </div>
 
+                <!-- Contact Info -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-6 text-white">Contact Info</h4>
-                    <div class="space-y-4">
+                    <h4 class="text-base font-semibold mb-5 text-white border-l-3 border-[#FFD600] pl-3">Contact Info</h4>
+                    <div class="space-y-3">
                         <div class="flex items-start space-x-3">
-                            <div class="w-8 h-8 bg-[#800020] rounded-full flex items-center justify-center flex-shrink-0 mt-1"><i class="fas fa-envelope text-white text-sm"></i></div>
-                            <div><p class="text-gray-400 text-sm">Email Us</p><a href="mailto:<?php echo e($settings->contact_email); ?>" class="text-white hover:text-[#FFD600] transition-colors"><?php echo e($settings->contact_email); ?></a></div>
+                            <div class="w-7 h-7 bg-[#800020] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-envelope text-white text-xs"></i></div>
+                            <div><p class="text-gray-400 text-xs">Email Us</p><a href="mailto:<?php echo e($settings->contact_email); ?>" class="text-white text-sm hover:text-[#FFD600] transition-colors"><?php echo e($settings->contact_email); ?></a></div>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-8 h-8 bg-[#800020] rounded-full flex items-center justify-center flex-shrink-0 mt-1"><i class="fas fa-phone text-white text-sm"></i></div>
-                            <div><p class="text-gray-400 text-sm">Call Us</p><p class="text-white">TOLL FREE Support</p></div>
+                            <div class="w-7 h-7 bg-[#800020] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-phone text-white text-xs"></i></div>
+                            <div><p class="text-gray-400 text-xs">Call Us</p><p class="text-white text-sm">+234 800 000 0000</p></div>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-8 h-8 bg-[#800020] rounded-full flex items-center justify-center flex-shrink-0 mt-1"><i class="fas fa-clock text-white text-sm"></i></div>
-                            <div><p class="text-gray-400 text-sm">Working Hours</p><p class="text-white">24/7 Global Support</p></div>
+                            <div class="w-7 h-7 bg-[#800020] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-clock text-white text-xs"></i></div>
+                            <div><p class="text-gray-400 text-xs">Working Hours</p><p class="text-white text-sm">Mon - Sun: 24/7</p></div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-7 h-7 bg-[#800020] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"><i class="fas fa-map-marker-alt text-white text-xs"></i></div>
+                            <div><p class="text-gray-400 text-xs">Location</p><p class="text-white text-sm">Lagos, Nigeria</p></div>
                         </div>
                     </div>
-                    <div class="mt-8">
-                        <h5 class="text-sm font-semibold mb-3 text-white">Quick Track</h5>
-                        <form method="POST" action="<?php echo e(route('trackingresult')); ?>" class="space-y-2">
-                            <?php echo csrf_field(); ?>
-                            <input type="text" name="trackingnumber" placeholder="Enter tracking number..." class="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-[#FFD600] focus:border-transparent transition-all text-sm">
-                            <button type="submit" class="w-full bg-[#800020] text-white py-2 px-3 rounded-xl hover:bg-[#6b001a] transition-colors text-sm font-medium"><i class="fas fa-search mr-1"></i>Track</button>
-                        </form>
+                </div>
+
+                <!-- Quick Track -->
+                <div>
+                    <h4 class="text-base font-semibold mb-5 text-white border-l-3 border-[#FFD600] pl-3">Track Your Delivery</h4>
+                    <form method="POST" action="<?php echo e(route('trackingresult')); ?>" class="space-y-3">
+                        <?php echo csrf_field(); ?>
+                        <div class="relative">
+                            <input type="text" name="trackingnumber" placeholder="Enter tracking ID..." class="w-full px-4 py-2.5 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-[#FFD600] focus:border-transparent transition-all text-sm">
+                            <i class="fas fa-search absolute right-3 top-3 text-gray-500 text-sm"></i>
+                        </div>
+                        <button type="submit" class="w-full bg-[#800020] text-white py-2.5 rounded-xl hover:bg-[#6b001a] transition-all duration-300 text-sm font-semibold flex items-center justify-center gap-2">
+                            <i class="fas fa-location-dot"></i> Track Now
+                        </button>
+                    </form>
+                    <div class="mt-6 pt-4 border-t border-gray-800">
+                        <p class="text-gray-500 text-xs text-center">Need help? <a href="contact" class="text-[#FFD600] hover:underline">Contact support</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="border-t border-gray-700">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-                    <div class="text-center md:text-left"><p class="text-gray-400 text-sm">Copyright &copy; <span id="currentYear"></span> <?php echo e($settings->site_name); ?>. All rights reserved.</p></div>
-                    <div class="flex items-center space-x-6 text-sm"><a href="#" class="text-gray-400 hover:text-[#FFD600] transition-colors">Privacy Policy</a><a href="#" class="text-gray-400 hover:text-[#FFD600] transition-colors">Terms of Service</a><a href="#" class="text-gray-400 hover:text-[#FFD600] transition-colors">Shipping Policy</a></div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-800 bg-black/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
+                    <div class="text-center md:text-left">
+                        <p class="text-gray-500 text-xs">Copyright &copy; <span id="currentYear"></span> <?php echo e($settings->site_name); ?>. All rights reserved.</p>
+                    </div>
+                    <div>
+                     <p>Built with &lt;/&gt; by <a href="https://crownatech.com/" target="_blank" class="text-[#FFD600] hover:underline">Crownatech</a></p>
+                    <span>
+                        
+                </span>
+                    </p>
+</div>
+
+                    <div class="flex items-center space-x-5 text-xs">
+                        <a href="#" class="text-gray-500 hover:text-[#FFD600] transition-colors">Privacy Policy</a>
+                        <span class="text-gray-700">|</span>
+                        <a href="#" class="text-gray-500 hover:text-[#FFD600] transition-colors">Terms of Service</a>
+                        <span class="text-gray-700">|</span>
+                        <a href="#" class="text-gray-500 hover:text-[#FFD600] transition-colors">Refund Policy</a>
+                    </div>
                 </div>
             </div>
         </div>
