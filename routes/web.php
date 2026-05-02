@@ -22,6 +22,7 @@ require __DIR__ . '/admin/web.php';
 require __DIR__ . '/user/web.php';
 require __DIR__ . '/botman.php';
 require __DIR__ . '/admin/shipment.php';
+require __DIR__ . '/admin/pricing.php';
 
 //activate and deactivate Online Trader
 // Route::any('/activate', function () {

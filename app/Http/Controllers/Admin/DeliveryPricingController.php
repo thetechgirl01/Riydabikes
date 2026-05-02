@@ -7,13 +7,29 @@ use App\Models\DeliveryPricingRule;
 use App\Models\DeliveryPricingSettings;
 use App\Support\NigerianStates;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DeliveryPricingController extends Controller
 {
+    /**
+     * Make sure the logged-in admin has a dashboard_style set.
+     * If not, save 'green' as the default — fixes the broken-CSS issue.
+     */
+    private function ensureDashboardStyle(): void
+    {
+        $admin = Auth::guard('admin')->user();
+        if ($admin && empty($admin->dashboard_style)) {
+            $admin->dashboard_style = 'green';
+            $admin->save();
+        }
+    }
+
     // ---------- Rules CRUD ----------
 
     public function index(Request $request)
     {
+        $this->ensureDashboardStyle();
+
         $q = DeliveryPricingRule::orderBy('origin_state')->orderBy('destination_state');
 
         if ($request->filled('search')) {
@@ -33,6 +49,8 @@ class DeliveryPricingController extends Controller
 
     public function create()
     {
+        $this->ensureDashboardStyle();
+
         return view('admin.pricing.create', [
             'states' => NigerianStates::all(),
             'title'  => 'Add Pricing Rule',
@@ -49,7 +67,6 @@ class DeliveryPricingController extends Controller
             'notes'             => 'nullable|string|max:500',
         ]);
 
-        // Prevent dup pair
         $exists = DeliveryPricingRule::where('origin_state', $data['origin_state'])
             ->where('destination_state', $data['destination_state'])
             ->exists();
@@ -67,6 +84,8 @@ class DeliveryPricingController extends Controller
 
     public function edit($id)
     {
+        $this->ensureDashboardStyle();
+
         return view('admin.pricing.edit', [
             'rule'   => DeliveryPricingRule::findOrFail($id),
             'states' => NigerianStates::all(),
@@ -104,10 +123,12 @@ class DeliveryPricingController extends Controller
         return back()->with('success', 'Rule is now ' . ($rule->is_active ? 'active' : 'inactive') . '.');
     }
 
-    // ---------- Settings (multipliers, thresholds, min fee) ----------
+    // ---------- Settings ----------
 
     public function settings()
     {
+        $this->ensureDashboardStyle();
+
         return view('admin.pricing.settings', [
             'settings' => DeliveryPricingSettings::current(),
             'title'    => 'Pricing Settings',
@@ -131,7 +152,6 @@ class DeliveryPricingController extends Controller
             'enable_express'             => 'sometimes|boolean',
         ]);
 
-        // Coerce missing checkbox values to false
         foreach (['enable_standard', 'enable_next_day', 'enable_same_day', 'enable_express'] as $k) {
             $data[$k] = $request->boolean($k);
         }

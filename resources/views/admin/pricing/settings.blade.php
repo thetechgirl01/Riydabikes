@@ -1,7 +1,10 @@
+@php
+    $theme = $theme ?? (\App\Models\Settings::find(1)->website_theme ?? 'green.css');
+@endphp
+
 @extends('layouts.app')
 @section('content')
-    @include('admin.topmenu')
-    @include('admin.sidebar')
+   
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">

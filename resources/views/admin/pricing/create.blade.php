@@ -1,3 +1,7 @@
+@php
+    $theme = $theme ?? (\App\Models\Settings::find(1)->website_theme ?? 'green.css');
+@endphp
+
 @extends('layouts.app')
 @section('content')
     @include('admin.topmenu')
