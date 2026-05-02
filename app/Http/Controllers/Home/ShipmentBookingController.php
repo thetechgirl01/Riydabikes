@@ -165,7 +165,7 @@ class ShipmentBookingController extends Controller
             'city'    => '',
             'country' => '',
             'status'  => 'Order Confirmed',
-            'comment' => 'Shipment booked online by sender. Awaiting payment confirmation.',
+            'comment' => 'Delivery booked online by sender. Awaiting payment confirmation.',
         ]);
 
         // Notifications

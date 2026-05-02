@@ -13,7 +13,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
         <div class="content">
             <div class="page-inner">
                 <div class="mt-2 mb-4">
-                    <h1 class="title1">Shipment Details</h1>
+                    <h1 class="title1">Delivery Details</h1>
                 </div>
                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.danger-alert','data' => []]); ?>
@@ -47,7 +47,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <h4 class="card-title mb-3 mb-md-0">
-                                            <i class="fa fa-box mr-2"></i> Shipment Information
+                                            <i class="fa fa-box mr-2"></i> Delivery information
                                         </h4>
                                     </div>
                                     <div class="col-md-6 text-center text-md-right">
@@ -85,8 +85,9 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                                     <img src="https://barcode.tec-it.com/barcode.ashx?data=<?php echo e($shipment->trackingnumber); ?>&code=Code128" alt="<?php echo e($shipment->trackingnumber); ?>" class="img-fluid">
                                                 </div>
                                                 <h5 class="tracking-number"><?php echo e($shipment->trackingnumber); ?></h5>
-                                                <div class="badge badge-<?php echo e($shipment->status == 'Delivered' ? 'success' : 
-                                                    ($shipment->status == 'Custom Hold' ? 'warning' : 'info')); ?> badge-lg">
+                                                <div class="badge badge-<?php echo e(in_array($shipment->status, ['Delivered','Payment Received']) ? 'success' :
+(in_array($shipment->status, ['Delivery Failed','Returned']) ? 'danger' :
+(in_array($shipment->status, ['Pending Payment','Delivery Delayed']) ? 'warning' : 'info'))); ?> badge-lg">
                                                     <?php echo e($shipment->status); ?>
 
                                                 </div>
@@ -189,24 +190,48 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                             </div>
                                         </div>
 
+                                        <!-- Customer Payment Proof Section (after package photo) -->
+                                        <?php if($shipment->shipment_source === 'public' && $shipment->payment_proof): ?>
+                                        <div class="card shadow mb-4">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">Customer Payment Proof</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <span class="badge badge-<?php echo e($shipment->payment_status === 'Approved' ? 'success' : 'warning'); ?> badge-lg">
+                                                        <?php echo e($shipment->payment_status); ?>
+
+                                                    </span>
+                                                </div>
+                                                <p><strong>Payment Method:</strong> <?php echo e($shipment->payment_method); ?></p>
+                                                <div class="text-center">
+                                                    <a href="<?php echo e(asset($shipment->payment_proof)); ?>" target="_blank">
+                                                        <img src="<?php echo e(asset($shipment->payment_proof)); ?>" alt="Payment Proof" class="img-fluid rounded" style="max-height: 300px; object-fit: contain;">
+                                                    </a>
+                                                </div>
+                                                
+                                                <?php if($shipment->payment_status !== 'Approved'): ?>
+                                                    <form method="POST" action="<?php echo e(route('admin.shipments.approve-payment', $shipment->id)); ?>" class="mt-3">
+                                                        <?php echo csrf_field(); ?>
+                                                        <button class="btn btn-success btn-block">
+                                                            <i class="fa fa-check"></i> Approve Payment
+                                                        </button>
+                                                    </form>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <?php endif; ?>
+
                                         <div class="card shadow mb-4">
                                             <div class="card-header bg-primary text-white">
                                                 <h5 class="mb-0">Cost Information</h5>
                                             </div>
                                             <div class="card-body">
                                                 <table class="table table-borderless">
-                                                    <tr>
-                                                        <th width="50%">Shipping Cost:</th>
-                                                        <td><?php echo e($settings->s_currency); ?> <?php echo e(number_format($shipment->cost, 2)); ?></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Clearance Cost:</th>
-                                                        <td><?php echo e($settings->s_currency); ?> <?php echo e(number_format($shipment->clearance_cost, 2)); ?></td>
-                                                    </tr>
                                                     <tr class="table-active font-weight-bold">
-                                                        <th>Total Cost:</th>
-                                                        <td><?php echo e($settings->s_currency); ?> <?php echo e(number_format($shipment->cost + $shipment->clearance_cost, 2)); ?></td>
-                                                    </tr>
+    <th width="50%">Delivery Fee:</th>
+    <td><?php echo e($settings->s_currency); ?> <?php echo e(number_format($shipment->cost, 2)); ?></td>
+</tr>
                                                 </table>
                                             </div>
                                         </div>
@@ -359,5 +384,4 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
     }
 </style>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\shypdirect\resources\views/admin/view-shipment.blade.php ENDPATH**/ ?>

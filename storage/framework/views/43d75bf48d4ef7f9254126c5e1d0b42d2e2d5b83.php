@@ -13,7 +13,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
         <div class="content">
             <div class="page-inner">
                 <div class="mt-2 mb-4">
-                    <h1 class="title1">Manage Shipments</h1>
+                    <h1 class="title1">Manage Deliveries</h1>
                 </div>
                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.danger-alert','data' => []]); ?>
@@ -43,7 +43,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                 <!-- Action Button -->
                 <div class="mb-3 text-right">
                     <a href="<?php echo e(route('admin.shipments.create')); ?>" class="btn btn-primary">
-                        <i class="fa fa-plus-circle"></i> Create New Shipment
+                        <i class="fa fa-plus-circle"></i> Create New Delivery
                     </a>
                 </div>
 
@@ -60,21 +60,12 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 </div>
                             </div>
                             
-                            <select name="status" class="form-control mr-2 mb-2">
-                                <option value="">All Statuses</option>
-                                <option value="Order Confirmed" <?php echo e(($status ?? '') == 'Order Confirmed' ? 'selected' : ''); ?>>Order Confirmed</option>
-                                <option value="Picked by Courier" <?php echo e(($status ?? '') == 'Picked by Courier' ? 'selected' : ''); ?>>Picked by Courier</option>
-                                <option value="Security Checking" <?php echo e(($status ?? '') == 'Security Checking' ? 'selected' : ''); ?>>Security Checking</option>
-                                <option value="Border Check" <?php echo e(($status ?? '') == 'Border Check' ? 'selected' : ''); ?>>Border Check</option>
-                                <option value="Missing Document" <?php echo e(($status ?? '') == 'Missing Document' ? 'selected' : ''); ?>>Missing Document</option>
-                                <option value="On The Way" <?php echo e(($status ?? '') == 'On The Way' ? 'selected' : ''); ?>>On The Way</option>
-                                <option value="Custom Hold" <?php echo e(($status ?? '') == 'Custom Hold' ? 'selected' : ''); ?>>Custom Hold</option>
-                                <option value="Pending Payment" <?php echo e(($status ?? '') == 'Pending Payment' ? 'selected' : ''); ?>>Pending Payment</option>
-                                <option value="Payment Received" <?php echo e(($status ?? '') == 'Payment Received' ? 'selected' : ''); ?>>Payment Received</option>
-                                <option value="Additional Fee Applied" <?php echo e(($status ?? '') == 'Additional Fee Applied' ? 'selected' : ''); ?>>Additional Fee Applied</option>
-                                <option value="Money Laundering" <?php echo e(($status ?? '') == 'Money Laundering' ? 'selected' : ''); ?>>Money Laundering</option>
-                                <option value="Delivered" <?php echo e(($status ?? '') == 'Delivered' ? 'selected' : ''); ?>>Delivered</option>
-                            </select>
+                           <select name="status" class="form-control mr-2 mb-2">
+    <option value="">All Statuses</option>
+    <?php $__currentLoopData = ['Delivery Created','Pickup Scheduled','Rider Assigned','Picked Up','In Transit','Arrived at Hub','Out for Delivery','Delivered','Delivery Delayed','Delivery Failed','Returned','Pending Payment','Payment Received']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $st): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <option value="<?php echo e($st); ?>" <?php echo e(($status ?? '') == $st ? 'selected' : ''); ?>><?php echo e($st); ?></option>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</select>
                             
                             <button type="submit" class="btn btn-primary mb-2">Filter</button>
                             
@@ -108,6 +99,17 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                                     <?php echo e($shipment->trackingnumber); ?>
 
                                                 </a>
+
+                                                <?php if($shipment->shipment_source === 'public'): ?>
+                                                    <span class="badge badge-info ml-1" title="Booked online by customer">Online</span>
+                                                <?php endif; ?>
+
+                                                <?php if($shipment->payment_status && $shipment->shipment_source === 'public'): ?>
+                                                    <span class="badge badge-<?php echo e($shipment->payment_status === 'Approved' ? 'success' : 'warning'); ?> ml-1">
+                                                        Payment: <?php echo e($shipment->payment_status); ?>
+
+                                                    </span>
+                                                <?php endif; ?>
                                             </td>
                                             <td><?php echo e($shipment->sname); ?></td>
                                             <td>
@@ -126,17 +128,21 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                             </td>
                                             <td>
                                                 <?php
-                                                    $statusColors = [
-                                                        'Delivered' => 'success',
-                                                        'Payment Received' => 'success',
-                                                        'Custom Hold' => 'warning',
-                                                        'Pending Payment' => 'warning',
-                                                        'Additional Fee Applied' => 'danger',
-                                                        'Money Laundering' => 'danger',
-                                                        'Missing Document' => 'danger',
-                                                        'Security Checking' => 'info',
-                                                        'Border Check' => 'info',
-                                                    ];
+ $statusColors = [
+    'Delivered'           => 'success',
+    'Payment Received'    => 'success',
+    'In Transit'          => 'info',
+    'Out for Delivery'    => 'info',
+    'Picked Up'           => 'info',
+    'Arrived at Hub'      => 'info',
+    'Rider Assigned'      => 'primary',
+    'Pickup Scheduled'    => 'primary',
+    'Delivery Created'    => 'secondary',
+    'Pending Payment'     => 'warning',
+    'Delivery Delayed'    => 'warning',
+    'Delivery Failed'     => 'danger',
+    'Returned'            => 'danger',
+];
                                                     $badgeClass = $statusColors[$shipment->status] ?? 'info';
                                                 ?>
                                                 <span class="badge badge-<?php echo e($badgeClass); ?>"><?php echo e($shipment->status); ?></span>
@@ -153,7 +159,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                                     <i class="fa fa-print"></i> Print
                                                 </a>
                                                 
-                                                 <form action="<?php echo e(route('admin.shipments.delete', $shipment->id)); ?>" method="POST" style="display: inline-block;"
+                                                <form action="<?php echo e(route('admin.shipments.delete', $shipment->id)); ?>" method="POST" style="display: inline-block;"
                                                       onsubmit="return confirm('Are you sure you want to delete shipment <?php echo e($shipment->trackingnumber); ?>? This action cannot be undone.')">
                                                     <?php echo csrf_field(); ?>
                                                     <?php echo method_field('DELETE'); ?>
@@ -168,7 +174,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                             <td colspan="7" class="text-center py-4">
                                                 <div class="py-3">
                                                     <i class="fa fa-box-open fa-3x text-muted mb-3"></i>
-                                                    <p class="mt-3">No shipments found</p>
+                                                    <p class="mt-3">No delivery found</p>
                                                     <?php if($search || $status): ?>
                                                         <a href="<?php echo e(route('admin.shipments')); ?>" class="btn btn-outline-primary">Clear Filters</a>
                                                     <?php else: ?>
@@ -195,5 +201,4 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
         </div>
     </div>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\shypdirect\resources\views/admin/shipments.blade.php ENDPATH**/ ?>

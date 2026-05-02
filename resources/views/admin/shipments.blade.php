@@ -13,7 +13,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
         <div class="content">
             <div class="page-inner">
                 <div class="mt-2 mb-4">
-                    <h1 class="title1">Manage Shipments</h1>
+                    <h1 class="title1">Manage Deliveries</h1>
                 </div>
                 <x-danger-alert />
                 <x-success-alert />
@@ -21,7 +21,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                 <!-- Action Button -->
                 <div class="mb-3 text-right">
                     <a href="{{ route('admin.shipments.create') }}" class="btn btn-primary">
-                        <i class="fa fa-plus-circle"></i> Create New Shipment
+                        <i class="fa fa-plus-circle"></i> Create New Delivery
                     </a>
                 </div>
 
@@ -38,21 +38,12 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 </div>
                             </div>
                             
-                            <select name="status" class="form-control mr-2 mb-2">
-                                <option value="">All Statuses</option>
-                                <option value="Order Confirmed" {{ ($status ?? '') == 'Order Confirmed' ? 'selected' : '' }}>Order Confirmed</option>
-                                <option value="Picked by Courier" {{ ($status ?? '') == 'Picked by Courier' ? 'selected' : '' }}>Picked by Courier</option>
-                                <option value="Security Checking" {{ ($status ?? '') == 'Security Checking' ? 'selected' : '' }}>Security Checking</option>
-                                <option value="Border Check" {{ ($status ?? '') == 'Border Check' ? 'selected' : '' }}>Border Check</option>
-                                <option value="Missing Document" {{ ($status ?? '') == 'Missing Document' ? 'selected' : '' }}>Missing Document</option>
-                                <option value="On The Way" {{ ($status ?? '') == 'On The Way' ? 'selected' : '' }}>On The Way</option>
-                                <option value="Custom Hold" {{ ($status ?? '') == 'Custom Hold' ? 'selected' : '' }}>Custom Hold</option>
-                                <option value="Pending Payment" {{ ($status ?? '') == 'Pending Payment' ? 'selected' : '' }}>Pending Payment</option>
-                                <option value="Payment Received" {{ ($status ?? '') == 'Payment Received' ? 'selected' : '' }}>Payment Received</option>
-                                <option value="Additional Fee Applied" {{ ($status ?? '') == 'Additional Fee Applied' ? 'selected' : '' }}>Additional Fee Applied</option>
-                                <option value="Money Laundering" {{ ($status ?? '') == 'Money Laundering' ? 'selected' : '' }}>Money Laundering</option>
-                                <option value="Delivered" {{ ($status ?? '') == 'Delivered' ? 'selected' : '' }}>Delivered</option>
-                            </select>
+                           <select name="status" class="form-control mr-2 mb-2">
+    <option value="">All Statuses</option>
+    @foreach(['Delivery Created','Pickup Scheduled','Rider Assigned','Picked Up','In Transit','Arrived at Hub','Out for Delivery','Delivered','Delivery Delayed','Delivery Failed','Returned','Pending Payment','Payment Received'] as $st)
+        <option value="{{ $st }}" {{ ($status ?? '') == $st ? 'selected' : '' }}>{{ $st }}</option>
+    @endforeach
+</select>
                             
                             <button type="submit" class="btn btn-primary mb-2">Filter</button>
                             
@@ -111,17 +102,21 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                             </td>
                                             <td>
                                                 @php
-                                                    $statusColors = [
-                                                        'Delivered' => 'success',
-                                                        'Payment Received' => 'success',
-                                                        'Custom Hold' => 'warning',
-                                                        'Pending Payment' => 'warning',
-                                                        'Additional Fee Applied' => 'danger',
-                                                        'Money Laundering' => 'danger',
-                                                        'Missing Document' => 'danger',
-                                                        'Security Checking' => 'info',
-                                                        'Border Check' => 'info',
-                                                    ];
+ $statusColors = [
+    'Delivered'           => 'success',
+    'Payment Received'    => 'success',
+    'In Transit'          => 'info',
+    'Out for Delivery'    => 'info',
+    'Picked Up'           => 'info',
+    'Arrived at Hub'      => 'info',
+    'Rider Assigned'      => 'primary',
+    'Pickup Scheduled'    => 'primary',
+    'Delivery Created'    => 'secondary',
+    'Pending Payment'     => 'warning',
+    'Delivery Delayed'    => 'warning',
+    'Delivery Failed'     => 'danger',
+    'Returned'            => 'danger',
+];
                                                     $badgeClass = $statusColors[$shipment->status] ?? 'info';
                                                 @endphp
                                                 <span class="badge badge-{{ $badgeClass }}">{{ $shipment->status }}</span>
@@ -153,7 +148,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                             <td colspan="7" class="text-center py-4">
                                                 <div class="py-3">
                                                     <i class="fa fa-box-open fa-3x text-muted mb-3"></i>
-                                                    <p class="mt-3">No shipments found</p>
+                                                    <p class="mt-3">No delivery found</p>
                                                     @if($search || $status)
                                                         <a href="{{ route('admin.shipments') }}" class="btn btn-outline-primary">Clear Filters</a>
                                                     @else

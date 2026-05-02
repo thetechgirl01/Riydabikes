@@ -1,4 +1,4 @@
-@php
+<?php
 if (Auth('admin')->User()->dashboard_style == 'light') {
     $text = 'dark';
     $bg = 'light';
@@ -6,84 +6,106 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
     $text = 'light';
     $bg = 'dark';
 }
-@endphp
-@extends('layouts.app')
-@section('content')
-    @include('admin.topmenu')
-    @include('admin.sidebar')
+?>
+
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('admin.topmenu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('admin.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="main-panel">
         <div class="content card">
             <div class="page-inner card-body">
                 <div class="mt-2 mb-4">
-                    <h1 class="title1 text-{{ $text }} text-center">Update Shipment Status</h1>
+                    <h1 class="title1 text-<?php echo e($text); ?> text-center">Update Shipment Status</h1>
                 </div>
-                <x-danger-alert />
-                <x-success-alert />
+                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.danger-alert','data' => []]); ?>
+<?php $component->withName('danger-alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.success-alert','data' => []]); ?>
+<?php $component->withName('success-alert'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
 
                 <div class="mb-5 row d-flex justify-content-center">
                     <div class="col-md-12">
                         <div class="card p-2 shadow">
                             <div class="card-body">
-                                @if ($errors->any())
+                                <?php if($errors->any()): ?>
                                     <div class="alert alert-danger">
                                         <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
+                                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <li><?php echo e($error); ?></li>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </ul>
                                     </div>
-                                @endif
+                                <?php endif; ?>
 
                                 <div class="row">
-                                    <!-- Delivery information -->
+                                    <!-- Shipment Information -->
                                     <div class="col-md-4">
                                         <div class="card shadow">
                                             <div class="card-header bg-primary text-white">
-                                                <h5 class="mb-0">Delivery information</h5>
+                                                <h5 class="mb-0">Shipment Information</h5>
                                             </div>
-                                            <div class="card-body bg-{{ $bg }} text-{{ $text }}">
+                                            <div class="card-body bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>">
                                                 <div class="mb-3 text-center">
-                                                    <img src="https://barcode.tec-it.com/barcode.ashx?data={{ $shipment->trackingnumber }}&code=Code128" alt="{{ $shipment->trackingnumber }}" class="img-fluid">
-                                                    <div class="mt-2 font-weight-bold">{{ $shipment->trackingnumber }}</div>
+                                                    <img src="https://barcode.tec-it.com/barcode.ashx?data=<?php echo e($shipment->trackingnumber); ?>&code=Code128" alt="<?php echo e($shipment->trackingnumber); ?>" class="img-fluid">
+                                                    <div class="mt-2 font-weight-bold"><?php echo e($shipment->trackingnumber); ?></div>
                                                 </div>
 
                                                 <table class="table table-bordered">
                                                     <tr>
-                                                        <th class="text-{{ $text }}">Status</th>
+                                                        <th class="text-<?php echo e($text); ?>">Status</th>
                                                         <td>
-                                                            @if ($shipment->status == 'Delivered')
-                                                                <span class="badge badge-success">{{ $shipment->status }}</span>
-                                                            @elseif ($shipment->status == 'Custom Hold')
-                                                                <span class="badge badge-warning">{{ $shipment->status }}</span>
-                                                            @else
-                                                                <span class="badge badge-info">{{ $shipment->status }}</span>
-                                                            @endif
+                                                            <?php if($shipment->status == 'Delivered'): ?>
+                                                                <span class="badge badge-success"><?php echo e($shipment->status); ?></span>
+                                                            <?php elseif($shipment->status == 'Custom Hold'): ?>
+                                                                <span class="badge badge-warning"><?php echo e($shipment->status); ?></span>
+                                                            <?php else: ?>
+                                                                <span class="badge badge-info"><?php echo e($shipment->status); ?></span>
+                                                            <?php endif; ?>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-{{ $text }}">Sender</th>
-                                                        <td class="text-{{ $text }}">{{ $shipment->sname }}</td>
+                                                        <th class="text-<?php echo e($text); ?>">Sender</th>
+                                                        <td class="text-<?php echo e($text); ?>"><?php echo e($shipment->sname); ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-{{ $text }}">Receiver</th>
-                                                        <td class="text-{{ $text }}">{{ $shipment->name }}</td>
+                                                        <th class="text-<?php echo e($text); ?>">Receiver</th>
+                                                        <td class="text-<?php echo e($text); ?>"><?php echo e($shipment->name); ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-{{ $text }}">Origin</th>
-                                                        <td class="text-{{ $text }}">{{ $shipment->take_off_point }}</td>
+                                                        <th class="text-<?php echo e($text); ?>">Origin</th>
+                                                        <td class="text-<?php echo e($text); ?>"><?php echo e($shipment->take_off_point); ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-{{ $text }}">Destination</th>
-                                                        <td class="text-{{ $text }}">{{ $shipment->final_destination }}</td>
+                                                        <th class="text-<?php echo e($text); ?>">Destination</th>
+                                                        <td class="text-<?php echo e($text); ?>"><?php echo e($shipment->final_destination); ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <th class="text-{{ $text }}">Created</th>
-                                                        <td class="text-{{ $text }}">{{ \Carbon\Carbon::parse($shipment->created_at)->toDayDateTimeString() }}</td>
+                                                        <th class="text-<?php echo e($text); ?>">Created</th>
+                                                        <td class="text-<?php echo e($text); ?>"><?php echo e(\Carbon\Carbon::parse($shipment->created_at)->toDayDateTimeString()); ?></td>
                                                     </tr>
                                                 </table>
 
                                                 <div class="mt-3">
-                                                    <a href="{{ route('admin.shipments.view', $shipment->id) }}" class="btn btn-info btn-block">
+                                                    <a href="<?php echo e(route('admin.shipments.view', $shipment->id)); ?>" class="btn btn-info btn-block">
                                                         <i class="fa fa-eye mr-1"></i> View Complete Details
                                                     </a>
                                                 </div>
@@ -97,42 +119,51 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 <div class="card-header bg-primary text-white">
                                     <h5 class="mb-0">Update Status</h5>
                                 </div>
-                                <div class="card-body bg-{{ $bg }} text-{{ $text }}">
-                                    <form method="POST" action="{{ route('admin.shipments.update-status') }}">
-                                        @csrf
-                                        <input type="hidden" name="shipment_id" value="{{ $shipment->id }}">
+                                <div class="card-body bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>">
+                                    <form method="POST" action="<?php echo e(route('admin.shipments.update-status')); ?>">
+                                        <?php echo csrf_field(); ?>
+                                        <input type="hidden" name="shipment_id" value="<?php echo e($shipment->id); ?>">
 
                                         <div class="form-group mb-4">
-                                            <h6 class="text-{{ $text }}">New Status <span class="text-danger">*</span></h6>
-                                            <select class="form-control bg-{{ $bg }} text-{{ $text }}" id="status" name="status" required>
-                                                
-                                         <option value="" disabled selected>Select Status</option>
-@foreach(['Delivery Created','Pickup Scheduled','Rider Assigned','Picked Up','In Transit','Arrived at Hub','Out for Delivery','Delivered','Delivery Delayed','Delivery Failed','Returned','Pending Payment','Payment Received'] as $st)
-    <option value="{{ $st }}" {{ old('status') == $st ? 'selected' : '' }}>{{ $st }}</option>
-@endforeach   </select>
+                                            <h6 class="text-<?php echo e($text); ?>">New Status <span class="text-danger">*</span></h6>
+                                            <select class="form-control bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>" id="status" name="status" required>
+                                                <option value="" disabled selected>Select Status</option>
+                                                <option value="Order Confirmed" <?php echo e(old('status') == 'Order Confirmed' ? 'selected' : ''); ?>>Order Confirmed</option>
+                                                <option value="Picked by Courier" <?php echo e(old('status') == 'Picked by Courier' ? 'selected' : ''); ?>>Picked by Courier</option>
+                                                <option value="Security Checking" <?php echo e(old('status') == 'Security Checking' ? 'selected' : ''); ?>>Security Checking</option>
+                                                <option value="Border Check" <?php echo e(old('status') == 'Border Check' ? 'selected' : ''); ?>>Border Check</option>
+                                                <option value="Missing Document" <?php echo e(old('status') == 'Missing Document' ? 'selected' : ''); ?>>Missing Document</option>
+                                                <option value="On The Way" <?php echo e(old('status') == 'On The Way' ? 'selected' : ''); ?>>On The Way</option>
+                                                <option value="Custom Hold" <?php echo e(old('status') == 'Custom Hold' ? 'selected' : ''); ?>>Custom Hold</option>
+                                                <option value="Pending Payment" <?php echo e(old('status') == 'Pending Payment' ? 'selected' : ''); ?>>Pending Payment</option>
+                                                <option value="Payment Received" <?php echo e(old('status') == 'Payment Received' ? 'selected' : ''); ?>>Payment Received</option>
+                                                <option value="Additional Fee Applied" <?php echo e(old('status') == 'Additional Fee Applied' ? 'selected' : ''); ?>>Additional Fee Applied</option>
+                                                <option value="Money Laundering" <?php echo e(old('status') == 'Money Laundering' ? 'selected' : ''); ?>>Money Laundering</option>
+                                                <option value="Delivered" <?php echo e(old('status') == 'Delivered' ? 'selected' : ''); ?>>Delivered</option>
+                                            </select>
                                         </div>
 
                                         <div class="form-group mb-4">
-                                            <h6 class="text-{{ $text }}">Current Location <span class="text-danger">*</span></h6>
-                                            <input type="text" class="form-control bg-{{ $bg }} text-{{ $text }}" id="location" name="location" value="{{ old('location') }}" required>
+                                            <h6 class="text-<?php echo e($text); ?>">Current Location <span class="text-danger">*</span></h6>
+                                            <input type="text" class="form-control bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>" id="location" name="location" value="<?php echo e(old('location')); ?>" required>
                                             <small class="text-muted">Enter the current location of the shipment</small>
                                         </div>
 
                                         <div class="form-group mb-4">
-                                            <h6 class="text-{{ $text }}">Comment/Details <span class="text-danger">*</span></h6>
-                                            <textarea class="form-control bg-{{ $bg }} text-{{ $text }}" id="comment" name="comment" rows="4" required>{{ old('comment') }}</textarea>
+                                            <h6 class="text-<?php echo e($text); ?>">Comment/Details <span class="text-danger">*</span></h6>
+                                            <textarea class="form-control bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>" id="comment" name="comment" rows="4" required><?php echo e(old('comment')); ?></textarea>
                                             <small class="text-muted">Provide details about the status update (will be visible to the customer)</small>
                                         </div>
 
                                         <div class="form-group mb-4">
-                                            <h6 class="text-{{ $text }}">Status Update Date & Time</h6>
-                                            <input type="datetime-local" class="form-control bg-{{ $bg }} text-{{ $text }}" id="status_datetime" name="status_datetime" value="{{ old('status_datetime', now()->format('Y-m-d\TH:i')) }}">
+                                            <h6 class="text-<?php echo e($text); ?>">Status Update Date & Time</h6>
+                                            <input type="datetime-local" class="form-control bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>" id="status_datetime" name="status_datetime" value="<?php echo e(old('status_datetime', now()->format('Y-m-d\TH:i'))); ?>">
                                             <small class="text-muted">Leave blank to use current date/time, or select a past date to backdate this status update</small>
                                         </div>
 
                                         <div class="custom-control custom-checkbox mb-4">
                                             <input type="checkbox" class="custom-control-input" id="notify_customer" name="notify_customer" value="1" checked>
-                                            <label class="custom-control-label text-{{ $text }}" for="notify_customer">Send email notification to customer</label>
+                                            <label class="custom-control-label text-<?php echo e($text); ?>" for="notify_customer">Send email notification to customer</label>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">
@@ -147,42 +178,42 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 <div class="card-header bg-primary text-white">
                                     <h5 class="mb-0">Status History</h5>
                                 </div>
-                                <div class="card-body p-0 bg-{{ $bg }} text-{{ $text }}">
+                                <div class="card-body p-0 bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>">
                                     <div class="timeline">
-                                        @forelse($tracks as $track)
-                                            <div class="timeline-item" id="track-{{ $track->id }}">
-                                                <div class="timeline-marker bg-{{
-                                                    $track->status == 'Delivered' ? 'success' :
-                                                    ($track->status == 'Custom Hold' ? 'warning' : 'info')
-                                                }}"></div>
+                                        <?php $__empty_1 = true; $__currentLoopData = $tracks; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $track): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                            <div class="timeline-item" id="track-<?php echo e($track->id); ?>">
+                                                <div class="timeline-marker bg-<?php echo e($track->status == 'Delivered' ? 'success' :
+                                                    ($track->status == 'Custom Hold' ? 'warning' : 'info')); ?>"></div>
                                                 <div class="timeline-content">
                                                     <div class="d-flex justify-content-between align-items-start">
                                                         <div>
-                                                            <h5 class="text-{{ $text }}">{{ $track->status }}</h5>
+                                                            <h5 class="text-<?php echo e($text); ?>"><?php echo e($track->status); ?></h5>
                                                             <p class="text-muted mb-2">
-                                                                <i class="fa fa-map-marker-alt mr-1"></i> {{ $track->address }}
+                                                                <i class="fa fa-map-marker-alt mr-1"></i> <?php echo e($track->address); ?>
+
                                                                 <span class="ml-3">
-                                                                    <i class="fa fa-clock mr-1"></i> {{ \Carbon\Carbon::parse($track->created_at)->format('M d, Y - h:i A') }}
+                                                                    <i class="fa fa-clock mr-1"></i> <?php echo e(\Carbon\Carbon::parse($track->created_at)->format('M d, Y - h:i A')); ?>
+
                                                                 </span>
                                                             </p>
-                                                            <p class="text-{{ $text }}">{{ $track->comment }}</p>
+                                                            <p class="text-<?php echo e($text); ?>"><?php echo e($track->comment); ?></p>
                                                         </div>
                                                         <div class="track-actions">
-                                                            <button type="button" class="btn btn-sm btn-info mr-1" onclick="editTrack({{ $track->id }}, {{ json_encode($track->status) }}, {{ json_encode($track->address) }}, {{ json_encode($track->comment) }}, {{ json_encode($track->created_at) }})">
+                                                            <button type="button" class="btn btn-sm btn-info mr-1" onclick="editTrack(<?php echo e($track->id); ?>, <?php echo e(json_encode($track->status)); ?>, <?php echo e(json_encode($track->address)); ?>, <?php echo e(json_encode($track->comment)); ?>, <?php echo e(json_encode($track->created_at)); ?>)">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
-                                                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteTrack({{ $track->id }})">
+                                                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteTrack(<?php echo e($track->id); ?>)">
                                                                 <i class="fa fa-trash"></i>
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        @empty
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                             <div class="text-center p-4">
-                                                <p class="text-{{ $text }}">No status updates yet</p>
+                                                <p class="text-<?php echo e($text); ?>">No status updates yet</p>
                                             </div>
-                                        @endforelse
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +275,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
 <!-- Edit Track Modal -->
 <div class="modal fade" id="editTrackModal" tabindex="-1" role="dialog" aria-labelledby="editTrackModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content bg-{{ $bg }}">
+        <div class="modal-content bg-<?php echo e($bg); ?>">
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="editTrackModalLabel">Edit Track Record</h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
@@ -252,12 +283,12 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                 </button>
             </div>
             <form id="editTrackForm">
-                @csrf
-                @method('PUT')
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('PUT'); ?>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="edit_status" class="text-{{ $text }}">Status <span class="text-danger">*</span></label>
-                        <select class="form-control bg-{{ $bg }} text-{{ $text }}" id="edit_status" name="status" required>
+                        <label for="edit_status" class="text-<?php echo e($text); ?>">Status <span class="text-danger">*</span></label>
+                        <select class="form-control bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>" id="edit_status" name="status" required>
                             <option value="Order Confirmed">Order Confirmed</option>
                             <option value="Picked by Courier">Picked by Courier</option>
                             <option value="Security Checking">Security Checking</option>
@@ -274,18 +305,18 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                     </div>
 
                     <div class="form-group">
-                        <label for="edit_address" class="text-{{ $text }}">Location <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control bg-{{ $bg }} text-{{ $text }}" id="edit_address" name="address" required>
+                        <label for="edit_address" class="text-<?php echo e($text); ?>">Location <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>" id="edit_address" name="address" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="edit_comment" class="text-{{ $text }}">Comment <span class="text-danger">*</span></label>
-                        <textarea class="form-control bg-{{ $bg }} text-{{ $text }}" id="edit_comment" name="comment" rows="3" required></textarea>
+                        <label for="edit_comment" class="text-<?php echo e($text); ?>">Comment <span class="text-danger">*</span></label>
+                        <textarea class="form-control bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>" id="edit_comment" name="comment" rows="3" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="edit_track_datetime" class="text-{{ $text }}">Date & Time</label>
-                        <input type="datetime-local" class="form-control bg-{{ $bg }} text-{{ $text }}" id="edit_track_datetime" name="track_datetime">
+                        <label for="edit_track_datetime" class="text-<?php echo e($text); ?>">Date & Time</label>
+                        <input type="datetime-local" class="form-control bg-<?php echo e($bg); ?> text-<?php echo e($text); ?>" id="edit_track_datetime" name="track_datetime">
                         <small class="text-muted">Leave blank to keep current date/time</small>
                     </div>
                 </div>
@@ -342,7 +373,7 @@ function deleteTrack(id) {
 
                         // Check if this was the last track item
                         if ($('.timeline-item').length === 0) {
-                            $('.timeline').html('<div class="text-center p-4"><p class="text-{{ $text }}">No status updates yet</p></div>');
+                            $('.timeline').html('<div class="text-center p-4"><p class="text-<?php echo e($text); ?>">No status updates yet</p></div>');
                         }
                     });
 
@@ -442,4 +473,6 @@ $('#editTrackModal').on('hidden.bs.modal', function() {
 });
 </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\shypdirect\resources\views/admin/update-shipment-status.blade.php ENDPATH**/ ?>

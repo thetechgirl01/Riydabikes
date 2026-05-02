@@ -42,29 +42,28 @@
     </div>
 </li>
 
-                    <li
-                        class="nav-item <?php echo e(request()->routeIs('admin.shipments') ? 'active' : ''); ?> <?php echo e(request()->routeIs('admin.shipments.view') ? 'active' : ''); ?> <?php echo e(request()->routeIs('admin.shipments.update-status') ? 'active' : ''); ?>">
-                        <a href="<?php echo e(route('admin.shipments')); ?>">
-                            <i class="fa fa-shipping-fast" aria-hidden="true"></i>
-                            <p>Manage Shipments</p>
-                        </a>
-                    </li>
+                  
 
-                     <li
-                        class="nav-item <?php echo e(request()->routeIs('admin.shipments.create') ? 'active' : ''); ?>">
-                        <a href="<?php echo e(route('admin.shipments.create')); ?>">
-                            <i class="fa fa-box" aria-hidden="true"></i>
-                            <p>Create New Shipment</p>
-                        </a>
-                    </li>
-                    
-                    <li
-                        class="nav-item <?php echo e(request()->is('admin/dashboard/mdeposits') ? 'active' : ''); ?>">
-                        <a href="<?php echo e(url('/admin/shipment/deposits')); ?>">
-                            <i class="fa fa-money-bill" aria-hidden="true"></i>
-                            <p>Shipment Deposits</p>
-                        </a>
-                    </li>
+                  <li class="nav-item <?php echo e(request()->routeIs('admin.shipments') ? 'active' : ''); ?> <?php echo e(request()->routeIs('admin.shipments.view') ? 'active' : ''); ?> <?php echo e(request()->routeIs('admin.shipments.update-status') ? 'active' : ''); ?>">
+    <a href="<?php echo e(route('admin.shipments')); ?>">
+        <i class="fa fa-truck" aria-hidden="true"></i>
+        <p>Manage Deliveries</p>
+    </a>
+</li>
+
+<li class="nav-item <?php echo e(request()->routeIs('admin.shipments.create') ? 'active' : ''); ?>">
+    <a href="<?php echo e(route('admin.shipments.create')); ?>">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        <p>Create New Delivery</p>
+    </a>
+</li>
+
+<li class="nav-item <?php echo e(request()->is('admin/dashboard/mdeposits') ? 'active' : ''); ?>">
+    <a href="<?php echo e(url('/admin/shipment/deposits')); ?>">
+        <i class="fa fa-money-bill" aria-hidden="true"></i>
+        <p>Delivery Payments</p>
+    </a>
+</li>
                     <li class="nav-item <?php echo e(request()->routeIs('emailservices') ? 'active' : ''); ?>">
                         <a href="<?php echo e(route('emailservices')); ?>">
                             <i class="fa fa-envelope" aria-hidden="true"></i>

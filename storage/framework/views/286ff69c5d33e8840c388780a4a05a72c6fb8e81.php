@@ -115,7 +115,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                     </div>
 
                                     <div class="form-group col-md-12">
-                                        <h2 class="text-<?php echo e($text); ?>">Shipment Information:</h2>
+                                        <h2 class="text-<?php echo e($text); ?>">Delivery information:</h2>
                                     </div>
                                     
                                     <div class="form-group col-md-6">

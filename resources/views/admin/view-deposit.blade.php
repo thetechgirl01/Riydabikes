@@ -124,7 +124,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                     
                                     <div class="col-md-6">
                                         <div class="mb-4">
-                                            <h5 class="font-size-15">Shipment Information</h5>
+                                            <h5 class="font-size-15">Delivery information</h5>
                                             <div class="table-responsive">
                                                 <table class="table table-nowrap table-sm mb-0">
                                                     <tbody>

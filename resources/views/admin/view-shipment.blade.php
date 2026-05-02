@@ -13,7 +13,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
         <div class="content">
             <div class="page-inner">
                 <div class="mt-2 mb-4">
-                    <h1 class="title1">Shipment Details</h1>
+                    <h1 class="title1">Delivery Details</h1>
                 </div>
                 <x-danger-alert />
                 <x-success-alert />
@@ -25,7 +25,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <h4 class="card-title mb-3 mb-md-0">
-                                            <i class="fa fa-box mr-2"></i> Shipment Information
+                                            <i class="fa fa-box mr-2"></i> Delivery information
                                         </h4>
                                     </div>
                                     <div class="col-md-6 text-center text-md-right">
@@ -63,8 +63,9 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                                 </div>
                                                 <h5 class="tracking-number">{{ $shipment->trackingnumber }}</h5>
                                                 <div class="badge badge-{{ 
-                                                    $shipment->status == 'Delivered' ? 'success' : 
-                                                    ($shipment->status == 'Custom Hold' ? 'warning' : 'info') 
+                                                    in_array($shipment->status, ['Delivered','Payment Received']) ? 'success' :
+(in_array($shipment->status, ['Delivery Failed','Returned']) ? 'danger' :
+(in_array($shipment->status, ['Pending Payment','Delivery Delayed']) ? 'warning' : 'info'))
                                                 }} badge-lg">
                                                     {{ $shipment->status }}
                                                 </div>
@@ -203,18 +204,10 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                             </div>
                                             <div class="card-body">
                                                 <table class="table table-borderless">
-                                                    <tr>
-                                                        <th width="50%">Shipping Cost:</th>
-                                                        <td>{{ $settings->s_currency }} {{ number_format($shipment->cost, 2) }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Clearance Cost:</th>
-                                                        <td>{{ $settings->s_currency }} {{ number_format($shipment->clearance_cost, 2) }}</td>
-                                                    </tr>
                                                     <tr class="table-active font-weight-bold">
-                                                        <th>Total Cost:</th>
-                                                        <td>{{ $settings->s_currency }} {{ number_format($shipment->cost + $shipment->clearance_cost, 2) }}</td>
-                                                    </tr>
+    <th width="50%">Delivery Fee:</th>
+    <td>{{ $settings->s_currency }} {{ number_format($shipment->cost, 2) }}</td>
+</tr>
                                                 </table>
                                             </div>
                                         </div>

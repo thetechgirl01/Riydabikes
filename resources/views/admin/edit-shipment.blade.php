@@ -25,7 +25,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <h4 class="card-title mb-0">
-                                            <i class="fa fa-edit mr-2"></i> Update Shipment Information
+                                            <i class="fa fa-edit mr-2"></i> Update Delivery information
                                         </h4>
                                     </div>
                                     <div class="col-md-6 text-md-right">
