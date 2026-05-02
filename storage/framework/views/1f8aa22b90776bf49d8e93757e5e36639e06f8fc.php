@@ -64,6 +64,20 @@
         <p>Delivery Payments</p>
     </a>
 </li>
+
+<li class="nav-item <?php echo e(request()->routeIs('admin.pricing.index') ? 'active' : ''); ?> <?php echo e(request()->routeIs('admin.pricing.create') ? 'active' : ''); ?> <?php echo e(request()->routeIs('admin.pricing.edit') ? 'active' : ''); ?> <?php echo e(request()->routeIs('admin.pricing.settings') ? 'active' : ''); ?>">
+    <a data-toggle="collapse" href="#pricing-menu">
+        <i class="fa fa-tags" aria-hidden="true"></i>
+        <p>Delivery Pricing</p>
+        <span class="caret"></span>
+    </a>
+    <div class="collapse" id="pricing-menu">
+        <ul class="nav nav-collapse">
+            <li><a href="<?php echo e(route('admin.pricing.index')); ?>"><span class="sub-item">Pricing Rules</span></a></li>
+            <li><a href="<?php echo e(route('admin.pricing.settings')); ?>"><span class="sub-item">Pricing Settings</span></a></li>
+        </ul>
+    </div>
+</li>
                     <li class="nav-item <?php echo e(request()->routeIs('emailservices') ? 'active' : ''); ?>">
                         <a href="<?php echo e(route('emailservices')); ?>">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -142,12 +156,7 @@
                 <?php endif; ?>
 
                 
-                    <li class="nav-item <?php echo e(request()->routeIs('aboutonlinetrade') ? 'active' : ''); ?>">
-                        <a href="<?php echo e(url('/admin/dashboard/about')); ?>">
-                            <i class=" fa fa-info-circle" aria-hidden="true"></i>
-                            <p>For More script</p>
-                        </a>
-                    </li>
+           
               
             </ul>
         </div>

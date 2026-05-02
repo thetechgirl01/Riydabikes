@@ -30,9 +30,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 <li class="nav-item">
                                     <a href="#with" class="nav-link" data-toggle="tab">Payment Preference</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#coin" class="nav-link" data-toggle="tab">Coinpayment</a>
-                                </li>
+                                
                                 <li class="nav-item">
                                     <a href="#gate" class="nav-link" data-toggle="tab">Gateways</a>
                                 </li>
@@ -47,9 +45,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 <div class="tab-pane fade" id="with">
                                     @include('admin.Settings.PaymentSettings.withdrawal')
                                 </div>
-                                <div class="tab-pane fade" id="coin">
-                                    @include('admin.Settings.PaymentSettings.coinpayment')
-                                </div>
+                              
                                 <div class="tab-pane fade" id="gate">
                                     @include('admin.Settings.PaymentSettings.gateway')
                                 </div>
@@ -109,51 +105,6 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
             });
 
 
-
-
-            // Submit coinpayment form
-            $('#coinpayform').on('submit', function() {
-                //alert('love');
-                $.ajax({
-                    url: "{{ route('updatecpd') }}",
-                    type: 'POST',
-                    data: $('#coinpayform').serialize(),
-                    success: function(response) {
-                        if (response.status === 200) {
-                            $.notify({
-                                // options
-                                icon: 'flaticon-alarm-1',
-                                title: 'Success',
-                                message: response.success,
-                            }, {
-                                // settings
-                                type: 'success',
-                                allow_dismiss: true,
-                                newest_on_top: false,
-                                placement: {
-                                    from: "top",
-                                    align: "right"
-                                },
-                                offset: 20,
-                                spacing: 10,
-                                z_index: 1031,
-                                delay: 5000,
-                                timer: 1000,
-                                animate: {
-                                    enter: 'animated fadeInDown',
-                                    exit: 'animated fadeOutUp'
-                                },
-
-                            });
-                        } else {
-
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    },
-                });
-            });
 
 
 

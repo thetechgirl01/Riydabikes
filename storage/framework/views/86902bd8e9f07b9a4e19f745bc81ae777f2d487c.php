@@ -45,8 +45,8 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                 <div class="mb-5 row">
                     <div class="col-md-12">
                          <div>
-                            <a class='btn btn-primary' href='https://t.me/+9H-f6d0GgGgwMDM0'>
-                                For help/ contact Remedy
+                            <a class='btn btn-primary' href='https://wa.me/2348105831204'>
+                                For help: Contach CronaTech Support Team via WhatsApp
                             </a>
                         </div>
                         <div class="card p-2 shadow ">

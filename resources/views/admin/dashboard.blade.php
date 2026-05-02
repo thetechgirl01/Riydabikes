@@ -137,7 +137,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title fw-mediumbold">Latest Shipments</div>
+                    <div class="card-title fw-mediumbold">Latest Deliveries</div>
                     <div class="card-list">
                         @forelse ($latestUsers as $user)
                             <a href="{{ route('viewuser', ['id' => $user->id]) }}">
@@ -280,7 +280,7 @@
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 datasets: [{
-                    label: "Shipments Made",
+                    label: "Deliveries Made",
                     borderColor: "#1d7af3",
                     pointBorderColor: "#FFF",
                     pointBackgroundColor: "#1d7af3",

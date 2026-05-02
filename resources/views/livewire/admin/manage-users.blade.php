@@ -91,7 +91,7 @@
                                                
                                                 <th>Destination</th>
                                                 <th>Status</th>
-                                                <th>Date Shipped</th>
+                                                <th>Date Delivered</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>

@@ -159,7 +159,7 @@ Route::middleware(['isadmin', '2fa'])->prefix('admin')->group(function () {
         Route::get('dashboard/toggle-method-status/{id}', 'togglePaymentMethodStatus')->name('togglestatus');
         Route::put('dashboard/update-method', 'updatemethod')->name('updatemethod');
         Route::put('dashboard/paypreference', 'paypreference')->name('paypreference');
-        Route::put('dashboard/updatecpd', 'updatecpd')->name('updatecpd');
+
         Route::put('dashboard/updategateway', 'updategateway')->name('updategateway');
         Route::put('dashboard/update-transfer-settings', 'updateTransfer')->name('updatetransfer');
         Route::get('dashboard/settings/payment-settings', 'paymentview')->name('paymentview');

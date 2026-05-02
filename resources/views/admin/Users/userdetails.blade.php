@@ -24,7 +24,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                 <div class="row">
                                     <div class="col-md-12 ">
                                         <h1>Tracking Number: {{ $user->trackingnumber }}</h1>
-                                        <h3 class="d-inline text-primary">Details of shipment from {{ $user->sname }} to {{ $user->name }}</h3><span></span>
+                                        <h3 class="d-inline text-primary">Details of delivery from {{ $user->sname }} to {{ $user->name }}</h3><span></span>
                                         <div class="d-inline">
                                             <div class="float-right btn-group">
                                                 <a class="btn btn-primary btn-sm" href="{{ route('manageusers') }}"> <i
@@ -73,9 +73,9 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                                     <a href="#" data-toggle="modal" data-target="#clearacctModal"
                                                         class="dropdown-item">Clear Account</a> --}}
                                                     <a href="#" data-toggle="modal" data-target="#TradingModal"
-                                                        class="dropdown-item">Add Shipment Update/History</a>
+                                                        class="dropdown-item">Add Delivery Update/History</a>
                                                     <a href="#" data-toggle="modal" data-target="#edituser"
-                                                        class="dropdown-item">Edit Shipment</a>
+                                                        class="dropdown-item">Edit Delivery</a>
                                                         <a href="{{ route('printnow', $user->id) }}"
                                                             class="dropdown-item">Print Invoice</a>
                                                 
@@ -111,7 +111,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                         <h6  class='badge badge-secondary'>{{ $user->country }}</h6>
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>Shippment Type</h5>
+                                        <h5>Delivery Type</h5>
                                        <p class='badge badge-secondary'> {{ $user->shipment_type }}</p>
                                     </div>
                                     <div class="col-md-3">
@@ -130,7 +130,7 @@ if (Auth('admin')->User()->dashboard_style == 'light') {
                                                         @endif
                                     </div>
                                     <div class="col-md-3">
-                                        <h5>Shipment Delivery Date</h5>
+                                        <h5> Delivery Date</h5>
                                         <h6 class='badge badge-secondary'>{{ \Carbon\Carbon::parse($user->expected_delivery)->toDayDateTimeString() }}</h6>
                                     </div>
                                 </div>

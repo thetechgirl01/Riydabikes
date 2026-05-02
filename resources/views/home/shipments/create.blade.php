@@ -60,9 +60,14 @@
                             <input type="email" name="sender_email" value="{{ old('sender_email') }}" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Pickup City/Office <span class="text-red-500">*</span></label>
-                            <input name="take_off_point" value="{{ old('take_off_point') }}" placeholder="e.g., Lagos" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
-                        </div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2">Pickup State <span class="text-red-500">*</span></label>
+    <select name="take_off_point" id="origin_state" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
+        <option value="">— Select state —</option>
+        @foreach($states as $st)
+            <option value="{{ $st }}" {{ old('take_off_point') == $st ? 'selected' : '' }}>{{ $st }}</option>
+        @endforeach
+    </select>
+</div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Pickup Address <span class="text-red-500">*</span></label>
                             <textarea name="saddress" rows="2" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">{{ old('saddress') }}</textarea>
@@ -93,9 +98,14 @@
                             <input type="email" name="email" value="{{ old('email') }}" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery City/Office <span class="text-red-500">*</span></label>
-                            <input name="final_destination" value="{{ old('final_destination') }}" placeholder="e.g., Abuja" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
-                        </div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery State <span class="text-red-500">*</span></label>
+    <select name="final_destination" id="destination_state" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
+        <option value="">— Select state —</option>
+        @foreach($states as $st)
+            <option value="{{ $st }}" {{ old('final_destination') == $st ? 'selected' : '' }}>{{ $st }}</option>
+        @endforeach
+    </select>
+</div>
                         <div class="md:col-span-2">
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery Address <span class="text-red-500">*</span></label>
                             <textarea name="address" rows="2" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">{{ old('address') }}</textarea>
@@ -122,9 +132,10 @@
                             <input type="number" name="qty" min="1" value="{{ old('qty', 1) }}" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
                         </div>
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Weight <span class="text-gray-400">(optional)</span></label>
-                            <input name="weight" value="{{ old('weight') }}" placeholder="e.g., 2kg" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
-                        </div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2">Weight (kg)</label>
+    <input type="number" step="0.1" min="0" id="weight_kg" name="weight_kg" value="{{ old('weight_kg', 0) }}" placeholder="e.g., 2.5" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
+    <p class="text-xs text-gray-500 mt-1">First {{ $pricingSettings->free_weight_kg }}kg is free; ₦{{ number_format($pricingSettings->per_kg_rate, 0) }}/kg above.</p>
+</div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Package Size</label>
                             <select name="package_size" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
@@ -168,13 +179,16 @@
                 <div class="p-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery Speed <span class="text-red-500">*</span></label>
-                            <select name="freight_type" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
-                                <option value="">— Select —</option>
-                                <option value="Standard" {{ old('freight_type')=='Standard'?'selected':'' }}>Standard (2-3 days)</option>
-                                <option value="Express" {{ old('freight_type')=='Express'?'selected':'' }}>Express (Next Day)</option>
-                            </select>
-                        </div>
+    <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery Speed <span class="text-red-500">*</span></label>
+    <select name="freight_type" id="freight_type" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
+        <option value="">— Select —</option>
+        @foreach($speedOptions as $name => $multiplier)
+            <option value="{{ $name }}" {{ old('freight_type') == $name ? 'selected' : '' }}>
+                {{ $name }} @if($multiplier != 1) (×{{ rtrim(rtrim(number_format($multiplier, 2), '0'), '.') }}) @endif
+            </option>
+        @endforeach
+    </select>
+</div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-2">Delivery Type <span class="text-red-500">*</span></label>
                             <select name="shipment_type" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
@@ -199,11 +213,27 @@
                     </h2>
                 </div>
                 <div class="p-6">
-                    <div class="mb-5">
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Total Amount (₦) <span class="text-red-500">*</span></label>
-                        <input type="number" step="0.01" name="cost" value="{{ old('cost') }}" required placeholder="Enter quoted price" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all">
-                        <p class="text-xs text-gray-500 mt-1">If you don't know the amount, contact us first for a quote.</p>
-                    </div>
+                   <div id="quote-box" class="mb-5 rounded-xl p-5 bg-gradient-to-r from-[#800020]/5 to-[#800020]/10 border border-[#800020]/20">
+    <div class="flex items-start gap-3">
+        <div class="w-10 h-10 rounded-full bg-[#800020] text-white flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-receipt"></i>
+        </div>
+        <div class="flex-1">
+            <p class="text-xs uppercase tracking-wider text-gray-600 font-semibold">Total Delivery Fee</p>
+            <p id="quote-total" class="text-3xl font-bold text-[#800020] mt-1">— —</p>
+            <div id="quote-breakdown" class="text-xs text-gray-600 mt-2 hidden">
+                <span id="qb-base"></span> ·
+                <span id="qb-weight"></span> ·
+                <span id="qb-multiplier"></span>
+            </div>
+            <p id="quote-hint" class="text-sm text-gray-500 mt-2">
+                Pick pickup state, delivery state, weight, and delivery speed to see the price.
+            </p>
+            <p id="quote-error" class="text-sm text-red-600 mt-2 hidden"></p>
+        </div>
+    </div>
+    <input type="hidden" name="cost" id="cost_field" value="">
+</div>
 
                     <div class="mb-5">
                         <label class="block text-sm font-semibold text-gray-700 mb-3">Payment Method</label>
@@ -301,6 +331,81 @@
         document.getElementById('submitSpinner').classList.remove('hidden');
         btn.disabled = true;
     });
+
+    // ---------- Live quote ----------
+const origin = document.getElementById('origin_state');
+const dest   = document.getElementById('destination_state');
+const weight = document.getElementById('weight_kg');
+const speed  = document.getElementById('freight_type');
+const totalEl  = document.getElementById('quote-total');
+const hintEl   = document.getElementById('quote-hint');
+const errEl    = document.getElementById('quote-error');
+const breakEl  = document.getElementById('quote-breakdown');
+const qbBase   = document.getElementById('qb-base');
+const qbWeight = document.getElementById('qb-weight');
+const qbMult   = document.getElementById('qb-multiplier');
+const costEl   = document.getElementById('cost_field');
+const submitBtn = document.getElementById('submitBtn');
+
+const fmt = n => '₦' + Number(n).toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+let quoteTimer;
+
+async function fetchQuote() {
+    if (!origin.value || !dest.value || !speed.value) {
+        totalEl.textContent = '— —';
+        hintEl.classList.remove('hidden');
+        errEl.classList.add('hidden');
+        breakEl.classList.add('hidden');
+        costEl.value = '';
+        submitBtn.disabled = true;
+        return;
+    }
+
+    try {
+        const res = await fetch("{{ route('home.shipments.quote') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                take_off_point: origin.value,
+                final_destination: dest.value,
+                weight_kg: parseFloat(weight.value || 0),
+                freight_type: speed.value,
+            }),
+        });
+        if (!res.ok) throw new Error('Quote failed');
+        const q = await res.json();
+
+        totalEl.textContent = fmt(q.total);
+        costEl.value = q.total;
+        hintEl.classList.add('hidden');
+        errEl.classList.add('hidden');
+        breakEl.classList.remove('hidden');
+        qbBase.textContent   = 'Base ' + fmt(q.base_fare);
+        qbWeight.textContent = q.weight_charge > 0 ? '+ ' + fmt(q.weight_charge) + ' weight' : 'No weight surcharge';
+        qbMult.textContent   = q.multiplier !== 1 ? '× ' + q.multiplier + ' (' + q.speed + ')' : q.speed;
+        submitBtn.disabled = false;
+    } catch (e) {
+        errEl.textContent = 'Could not fetch quote. Please try again.';
+        errEl.classList.remove('hidden');
+        submitBtn.disabled = true;
+    }
+}
+
+function debouncedQuote() {
+    clearTimeout(quoteTimer);
+    quoteTimer = setTimeout(fetchQuote, 250);
+}
+
+[origin, dest, speed].forEach(el => el.addEventListener('change', fetchQuote));
+weight.addEventListener('input', debouncedQuote);
+
+// Initial state: disable submit until a quote is fetched
+submitBtn.disabled = true;
+fetchQuote();
 })();
 </script>
-@endsectionsidbar
+@endsection

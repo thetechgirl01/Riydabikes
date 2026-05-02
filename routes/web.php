@@ -68,24 +68,21 @@ Route::post('sendcontact', 'App\Http\Controllers\User\UsersController@sendcontac
 Route::controller(\App\Http\Controllers\Home\BikeController::class)->group(function () {
     Route::get('/bikes',                       'index')->name('home.bikes.index');
     Route::get('/bikes/{slug}',                'show')->name('home.bikes.show');
-
-    // Buy flow
     Route::get('/bikes/{slug}/buy',            'buyForm')->name('home.bikes.buy');
     Route::post('/bikes/{slug}/buy',           'buyStore')->name('home.bikes.buy.store');
     Route::get('/bikes/order/{orderNo}/receipt', 'purchaseReceipt')->name('home.bikes.purchase.receipt');
-
-    // Hire flow
     Route::get('/bikes/{slug}/hire',           'hireForm')->name('home.bikes.hire');
     Route::post('/bikes/{slug}/hire/quote',    'hireQuote')->name('home.bikes.hire.quote');
     Route::post('/bikes/{slug}/hire',          'hireStore')->name('home.bikes.hire.store');
     Route::get('/bikes/rental/{rentalNo}/receipt', 'rentalReceipt')->name('home.bikes.rental.receipt');
-
-    // ---------- Public delivery booking ----------
-Route::controller(\App\Http\Controllers\Home\ShipmentBookingController::class)->group(function () {
-    Route::get('/book-delivery',                 'create')->name('home.shipments.create');
-    Route::post('/book-delivery',                'store')->name('home.shipments.store');
-    Route::get('/book-delivery/success/{trackingnumber}', 'success')->name('home.shipments.success');
-    Route::get('/my-orders',                     'myOrders')->name('home.shipments.my-orders');
-    Route::post('/my-orders/lookup',             'lookup')->name('home.shipments.lookup');
 });
+
+// ---------- Public delivery booking ----------
+Route::controller(\App\Http\Controllers\Home\ShipmentBookingController::class)->group(function () {
+    Route::get('/book-delivery',                          'create')->name('home.shipments.create');
+    Route::post('/book-delivery',                         'store')->name('home.shipments.store');
+    Route::post('/book-delivery/quote',                   'quote')->name('home.shipments.quote');
+    Route::get('/book-delivery/success/{trackingnumber}', 'success')->name('home.shipments.success');
+    Route::get('/my-orders',                              'myOrders')->name('home.shipments.my-orders');
+    Route::post('/my-orders/lookup',                      'lookup')->name('home.shipments.lookup');
 });

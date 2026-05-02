@@ -18,13 +18,14 @@ class PaymentController extends Controller
     {
         $paymethod = Wdmethod::orderByDesc('id')->get();
 
-        return view('admin.Settings.PaymentSettings.show', [
-            'title' => 'Payment settings',
-            'methods' => $paymethod,
-            'cpd' => Cp_transaction::where('id', '=', '1')->first(),
-            'paystack' => Paystack::where('id', '=', '1')->first(),
-            'settings' => Settings::where('id', '=', '1')->first(),
-        ]);
+       return view('admin.Settings.PaymentSettings.show', [
+    'title' => 'Payment settings',
+    'methods' => $paymethod,
+    'cpd' => Cp_transaction::where('id', '=', '1')->first(),
+    'moresettings' => Cp_transaction::where('id', '=', '1')->first(),
+    'paystack' => Paystack::where('id', '=', '1')->first(),
+    'settings' => Settings::where('id', '=', '1')->first(),
+]);
     }
 
     public function addpaymethod(Request $request)
@@ -174,36 +175,24 @@ class PaymentController extends Controller
         return response()->json(['status' => 200, 'success' => 'Coinpayment Settings Saved successfully']);
     }
 
-    //save paystack credentials to DB
-    public function updategateway(Request $request)
-    {
+  //save Paystack & Flutterwave credentials to DB
+public function updategateway(Request $request)
+{
+    Paystack::where('id', '1')->update([
+        'paystack_public_key' => $request['paystack_public_key'],
+        'paystack_secret_key' => $request['paystack_secret_key'],
+        'paystack_url'        => $request['paystack_url'],
+        'paystack_email'      => $request['paystack_email'],
+    ]);
 
-        Settings::where('id', '1')
-            ->update([
-                's_s_k' => $request['s_s_k'],
-                's_p_k' => $request['s_p_k'],
-                'pp_ci' => $request['pp_ci'],
-                'pp_cs' => $request['pp_cs'],
-            ]);
+    $settingChanges = SettingsCont::find(1);
+    $settingChanges->flw_public_key  = $request->flw_public_key;
+    $settingChanges->flw_secret_key  = $request->flw_secret_key;
+    $settingChanges->flw_secret_hash = $request->flw_secret_hash;
+    $settingChanges->save();
 
-        Paystack::where('id', '1')
-            ->update([
-                'paystack_public_key' => $request['paystack_public_key'],
-                'paystack_secret_key' => $request['paystack_secret_key'],
-                'paystack_url' => $request['paystack_url'],
-                'paystack_email' => $request['paystack_email'],
-            ]);
-
-        $settingChanges = SettingsCont::find(1);
-        $settingChanges->flw_public_key = $request->flw_public_key;
-        $settingChanges->flw_secret_key = $request->flw_secret_key;
-        $settingChanges->flw_secret_hash = $request->flw_secret_hash;
-        $settingChanges->bnc_api_key = $request->bnc_api_key;
-        $settingChanges->bnc_secret_key = $request->bnc_secret_key;
-        $settingChanges->save();
-
-        return response()->json(['status' => 200, 'success' => ' Gateway Settings updated successfully']);
-    }
+    return response()->json(['status' => 200, 'success' => 'Gateway settings updated successfully']);
+}
 
     public function updateTransfer(Request $request)
     {

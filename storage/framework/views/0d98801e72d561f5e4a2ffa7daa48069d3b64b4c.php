@@ -149,7 +149,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title fw-mediumbold">Latest Shipments</div>
+                    <div class="card-title fw-mediumbold">Latest Deliveries</div>
                     <div class="card-list">
                         <?php $__empty_1 = true; $__currentLoopData = $latestUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <a href="<?php echo e(route('viewuser', ['id' => $user->id])); ?>">
@@ -298,7 +298,7 @@
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 datasets: [{
-                    label: "Shipments Made",
+                    label: "Deliveries Made",
                     borderColor: "#1d7af3",
                     pointBorderColor: "#FFF",
                     pointBackgroundColor: "#1d7af3",

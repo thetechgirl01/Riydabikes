@@ -92,14 +92,13 @@ class ShipmentController extends Controller
         $shipment->trackingnumber = $trackingNumber;
 
         // Set initial status to "Order Confirmed"
-        $shipment->status = "Order Confirmed";
+        $shipment->status = "Delivery Created";
 
         // Save the shipment
         $shipment->save();
 
         // Create the initial tracking record
-        $this->createTrackingRecord($shipment->id, $request->take_off_point, "Order Confirmed", "Your shipment has been confirmed and is being processed.");
-
+       $this->createTrackingRecord($shipment->id, $request->take_off_point, "Delivery Created", "Your delivery has been created and is being processed.");
         // Send email notification to the receiver
         $this->sendReceiverNotification($shipment);
 
@@ -263,7 +262,7 @@ class ShipmentController extends Controller
         // Validate the incoming request
         $validator = Validator::make($request->all(), [
             'shipment_id' => 'required|exists:users,id',
-            'status' => 'required|string|in:Order Confirmed,Picked by Courier,Security Checking,Border Check,Missing Document,On The Way,Custom Hold,Pending Payment,Payment Received,Additional Fee Applied,Money Laundering,Delivered',
+          'status' => 'required|string|in:Order Confirmed,Picked by Courier,Security Checking,Border Check,Missing Document,On The Way,Custom Hold,Pending Payment,Payment Received,Additional Fee Applied,Money Laundering,Delivered',
             'comment' => 'required|string',
             'location' => 'required|string',
             'status_datetime' => 'nullable|date|before_or_equal:now',
@@ -381,20 +380,20 @@ class ShipmentController extends Controller
 
         // Set status colors and icons
         $statusInfo = [
-            'Order Confirmed' => ['color' => '#0369a1', 'icon' => '✅', 'bg' => '#e0f2fe'],
-            'Picked by Courier' => ['color' => '#2563eb', 'icon' => '📦', 'bg' => '#dbeafe'],
-            'Security Checking' => ['color' => '#4f46e5', 'icon' => '🔍', 'bg' => '#e0e7ff'],
-            'Border Check' => ['color' => '#7c3aed', 'icon' => '🛂', 'bg' => '#ede9fe'],
-            'Missing Document' => ['color' => '#dc2626', 'icon' => '📄', 'bg' => '#fee2e2'],
-            'On The Way' => ['color' => '#0891b2', 'icon' => '🚚', 'bg' => '#cffafe'],
-            'Custom Hold' => ['color' => '#d97706', 'icon' => '⏸️', 'bg' => '#fef3c7'],
-            'Pending Payment' => ['color' => '#ea580c', 'icon' => '💳', 'bg' => '#ffedd5'],
-            'Payment Received' => ['color' => '#059669', 'icon' => '✅', 'bg' => '#d1fae5'],
-            'Additional Fee Applied' => ['color' => '#e11d48', 'icon' => '💰', 'bg' => '#ffe4e6'],
-            'Money Laundering' => ['color' => '#991b1b', 'icon' => '⚠️', 'bg' => '#fee2e2'],
-            'Delivered' => ['color' => '#059669', 'icon' => '✅', 'bg' => '#d1fae5']
-        ];
-
+    'Delivery Created'   => ['color' => '#0369a1', 'icon' => '✅', 'bg' => '#e0f2fe'],
+    'Pickup Scheduled'   => ['color' => '#2563eb', 'icon' => '📅', 'bg' => '#dbeafe'],
+    'Rider Assigned'     => ['color' => '#4f46e5', 'icon' => '🏍️', 'bg' => '#e0e7ff'],
+    'Picked Up'          => ['color' => '#2563eb', 'icon' => '📦', 'bg' => '#dbeafe'],
+    'In Transit'         => ['color' => '#0891b2', 'icon' => '🚚', 'bg' => '#cffafe'],
+    'Arrived at Hub'     => ['color' => '#0ea5e9', 'icon' => '🏢', 'bg' => '#e0f2fe'],
+    'Out for Delivery'   => ['color' => '#0891b2', 'icon' => '🛵', 'bg' => '#cffafe'],
+    'Delivered'          => ['color' => '#059669', 'icon' => '✅', 'bg' => '#d1fae5'],
+    'Delivery Delayed'   => ['color' => '#d97706', 'icon' => '⏸️', 'bg' => '#fef3c7'],
+    'Delivery Failed'    => ['color' => '#dc2626', 'icon' => '❌', 'bg' => '#fee2e2'],
+    'Returned'           => ['color' => '#991b1b', 'icon' => '↩️', 'bg' => '#fee2e2'],
+    'Pending Payment'    => ['color' => '#ea580c', 'icon' => '💳', 'bg' => '#ffedd5'],
+    'Payment Received'   => ['color' => '#059669', 'icon' => '✅', 'bg' => '#d1fae5'],
+];
         $statusConfig = $statusInfo[$status] ?? ['color' => '#0369a1', 'icon' => '📋', 'bg' => '#e0f2fe'];
 
         // Generate the email content
@@ -975,7 +974,7 @@ class ShipmentController extends Controller
     {
         // Validate the incoming request
         $validator = Validator::make($request->all(), [
-            'status' => 'required|string|in:Order Confirmed,Picked by Courier,Security Checking,Border Check,Missing Document,On The Way,Custom Hold,Pending Payment,Payment Received,Additional Fee Applied,Money Laundering,Delivered',
+          'status' => 'required|string|in:Order Confirmed,Picked by Courier,Security Checking,Border Check,Missing Document,On The Way,Custom Hold,Pending Payment,Payment Received,Additional Fee Applied,Money Laundering,Delivered',
             'address' => 'required|string|max:255',
             'comment' => 'required|string|max:1000',
             'track_datetime' => 'nullable|date|before_or_equal:now',
