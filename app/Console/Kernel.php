@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Console;
+
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Models\Settings;
+use App\Console\Commands\GenerateSitemap;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,24 +14,20 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-
+        GenerateSitemap::class,
     ];
 
     /**
      * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-        
+        // Optional: auto-run sitemap daily
+        // $schedule->command('sitemap:generate')->daily();
     }
 
     /**
      * Register the commands for the application.
-     *
-     * @return void
      */
     protected function commands()
     {

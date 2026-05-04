@@ -12,6 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
+         'payment/paystack/webhook',
+    'payment/flutterwave/webhook',
         'get-started/',
         'https://onlinetrader.sharedwithexpose.com/get-started'
     ];

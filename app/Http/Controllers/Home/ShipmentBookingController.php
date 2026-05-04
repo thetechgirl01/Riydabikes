@@ -10,6 +10,7 @@ use App\Models\Tp_Transaction;
 use App\Models\User;
 use App\Models\Wdmethod;
 use App\Services\DeliveryPricingService;
+use App\Services\PaymentGatewayService;
 use App\Support\NigerianStates;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -26,19 +27,21 @@ class ShipmentBookingController extends Controller
         return Settings::where('id', 1)->first();
     }
 
-    public function create()
-    {
-        $pricingSettings = DeliveryPricingSettings::current();
+  public function create()
+{
+    $pricingSettings = DeliveryPricingSettings::current();
+    $gatewayAvail    = app(\App\Services\PaymentGatewayService::class)->availability();
 
-        return view('home.shipments.create', [
-            'settings'        => $this->settings(),
-            'paymentMethods'  => $this->bankTransferMethods(),
-            'states'          => NigerianStates::all(),
-            'speedOptions'    => $pricingSettings->enabledSpeedOptions(),
-            'pricingSettings' => $pricingSettings,
-            'title'           => 'Book a Delivery',
-        ]);
-    }
+    return view('home.shipments.create', [
+        'settings'        => $this->settings(),
+        'paymentMethods'  => $this->bankTransferMethods(),
+        'states'          => NigerianStates::all(),
+        'speedOptions'    => $pricingSettings->enabledSpeedOptions(),
+        'pricingSettings' => $pricingSettings,
+        'gatewayAvail'    => $gatewayAvail,
+        'title'           => 'Book a Delivery',
+    ]);
+}
 
     /**
      * Public AJAX quote endpoint. Returns a JSON price for the given inputs.
@@ -91,7 +94,7 @@ class ShipmentBookingController extends Controller
             'freight_type'      => 'required|string|in:' . implode(',', $allowedSpeeds),
             'shipment_type'     => 'required|string|in:Delivery,Shipment',
 
-            'payment_method'    => 'required|string',
+            'payment_method'    => 'required|string|in:Bank Transfer,Paystack,Flutterwave',
             'proof'             => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
 
             'delivery_notes'    => 'nullable|string|max:1000',
@@ -102,12 +105,18 @@ class ShipmentBookingController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $data = $validator->validated();
+        $data   = $validator->validated();
         $method = $data['payment_method'];
 
-        if (in_array($method, ['Paystack', 'Flutterwave'])) {
+        // Check gateway availability dynamically
+        $gateways = app(PaymentGatewayService::class)->availability();
+        if ($method === 'Paystack' && ! $gateways['paystack']) {
             return redirect()->back()->withInput()
-                ->with('info', "Card payments via {$method} are coming soon. Please choose Bank Transfer.");
+                ->with('info', 'Paystack is not yet available. Please choose Bank Transfer.');
+        }
+        if ($method === 'Flutterwave' && ! $gateways['flutterwave']) {
+            return redirect()->back()->withInput()
+                ->with('info', 'Flutterwave is not yet available. Please choose Bank Transfer.');
         }
 
         if ($method === 'Bank Transfer' && ! $request->hasFile('proof')) {
@@ -115,7 +124,7 @@ class ShipmentBookingController extends Controller
                 ->withErrors(['proof' => 'Please upload your bank transfer payment proof.']);
         }
 
-        // SERVER-SIDE PRICING — never trust the client's `cost` field.
+        // Server-calculated price
         $weightKg = (float) ($data['weight_kg'] ?? 0);
         $quote = $this->pricing->quote(
             $data['take_off_point'],
@@ -145,15 +154,13 @@ class ShipmentBookingController extends Controller
 
         $shipment->freight_type      = $data['freight_type'];
         $shipment->shipment_type     = $data['shipment_type'];
-        $shipment->cost              = $quote['total'];   // server-calculated, authoritative
+        $shipment->cost              = $quote['total'];
         $shipment->clearance_cost    = 0;
 
         $shipment->delivery_notes    = $data['delivery_notes'] ?? null;
-
         $shipment->shipment_source   = 'public';
         $shipment->cstatus           = 'Shipment';
         $shipment->payment_method    = $method;
-        $shipment->payment_status    = 'Pending';
         $shipment->username          = $data['sender_email'] ?? null;
 
         if ($request->hasFile('photo')) {
@@ -163,7 +170,7 @@ class ShipmentBookingController extends Controller
             $shipment->photo = 'shipment_photos/' . $imgName;
         }
 
-        if ($request->hasFile('proof')) {
+        if ($method === 'Bank Transfer' && $request->hasFile('proof')) {
             $p = $request->file('proof');
             $pName = time() . '_proof_' . preg_replace('/[^A-Za-z0-9._-]/', '', $p->getClientOriginalName());
             $p->move(public_path('shipment_payment_proofs'), $pName);
@@ -171,8 +178,16 @@ class ShipmentBookingController extends Controller
         }
 
         $shipment->trackingnumber = $this->generateTrackingNumber();
-        $shipment->status         = 'Delivery Created';
         $shipment->password       = bcrypt(Str::random(40));
+
+        if ($method === 'Bank Transfer') {
+            $shipment->payment_status = 'Pending';
+            $shipment->status         = 'Delivery Created';
+        } else {
+            // Card flow: booking exists but won't be processed until payment confirmed
+            $shipment->payment_status = 'Pending Card';
+            $shipment->status         = 'Pending Payment';
+        }
 
         $shipment->save();
 
@@ -181,14 +196,24 @@ class ShipmentBookingController extends Controller
             'address' => $shipment->take_off_point,
             'city'    => '',
             'country' => '',
-            'status'  => 'Delivery Created',
-            'comment' => 'Delivery booked online. Awaiting payment confirmation.',
+            'status'  => $shipment->status,
+            'comment' => $method === 'Bank Transfer'
+                ? 'Delivery booked online. Awaiting payment confirmation.'
+                : "Delivery booked online. Awaiting card payment via {$method}.",
         ]);
 
-        $this->notifySender($shipment);
-        $this->notifyAdmin($shipment);
+        if ($method === 'Bank Transfer') {
+            $this->notifySender($shipment);
+            $this->notifyAdmin($shipment);
+            return redirect()->route('home.shipments.success', $shipment->trackingnumber);
+        }
 
-        return redirect()->route('home.shipments.success', $shipment->trackingnumber);
+        // Card flow: hand off to gateway controller for redirect
+        $gw = app(\App\Http\Controllers\Home\PaymentGatewayController::class);
+        if ($method === 'Paystack')    return $gw->paystackInit($shipment);
+        if ($method === 'Flutterwave') return $gw->flutterwaveInit($shipment);
+
+        return redirect()->route('home.shipments.create')->with('info', 'Unsupported payment method.');
     }
 
     public function success($trackingnumber)
@@ -275,7 +300,7 @@ class ShipmentBookingController extends Controller
         } catch (\Throwable $e) {
             Log::error('Admin email failed: ' . $e->getMessage());
         }
-    }
+    } 
 
     private function renderSenderEmail(User $s, $settings): string
     {

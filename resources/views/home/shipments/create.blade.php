@@ -237,29 +237,31 @@
 
                     <div class="mb-5">
                         <label class="block text-sm font-semibold text-gray-700 mb-3">Payment Method</label>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <label class="relative flex items-center p-4 border rounded-xl cursor-pointer hover:border-[#800020] transition-all has-[:checked]:border-[#800020] has-[:checked]:bg-[#800020]/5">
-                                <input type="radio" name="payment_method" value="Bank Transfer" {{ old('payment_method','Bank Transfer')=='Bank Transfer'?'checked':'' }} required class="payment-radio w-4 h-4 text-[#800020]">
-                                <div class="ml-3">
-                                    <span class="block font-medium text-gray-800">Bank Transfer</span>
-                                    <span class="block text-xs text-gray-500">Upload receipt</span>
-                                </div>
-                            </label>
-                            <label class="relative flex items-center p-4 border rounded-xl cursor-pointer hover:border-[#800020] transition-all opacity-60">
-                                <input type="radio" name="payment_method" value="Paystack" disabled class="w-4 h-4">
-                                <div class="ml-3">
-                                    <span class="block font-medium text-gray-800">Paystack</span>
-                                    <span class="block text-xs text-amber-600">Coming soon</span>
-                                </div>
-                            </label>
-                            <label class="relative flex items-center p-4 border rounded-xl cursor-pointer hover:border-[#800020] transition-all opacity-60">
-                                <input type="radio" name="payment_method" value="Flutterwave" disabled class="w-4 h-4">
-                                <div class="ml-3">
-                                    <span class="block font-medium text-gray-800">Flutterwave</span>
-                                    <span class="block text-xs text-amber-600">Coming soon</span>
-                                </div>
-                            </label>
-                        </div>
+                       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <label class="relative flex items-center p-4 border rounded-xl cursor-pointer hover:border-[#800020] transition-all has-[:checked]:border-[#800020] has-[:checked]:bg-[#800020]/5">
+        <input type="radio" name="payment_method" value="Bank Transfer" {{ old('payment_method','Bank Transfer')=='Bank Transfer'?'checked':'' }} required class="payment-radio w-4 h-4 text-[#800020]">
+        <div class="ml-3">
+            <span class="block font-medium text-gray-800">Bank Transfer</span>
+            <span class="block text-xs text-gray-500">Upload receipt</span>
+        </div>
+    </label>
+
+    <label class="relative flex items-center p-4 border rounded-xl cursor-pointer transition-all {{ $gatewayAvail['paystack'] ? 'hover:border-[#800020] has-[:checked]:border-[#800020] has-[:checked]:bg-[#800020]/5' : 'opacity-60 cursor-not-allowed' }}">
+        <input type="radio" name="payment_method" value="Paystack" {{ $gatewayAvail['paystack'] ? '' : 'disabled' }} class="payment-radio w-4 h-4 text-[#800020]">
+        <div class="ml-3">
+            <span class="block font-medium text-gray-800">Paystack</span>
+            <span class="block text-xs {{ $gatewayAvail['paystack'] ? 'text-gray-500' : 'text-amber-600' }}">{{ $gatewayAvail['paystack'] ? 'Card / Bank / USSD' : 'Coming soon' }}</span>
+        </div>
+    </label>
+
+    <label class="relative flex items-center p-4 border rounded-xl cursor-pointer transition-all {{ $gatewayAvail['flutterwave'] ? 'hover:border-[#800020] has-[:checked]:border-[#800020] has-[:checked]:bg-[#800020]/5' : 'opacity-60 cursor-not-allowed' }}">
+        <input type="radio" name="payment_method" value="Flutterwave" {{ $gatewayAvail['flutterwave'] ? '' : 'disabled' }} class="payment-radio w-4 h-4 text-[#800020]">
+        <div class="ml-3">
+            <span class="block font-medium text-gray-800">Flutterwave</span>
+            <span class="block text-xs {{ $gatewayAvail['flutterwave'] ? 'text-gray-500' : 'text-amber-600' }}">{{ $gatewayAvail['flutterwave'] ? 'Card / Bank / USSD' : 'Coming soon' }}</span>
+        </div>
+    </label>
+</div>
                     </div>
 
                     <!-- Bank Transfer Details -->

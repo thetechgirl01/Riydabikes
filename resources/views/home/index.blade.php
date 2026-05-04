@@ -6,33 +6,62 @@
 
 @section('content')
 
-<!-- Hero Section - Only background overlay layer modified -->
+<!-- Hero Section - Mobile optimized with horizontal cards -->
 <section class="relative min-h-screen flex items-center overflow-hidden" x-data="{ currentSlide: 0, slides: 3 }" x-init="setInterval(() => { currentSlide = (currentSlide + 1) % slides }, 5000)">
     <!-- Background Video/Images -->
-    <div class="absolute inset-0 z-0">
-        <div x-show="currentSlide === 0" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
-            <video autoplay muted loop class="w-full h-full object-cover">
-                <source src="temp/custom/images/slider/airplane_takeoff.mp4" type="video/mp4">
-            </video>
+    <div class="absolute inset-0 z-0 overflow-hidden">
+
+        <!-- Desktop / Large Screen Layout (PERFECTLY PRESERVED) -->
+        <div class="hidden lg:flex absolute inset-0 w-full h-full">
+            <!-- Left White Space -->
+            <div class="w-[40%] bg-white relative z-10"></div>
+
+            <!-- Right Media Area -->
+            <div class="w-[60%] relative overflow-hidden">
+                <!-- Slide 1 -->
+                <div x-show="currentSlide === 0" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
+
+                <!-- Slide 2 -->
+                <div x-show="currentSlide === 1" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
+
+                <!-- Slide 3 -->
+                <div x-show="currentSlide === 2" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/home-main.jpg');"></div>
+
+                <!-- Soft Blend Into White -->
+                <div class="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-white via-white/70 to-transparent z-10"></div>
+            </div>
         </div>
-        
-        <div x-show="currentSlide === 1" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
-        
-        <div x-show="currentSlide === 2" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/home-main.jpg');"></div>
-        
-        <!-- White gradient overlay - 60% width from left, smooth transition -->
-        <div class="absolute inset-0 bg-gradient-to-r from-white via-white to-transparent lg:via-white lg:to-transparent w-full lg:w-[90%]"></div>
-        
-        <!-- Dark overlay removed as white gradient now handles contrast -->
+
+        <!-- Mobile / Tablet Layout (UNCHANGED BACKGROUND) -->
+        <div class="lg:hidden absolute inset-0">
+            <!-- Slide 1 -->
+            <div x-show="currentSlide === 0" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
+                <video autoplay muted loop playsinline class="w-full h-full object-cover object-center">
+                    <source src="temp/custom/images/slider/airplane_takeoff.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Slide 2 -->
+            <div x-show="currentSlide === 1" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
+
+            <!-- Slide 3 -->
+            <div x-show="currentSlide === 2" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/home-main.jpg');"></div>
+
+            <!-- Mobile Dark Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55"></div>
+        </div>
     </div>
 
-    <!-- Rest of hero section remains unchanged -->
-    <div class="relative z-10 w-full">
+    <!-- Content Section -->
+    <div class="relative z-10 w-full py-8 sm:py-12 md:py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:w-[70%]">
                 <div class="lg:bg-gradient-to-r lg:from-white lg:via-white/95 lg:to-transparent lg:p-8 lg:rounded-2xl lg:-ml-8">
+                    <!-- Centered content for mobile, left-aligned for desktop -->
                     <div class="animate-fade-in text-center lg:text-left">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white lg:text-gray-900">
+                        
+                        <!-- Headlines -->
+                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight text-white lg:text-gray-900">
                             <span x-show="currentSlide === 0" x-cloak x-transition:enter="transition-all duration-1000 delay-300" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
                                 Rent a Bike,<br><span class="text-[#800020]">Ride Free</span>
                             </span>
@@ -44,39 +73,101 @@
                             </span>
                         </h1>
                         
-                        <p class="text-lg md:text-xl mb-8 max-w-2xl leading-relaxed text-white lg:text-gray-700">
+                        <!-- Description text -->
+                        <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed text-white lg:text-gray-700">
                             <span x-show="currentSlide === 0" x-cloak>Choose from our wide range of premium bikes. Flexible rental plans for daily, weekly, or monthly needs.</span>
                             <span x-show="currentSlide === 1" x-cloak>Get your packages delivered fast and reliably with our dedicated bike delivery fleet across the city.</span>
                             <span x-show="currentSlide === 2" x-cloak>Find your perfect ride or sell your bike with RydaBikes. Trusted marketplace for quality bikes.</span>
                         </p>
                         
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
-                           <a href="{{ route('home.shipments.create') }}" class="bg-primary-600 text-white px-8 py-4 rounded-full hover:bg-primary-700 transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-    Book Delivery <i class="fas fa-arrow-right"></i>
-</a>
-                            <a href="contact" class="bg-transparent border-2 border-white lg:border-[#800020] text-white lg:text-[#800020] px-8 py-4 rounded-full hover:bg-[#800020] hover:text-white transition-all duration-300 font-semibold text-lg inline-flex items-center gap-2">
+                        <!-- Buttons - Equal width on mobile -->
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch sm:items-center max-w-md mx-auto lg:mx-0 lg:max-w-none">
+                            <a href="{{ route('home.shipments.create') }}" class="bg-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-primary-700 transition-all duration-300 font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 text-center flex items-center justify-center gap-2 min-w-[200px] sm:min-w-0">
+                                Book Delivery <i class="fas fa-arrow-right text-sm"></i>
+                            </a>
+                            <a href="contact" class="bg-transparent border-2 border-white lg:border-[#800020] text-white lg:text-[#800020] px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#800020] hover:text-white transition-all duration-300 font-semibold text-base sm:text-lg flex items-center justify-center gap-2 min-w-[200px] sm:min-w-0">
                                 <i class="fas fa-motorcycle"></i> Rent / Buy a Bike
                             </a>
                         </div>
 
-                        <div class="mt-12 flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
-                            <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
-                                <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-motorcycle text-[#800020] text-lg"></i>
+                        <!-- Feature Cards - Horizontal scroll on mobile, grid on tablet, flex on desktop -->
+                        <div class="mt-8 sm:mt-12 lg:mt-12">
+                            <!-- Mobile: Horizontal scrollable cards -->
+                            <div class="lg:hidden overflow-x-auto pb-4 -mx-4 px-4">
+                                <div class="flex gap-3 min-w-max">
+                                    <!-- Card 1 -->
+                                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20 w-40 flex-shrink-0">
+                                        <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-motorcycle text-[#800020] text-base"></i>
+                                        </div>
+                                        <span class="text-gray-800 font-semibold text-xs text-left">Wide range of bikes</span>
+                                    </div>
+                                    
+                                    <!-- Card 2 -->
+                                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20 w-44 flex-shrink-0">
+                                        <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-truck-fast text-[#800020] text-base"></i>
+                                        </div>
+                                        <span class="text-gray-800 font-semibold text-xs text-left">Fast delivery anywhere</span>
+                                    </div>
+                                    
+                                    <!-- Card 3 -->
+                                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20 w-44 flex-shrink-0">
+                                        <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                            <i class="fas fa-shield-alt text-[#800020] text-base"></i>
+                                        </div>
+                                        <span class="text-gray-800 font-semibold text-xs text-left">Safe and secure rides</span>
+                                    </div>
                                 </div>
-                                <span class="text-gray-800 font-medium text-sm">Wide range of bikes</span>
                             </div>
-                            <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
-                                <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-truck-fast text-[#800020] text-lg"></i>
+
+                            <!-- Tablet (md): 3 column grid -->
+                            <div class="hidden lg:hidden md:grid md:grid-cols-3 gap-4">
+                                <!-- Card 1 -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20">
+                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-motorcycle text-[#800020] text-lg"></i>
+                                    </div>
+                                    <span class="text-gray-800 font-semibold text-sm">Wide range of bikes</span>
                                 </div>
-                                <span class="text-gray-800 font-medium text-sm">Fast delivery anywhere</span>
+                                
+                                <!-- Card 2 -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20">
+                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-truck-fast text-[#800020] text-lg"></i>
+                                    </div>
+                                    <span class="text-gray-800 font-semibold text-sm">Fast delivery anywhere</span>
+                                </div>
+                                
+                                <!-- Card 3 -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20">
+                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-shield-alt text-[#800020] text-lg"></i>
+                                    </div>
+                                    <span class="text-gray-800 font-semibold text-sm">Safe and secure rides</span>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
-                                <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-shield-alt text-[#800020] text-lg"></i>
+
+                            <!-- Desktop (lg): Original flex row -->
+                            <div class="hidden lg:flex lg:flex-row lg:gap-6 lg:justify-start">
+                                <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
+                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-motorcycle text-[#800020] text-lg"></i>
+                                    </div>
+                                    <span class="text-gray-800 font-medium text-sm">Wide range of bikes</span>
                                 </div>
-                                <span class="text-gray-800 font-medium text-sm">Safe and secure rides</span>
+                                <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
+                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-truck-fast text-[#800020] text-lg"></i>
+                                    </div>
+                                    <span class="text-gray-800 font-medium text-sm">Fast delivery anywhere</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
+                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-shield-alt text-[#800020] text-lg"></i>
+                                    </div>
+                                    <span class="text-gray-800 font-medium text-sm">Safe and secure rides</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,19 +176,58 @@
         </div>
     </div>
 
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+    <!-- Slide Indicators -->
+    <div class="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
         <template x-for="i in slides" :key="i">
-            <button @click="currentSlide = i - 1" :class="currentSlide === (i - 1) ? 'bg-[#800020]' : 'bg-white bg-opacity-50'" class="w-3 h-3 rounded-full transition-all duration-300"></button>
+            <button @click="currentSlide = i - 1" :class="currentSlide === (i - 1) ? 'bg-[#800020] w-6' : 'bg-white bg-opacity-50 w-2'" class="h-2 rounded-full transition-all duration-300"></button>
         </template>
     </div>
-
-    <div class="absolute bottom-8 left-8 text-white animate-bounce">
-        <div class="flex flex-col items-center">
-            <span class="text-sm mb-2">Scroll Down</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </div>
 </section>
+
+<style>
+    /* Hide scrollbar on mobile but keep functionality */
+    .overflow-x-auto {
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .overflow-x-auto::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .overflow-x-auto::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+    
+    .overflow-x-auto::-webkit-scrollbar-thumb {
+        background: rgba(128, 0, 32, 0.5);
+        border-radius: 10px;
+    }
+    
+    /* Smooth transitions */
+    .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+    
+    [x-cloak] {
+        display: none !important;
+    }
+    
+    /* Ensure buttons have consistent hover effects */
+    .bg-primary-600, .border-white {
+        transition: all 0.3s ease;
+    }
+    
+    /* Desktop original styles preserved */
+    @media (min-width: 1024px) {
+        .desktop-left-links a {
+            position: relative;
+        }
+    }
+</style>
 
 <!-- Track & Trace Section - Updated for RydaBikes Delivery -->
 <section class="relative -mt-16 z-20">
@@ -687,7 +817,7 @@
                 <i class="fas fa-motorcycle mr-1"></i> Get on the Road
             </span>
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-5">
-                Ready to Ride with RydaBikes?
+                Ready to Ride with RiydaBikes?
             </h2>
             <p class="text-lg text-white/80 mb-8 leading-relaxed">
                 Whether you want to buy, rent, or get a bike delivered — we've got you covered. Start your journey with us today.

@@ -87,3 +87,21 @@ Route::controller(\App\Http\Controllers\Home\ShipmentBookingController::class)->
     Route::get('/my-orders',                              'myOrders')->name('home.shipments.my-orders');
     Route::post('/my-orders/lookup',                      'lookup')->name('home.shipments.lookup');
 });
+
+
+Route::controller(\App\Http\Controllers\Home\ShipmentBookingController::class)->group(function () {
+    Route::get('/book-delivery',                          'create')->name('home.shipments.create');
+    Route::post('/book-delivery',                         'store')->name('home.shipments.store');
+    Route::post('/book-delivery/quote',                   'quote')->name('home.shipments.quote');
+    Route::get('/book-delivery/success/{trackingnumber}', 'success')->name('home.shipments.success');
+    Route::get('/my-orders',                              'myOrders')->name('home.shipments.my-orders');
+    Route::post('/my-orders/lookup',                      'lookup')->name('home.shipments.lookup');
+});
+
+// Payment gateway callbacks (browser redirects) and webhooks (server-to-server)
+Route::controller(\App\Http\Controllers\Home\PaymentGatewayController::class)->group(function () {
+    Route::get('/payment/paystack/callback',     'paystackCallback')->name('payment.paystack.callback');
+    Route::post('/payment/paystack/webhook',     'paystackWebhook')->name('payment.paystack.webhook');
+    Route::get('/payment/flutterwave/callback',  'flutterwaveCallback')->name('payment.flutterwave.callback');
+    Route::post('/payment/flutterwave/webhook',  'flutterwaveWebhook')->name('payment.flutterwave.webhook');
+});

@@ -4,7 +4,6 @@
 @extends('layouts.app')
 @section('content')
 
-
     <div class="main-panel">
         <div class="content">
             <div class="page-inner">

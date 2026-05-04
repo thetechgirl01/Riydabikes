@@ -8,13 +8,12 @@
                     Welcome back, {{ Auth('admin')->User()->firstName }}
                     {{ Auth('admin')->User()->lastName }}!
                 </x-page-title>
-                <h5 class="op-7 mb-4">Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am
-                    changing myself.</h5>
+               
             </div>
             @if (Auth('admin')->User()->type == 'Super Admin' || Auth('admin')->User()->type == 'Admin')
                 <div class="py-2 ml-md-auto py-md-0">
-                    <a href="{{ route('admin.shipments.create') }}" class="mr-2 btn btn-success d-lg-inline">Create New Shipment</a>
-                    <a href="{{ route('admin.shipments') }}" class="mr-2 btn btn-danger d-lg-inline">Manage Shipment</a>
+                    <a href="{{ route('admin.shipments.create') }}" class="mr-2 btn btn-success d-lg-inline">Create New Delivery</a>
+                    <a href="{{ route('admin.shipments') }}" class="mr-2 btn btn-danger d-lg-inline">Manage Deliveries</a>
                     <a href="{{ route('admin.bikes.index') }}" class="btn btn-primary d-lg-inline">Manage Bikes</a>
                 </div>
             @endif
@@ -34,7 +33,7 @@
                         </div>
                         <div class="col col-stats ml-12 ml-sm-0">
                             <div class="numbers">
-                                <p class="card-category">Total Shipments</p>
+                                <p class="card-category">Total Deliveries</p>
                                 <h4 class="card-title">{{ number_format($numberOfUsers) }}</h4>
                             </div>
                         </div>

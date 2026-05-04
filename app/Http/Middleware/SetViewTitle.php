@@ -25,13 +25,13 @@ class SetViewTitle
         
         // Define titles based on route names
         $titles = [
-            'admin.shipments' => 'Manage Shipments',
-            'admin.shipments.create' => 'Create New Shipment',
-            'admin.shipments.view' => 'Shipment Details',
-            'admin.shipments.edit' => 'Edit Shipment',
-            'admin.shipments.update-status' => 'Update Shipment Status',
-            'admin.shipments.update-status-form' => 'Update Shipment Status',
-            'admin.shipments.print' => 'Print Shipment Invoice',
+            'admin.shipments' => 'Manage Deliveries',
+            'admin.shipments.create' => 'Create New Delivery',
+            'admin.shipments.view' => 'Delivery Details',
+            'admin.shipments.edit' => 'Edit Delivery',
+            'admin.shipments.update-status' => 'Update Delivery Status',
+            'admin.shipments.update-status-form' => 'Update Delivery Status',
+            'admin.shipments.print' => 'Print Delivery Invoice',
         ];
         
         // Set the title view variable

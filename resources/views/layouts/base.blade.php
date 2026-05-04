@@ -263,22 +263,65 @@
 
 <body class="font-inter bg-gray-50" x-data="{ mobileMenuOpen: false, searchOpen: false }" x-cloak>
     <!-- iOS-Compatible Preloader -->
-    <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center" style="-webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);">
-        <div class="text-center">
-            <!-- Simplified Animated Logo Container -->
-            <div class="w-24 h-24 bg-[#800020] rounded-full flex items-center justify-center mx-auto mb-4">
-                <!-- Company Initial or Small Logo -->
-                <img src="{{ asset('storage/app/public/'.$settings->favicon)}}" alt="Logo" class="w-12 h-12 object-contain animate-bounce">
-            </div>
+  
+<div id="preloader"
+     class="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-white">
 
-            <!-- Simple Loading Spinner (more compatible across devices) -->
-            <div class="mt-4 flex items-center justify-center space-x-2">
-                <div class="w-3 h-3 bg-[#800020] rounded-full animate-bounce" style="animation-delay: 0s;"></div>
-                <div class="w-3 h-3 bg-[#800020] rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-                <div class="w-3 h-3 bg-[#800020] rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+    <!-- Background Glow -->
+    <div class="absolute w-72 h-72 bg-[#800020]/10 rounded-full blur-3xl"></div>
+
+    <!-- Main Content -->
+    <div class="relative flex flex-col items-center">
+
+        <!-- Animated Ring -->
+        <div class="relative flex items-center justify-center">
+
+            <!-- Outer Rotating Border -->
+            <div class="w-28 h-28 rounded-full border-4 border-[#800020]/20 border-t-[#800020] animate-spin"></div>
+
+            <!-- Inner Logo Circle -->
+            <div class="absolute w-20 h-20 bg-[#800020] rounded-2xl shadow-2xl flex items-center justify-center">
+
+                <img
+                    src="{{ asset('storage/app/public/'.$settings->favicon) }}"
+                    alt="Logo"
+                    class="w-10 h-10 object-contain animate-pulse"
+                >
             </div>
         </div>
+
+        <!-- Brand Text -->
+        <div class="mt-6 text-center">
+            <h2 class="text-[#800020] text-xl font-bold tracking-wide">
+                Loading
+            </h2>
+
+            <p class="text-gray-500 text-sm mt-1">
+                Please wait a moment...
+            </p>
+        </div>
+
+        <!-- Loading Bar -->
+        <div class="mt-6 w-52 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+            <div class="h-full w-1/2 bg-white rounded-full animate-[loading_1.5s_ease-in-out_infinite]"></div>
+        </div>
+
     </div>
+</div>
+
+<style>
+@keyframes loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(400%);
+    }
+}
+</style>
 
     <!-- iOS-Compatible Header -->
     <header class="relative bg-black shadow-lg z-50" style="will-change: transform;">
@@ -305,208 +348,187 @@
         </div>
 
         <!-- Main Navigation - Updated with centered logo, burgundy buttons, animated underlines -->
-        <nav class="bg-black border-b border-gray-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Desktop container uses relative positioning for absolute logo centering -->
-                <div class="flex justify-between items-center h-20 lg:relative desktop-nav-container">
-                    
-                    <!-- Logo: On mobile stays left, on desktop absolute centered -->
-                    <div class="flex-shrink-0 flex items-center lg:absolute lg:left-1/2 lg:top-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 logo-absolute-center">
-                        <a href="/" class="flex items-center">
-                            <img src="{{ asset('storage/app/public/'.$settings->logo)}}"
-                                 alt="{{$settings->site_name}}"
-                                 class="h-12 w-auto">
-                        </a>
-                    </div>
-
-                     <!-- Desktop Navigation Links (Left side) with animated underline -->
-                    <div class="hidden lg:flex lg:items-center desktop-left-links">
-                        <a href="about" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">About</a>
-                        
-                        <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                            <button class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors flex items-center">
-                                Services
-                                <i class="fas fa-chevron-down ml-1 text-xs transition-transform" :class="open ? 'rotate-180' : ''"></i>
-                            </button>
-                            <div x-show="open"
-                                 x-cloak
-                                 x-transition:enter="transition ease-out duration-200"
-                                 x-transition:enter-start="opacity-0 translate-y-2"
-                                 x-transition:enter-end="opacity-100 translate-y-0"
-                                 x-transition:leave="transition ease-in duration-150"
-                                 x-transition:leave-start="opacity-100 translate-y-0"
-                                 x-transition:leave-end="opacity-0 translate-y-2"
-                                 class="absolute top-full left-0 mt-3 w-72 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 dropdown-enhanced">
-                                <a href="services" class="dropdown-item block px-5 py-3 text-sm text-[#4B4B4B] hover:text-[#800020] transition-colors">
-                                    <i class="fas fa-ship mr-3 text-[#800020] w-5"></i>Sea/Ocean Freight
-                                </a>
-                                <a href="services" class="dropdown-item block px-5 py-3 text-sm text-[#4B4B4B] hover:text-[#800020] transition-colors">
-                                    <i class="fas fa-truck mr-3 text-[#800020] w-5"></i>Road Transportation
-                                </a>
-                                <a href="services" class="dropdown-item block px-5 py-3 text-sm text-[#4B4B4B] hover:text-[#800020] transition-colors">
-                                    <i class="fas fa-plane mr-3 text-[#800020] w-5"></i>Air Freight
-                                </a>
-                                <a href="services" class="dropdown-item block px-5 py-3 text-sm text-[#4B4B4B] hover:text-[#800020] transition-colors">
-                                    <i class="fas fa-warehouse mr-3 text-[#800020] w-5"></i>Warehousing
-                                </a>
-                                <a href="services" class="dropdown-item block px-5 py-3 text-sm text-[#4B4B4B] hover:text-[#800020] transition-colors">
-                                    <i class="fas fa-box mr-3 text-[#800020] w-5"></i>Packaging & Storage
-                                </a>
-                                <a href="diplomatic" class="dropdown-item block px-5 py-3 text-sm text-[#4B4B4B] hover:text-[#800020] transition-colors">
-                                    <i class="fas fa-shield-alt mr-3 text-[#800020] w-5"></i>Diplomatic Services
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <a href="{{ route('home.shipments.create') }}" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Book Delivery</a>
-                        
-                        <a href="order" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Track Delivery</a>
-                        
-                        <a href="{{ route('home.bikes.index') }}" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors">Rent / Buy Bikes</a>
-                    </div>
-
-                    <!-- Desktop Right Section (Search + Contact Button) -->
-                    <div class="hidden lg:flex lg:items-center desktop-right-actions">
-                        <!-- Quick Track Search -->
-                        <div class="relative" x-data="{ open: false }" x-init="() => {
-                            $watch('open', (value) => {
-                                if (value) {
-                                    const handleClickOutside = (event) => {
-                                        if (!event.target.closest('.search-dropdown-container')) {
-                                            open = false;
-                                        }
-                                    };
-                                    setTimeout(() => document.addEventListener('click', handleClickOutside), 0);
-                                    window.__searchDropdownCleanup = () => document.removeEventListener('click', handleClickOutside);
-                                } else {
-                                    if (window.__searchDropdownCleanup) window.__searchDropdownCleanup();
-                                }
-                            });
-                        }">
-                            <button @click="open = !open" class="p-2.5 text-gray-300 hover:text-[#FFD600] transition-colors search-dropdown-container bg-white/5 rounded-full">
-                                <i class="fas fa-search text-base"></i>
-                            </button>
-                            <div x-show="open"
-                                 x-cloak
-                                 style="display: none; position: absolute; right: 0; top: 100%; z-index: 9999; margin-top: 0.75rem;"
-                                 class="w-96 bg-white rounded-2xl shadow-2xl search-dropdown-enhanced p-5 search-dropdown-container"
-                                 @click.stop>
-                                <form method="POST" action="{{ route('trackingresult') }}" class="space-y-4" @click.stop>
-                                    @csrf
-                                    <div>
-                                        <label class="block text-sm font-semibold text-[#800020] mb-2 flex items-center gap-2">
-                                            <i class="fas fa-motorcycle text-[#800020]"></i> Track Your Delivery
-                                        </label>
-                                        <input type="text"
-                                               name="trackingnumber"
-                                               placeholder="Enter RYD tracking ID"
-                                               class="track-input-focus w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all outline-none">
-                                    </div>
-                                    <button type="submit"
-                                            class="w-full bg-[#800020] text-white py-3 px-4 rounded-full hover:bg-[#6b001a] transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                                        <i class="fas fa-location-dot"></i> Track Now
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Contact Button -->
-                        <a href="contact"
-                           class="bg-[#800020] text-white px-6 py-2.5 rounded-full hover:bg-[#6b001a] transition-all font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2 text-sm">
-                            <i class="fas fa-headset text-sm"></i> Contact
-                        </a>
-                    </div>
-            <!-- Mobile Search (restyled for RydaBikes delivery tracking) -->
-            <div x-show="searchOpen"
-                 x-cloak
-                 x-transition:enter="transition ease-out duration-200"
-                 x-transition:enter-start="opacity-0 -translate-y-1"
-                 x-transition:enter-end="opacity-100 translate-y-0"
-                 x-transition:leave="transition ease-in duration-150"
-                 x-transition:leave-start="opacity-100 translate-y-0"
-                 x-transition:leave-end="opacity-0 -translate-y-1"
-                 class="lg:hidden border-t border-gray-800 bg-gradient-to-b from-gray-900 to-black px-5 py-6">
-                <form method="POST" action="{{ route('trackingresult') }}" class="space-y-4">
-                    @csrf
-                    <div>
-                        <label class="block text-sm font-semibold text-[#FFD600] mb-2 flex items-center gap-2">
-                            <i class="fas fa-motorcycle text-sm"></i> Find Your Delivery
-                        </label>
-                        <input type="text"
-                               name="trackingnumber"
-                               placeholder="Enter RI tracking ID"
-                               class="w-full px-5 py-3.5 border border-gray-700 bg-gray-800 text-white rounded-2xl focus:ring-2 focus:ring-[#FFD600] focus:border-transparent transition-all outline-none text-base"
-                               required>
-                    </div>
-                    <button type="submit"
-                            class="w-full bg-[#800020] text-white py-3.5 px-4 rounded-2xl hover:bg-[#6b001a] transition-all duration-300 font-semibold shadow-lg flex items-center justify-center gap-2">
-                        <i class="fas fa-location-dot"></i> Track Delivery
-                    </button>
-                </form>
+      <!-- Main Navigation - Updated with centered logo, burgundy buttons, animated underlines -->
+<nav class="bg-black border-b border-gray-800" x-data="{ mobileMenuOpen: false, searchOpen: false }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Desktop container uses relative positioning for absolute logo centering -->
+        <div class="flex justify-between items-center h-20 lg:relative desktop-nav-container">
+            
+            <!-- Mobile Menu Button (Left side on mobile) -->
+            <div class="flex items-center lg:hidden">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                        class="text-gray-300 hover:text-[#FFD600] focus:outline-none p-2 rounded-lg transition-colors">
+                    <svg x-show="!mobileMenuOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg x-show="mobileMenuOpen" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
 
-            <!-- Mobile Navigation Menu - Preserved layout, updated hover colors -->
-            <div x-show="mobileMenuOpen"
-                 x-cloak
-                 x-transition:enter="transition ease-out duration-200"
-                 x-transition:enter-start="opacity-0 translate-y-0"
-                 x-transition:enter-end="opacity-100 translate-y-0"
-                 x-transition:leave="transition ease-in duration-150"
-                 x-transition:leave-start="opacity-100 translate-y-0"
-                 x-transition:leave-end="opacity-0 translate-y-0"
-                 class="lg:hidden border-t border-gray-800 bg-black"
-                 style="transform: translateZ(0); -webkit-overflow-scrolling: touch;">
-                <div class="px-4 py-6 space-y-2">
-                    <a href="/" class="block px-3 py-2 text-white font-medium hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">Home</a>
-                    <a href="about" class="block px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">About</a>
-                    <div x-data="{ servicesOpen: false }">
-                        <button @click="servicesOpen = !servicesOpen"
-                                class="w-full flex items-center justify-between px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">
-                            Services
-                            <i class="fas fa-chevron-down text-xs transition-transform"
-                               :class="servicesOpen ? 'rotate-180' : ''"></i>
-                        </button>
-                        <div x-show="servicesOpen"
-                             x-cloak
-                             x-transition:enter="transition ease-out duration-200"
-                             x-transition:enter-start="opacity-0 -translate-y-1"
-                             x-transition:enter-end="opacity-100 translate-y-0"
-                             x-transition:leave="transition ease-in duration-150"
-                             x-transition:leave-start="opacity-100 translate-y-0"
-                             x-transition:leave-end="opacity-0 -translate-y-1"
-                             class="pl-6 mt-2 space-y-2">
-                            <a href="services" class="block px-3 py-2 text-gray-400 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">
-                                <i class="fas fa-ship mr-2 text-[#FFD600]"></i>Sea/Ocean Freight
-                            </a>
-                            <a href="services" class="block px-3 py-2 text-gray-400 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">
-                                <i class="fas fa-truck mr-2 text-[#FFD600]"></i>Road Transportation
-                            </a>
-                            <a href="services" class="block px-3 py-2 text-gray-400 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">
-                                <i class="fas fa-plane mr-2 text-[#FFD600]"></i>Air Freight
-                            </a>
-                            <a href="services" class="block px-3 py-2 text-gray-400 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">
-                                <i class="fas fa-warehouse mr-2 text-[#FFD600]"></i>Warehousing
-                            </a>
-                            <a href="services" class="block px-3 py-2 text-gray-400 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">
-                                <i class="fas fa-box mr-2 text-[#FFD600]"></i>Packaging & Storage
-                            </a>
-                            <a href="diplomatic" class="block px-3 py-2 text-gray-400 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">
-                                <i class="fas fa-shield-alt mr-2 text-[#FFD600]"></i>Diplomatic Services
-                            </a>
-                        </div>
-                    </div>
-                    <a href="order" class="block px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">Track Shipment</a>
-                    <a href="contact" class="block px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">Contact</a>
-                    <div class="pt-4 border-t border-gray-800">
-                        <a href="contact"
-                           class="block w-full text-center bg-[#800020] text-white py-3 px-4 rounded-xl hover:bg-[#6b001a] transition-colors font-medium shadow-md">
-                            Get Quote
-                        </a>
+            <!-- Logo: On mobile stays left, on desktop absolute centered -->
+            <div class="flex-shrink-0 flex items-center rounded-full lg:absolute lg:left-1/2 lg:top-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 logo-absolute-center">
+                <a href="/" class="flex items-center rounded-full">
+                    <img src="{{ asset('storage/app/public/'.$settings->logo)}}"
+                         alt="{{$settings->site_name}}"
+                         class="h-12 w-auto rounded-full">
+                </a>
+            </div>
+
+            <!-- Mobile Search Button (Right side on mobile) -->
+            <div class="flex items-center lg:hidden">
+                <button @click="searchOpen = !searchOpen" 
+                        class="p-2 text-gray-300 hover:text-[#FFD600] transition-colors rounded-lg">
+                    <i class="fas fa-search text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Desktop Navigation Links (Left side) with animated underline -->
+            <div class="hidden lg:flex lg:items-center desktop-left-links">
+                <a href="about" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors relative group">
+                    About
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFD600] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                
+                <a href="{{ route('home.shipments.create') }}" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors relative group">
+                    Book Delivery
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFD600] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                
+                <a href="order" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors relative group">
+                    Track Delivery
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFD600] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                
+                <a href="{{ route('home.bikes.index') }}" class="nav-link text-white hover:text-[#FFD600] px-3 py-2 text-sm font-medium transition-colors relative group">
+                    Rent / Buy Bikes
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#FFD600] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+
+            <!-- Desktop Right Section (Search + Contact Button) -->
+            <div class="hidden lg:flex lg:items-center desktop-right-actions gap-3">
+                <!-- Quick Track Search -->
+                <div class="relative" x-data="{ open: false }" @click.away="open = false">
+                    <button @click="open = !open" class="p-2.5 text-gray-300 hover:text-[#FFD600] transition-colors search-dropdown-container bg-white/5 rounded-full">
+                        <i class="fas fa-search text-base"></i>
+                    </button>
+                    <div x-show="open"
+                         x-cloak
+                         style="display: none; position: absolute; right: 0; top: 100%; z-index: 9999; margin-top: 0.75rem;"
+                         class="w-96 bg-white rounded-2xl shadow-2xl search-dropdown-enhanced p-5 search-dropdown-container">
+                        <form method="POST" action="{{ route('trackingresult') }}" class="space-y-4">
+                            @csrf
+                            <div>
+                                <label class="block text-sm font-semibold text-[#800020] mb-2 flex items-center gap-2">
+                                    <i class="fas fa-motorcycle text-[#800020]"></i> Track Your Delivery
+                                </label>
+                                <input type="text"
+                                       name="trackingnumber"
+                                       placeholder="Enter RYD tracking ID"
+                                       class="track-input-focus w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all outline-none">
+                            </div>
+                            <button type="submit"
+                                    class="w-full bg-[#800020] text-white py-3 px-4 rounded-full hover:bg-[#6b001a] transition-all font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <i class="fas fa-location-dot"></i> Track Now
+                            </button>
+                        </form>
                     </div>
                 </div>
+
+                <!-- Contact Button -->
+                <a href="contact"
+                   class="bg-[#800020] text-white px-6 py-2.5 rounded-full hover:bg-[#6b001a] transition-all font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2 text-sm">
+                    <i class="fas fa-headset text-sm"></i> Contact
+                </a>
             </div>
-       
-        </nav>
+        </div>
+
+        <!-- Mobile Search Panel -->
+        <div x-show="searchOpen"
+             x-cloak
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-1"
+             class="lg:hidden border-t border-gray-800 bg-gradient-to-b from-gray-900 to-black px-5 py-6">
+            <form method="POST" action="{{ route('trackingresult') }}" class="space-y-4">
+                @csrf
+                <div>
+                    <label class="block text-sm font-semibold text-[#FFD600] mb-2 flex items-center gap-2">
+                        <i class="fas fa-motorcycle text-sm"></i> Find Your Delivery
+                    </label>
+                    <input type="text"
+                           name="trackingnumber"
+                           placeholder="Enter RI tracking ID"
+                           class="w-full px-5 py-3.5 border border-gray-700 bg-gray-800 text-white rounded-2xl focus:ring-2 focus:ring-[#FFD600] focus:border-transparent transition-all outline-none text-base"
+                           required>
+                </div>
+                <button type="submit"
+                        class="w-full bg-[#800020] text-white py-3.5 px-4 rounded-2xl hover:bg-[#6b001a] transition-all duration-300 font-semibold shadow-lg flex items-center justify-center gap-2">
+                    <i class="fas fa-location-dot"></i> Track Delivery
+                </button>
+            </form>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div x-show="mobileMenuOpen"
+             x-cloak
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             class="lg:hidden border-t border-gray-800 bg-black"
+             style="transform: translateZ(0); -webkit-overflow-scrolling: touch;">
+            <div class="px-4 py-6 space-y-2">
+                <a href="/" class="block px-3 py-2 text-white font-medium hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">Home</a>
+                <a href="about" class="block px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">About</a>
+                <a href="{{ route('home.shipments.create') }}" class="block px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">Book Delivery</a>
+                <a href="order" class="block px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">Track Shipment</a>
+                <a href="{{ route('home.bikes.index') }}" class="block px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">Rent / Buy Bikes</a>
+                <a href="contact" class="block px-3 py-2 text-gray-300 hover:bg-[#800020] hover:text-[#FFD600] rounded-lg transition-colors">Contact</a>
+                <div class="pt-4 border-t border-gray-800">
+                    <a href="contact"
+                       class="block w-full text-center bg-[#800020] text-white py-3 px-4 rounded-xl hover:bg-[#6b001a] transition-colors font-medium shadow-md">
+                        Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Add Alpine.js if not already included -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+<!-- Add Font Awesome if not already included -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    /* Additional mobile-specific styles */
+    @media (max-width: 1023px) {
+        .desktop-nav-container {
+            justify-content: space-between;
+        }
+    }
+    
+    /* Animation for mobile menu */
+    [x-cloak] {
+        display: none !important;
+    }
+    
+    /* Smooth transitions */
+    .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+</style>
 
         <!-- Error Message Banner -->
         @if (Session::has('error'))
@@ -539,7 +561,7 @@
                     <div class="mb-5">
                         <img src="{{ asset('storage/app/public/'.$settings->logo)}}"
                              alt="{{$settings->site_name}}"
-                             class="h-10 w-auto mb-4 filter brightness-0 invert">
+                             class="h-10 w-auto mb-4  rounded-full">
                     </div>
                     <h3 class="text-lg font-bold mb-3 text-white">{{$settings->site_name}}</h3>
                     <p class="text-gray-400 text-sm mb-5 leading-relaxed">
@@ -555,7 +577,7 @@
                         <a href="#" class="w-9 h-9 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#FFD600] hover:text-[#800020] transition-all duration-300 group">
                             <i class="fab fa-instagram text-white text-sm group-hover:text-[#800020]"></i>
                         </a>
-                        <a href="#" class="w-9 h-9 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#FFD600] hover:text-[#800020] transition-all duration-300 group">
+                        <a href="https://wa.me/+2349128526785" class="w-9 h-9 bg-[#800020] rounded-full flex items-center justify-center hover:bg-[#FFD600] hover:text-[#800020] transition-all duration-300 group">
                             <i class="fab fa-whatsapp text-white text-sm group-hover:text-[#800020]"></i>
                         </a>
                     </div>

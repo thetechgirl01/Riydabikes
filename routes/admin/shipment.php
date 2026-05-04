@@ -17,7 +17,7 @@ Route::middleware(['isadmin', '2fa'])->prefix('admin')->group(function () {
             $settings = \App\Models\Settings::where('id', '1')->first();
             return view('admin.create-shipment', [
                 'settings' => $settings,
-                'title' => 'Create New Shipment'
+                'title' => 'Create New Delivery'
             ]);
         })->name('admin.shipments.create');
 
