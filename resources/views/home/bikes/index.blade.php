@@ -4,22 +4,28 @@
 
 @section('content')
 <div class="bg-gray-50 dark:bg-gray-900 min-h-screen">
-    <!-- Page Header -->
-    <section class="relative pt-32 pb-20 bg-[#800020]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-left">
-                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Bikes</h1>
-                <p class="text-lg text-white/80 max-w-2xl">
-                    Buy outright or hire by the day — premium bikes ready for the road
-                </p>
-                <div class="flex items-center gap-2 text-sm text-white/70 mt-6">
-                    <a href="/" class="hover:text-[#FFD600] transition-colors">Home</a>
-                    <i class="fas fa-angle-right text-xs"></i>
-                    <span class="text-white">Bikes</span>
-                </div>
+   <!-- Page Header -->
+<section class="relative pt-32 pb-20 overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-no-repeat" style="background-image: url('temp/custom/images/slider/map.png'); background-size: 80% auto; background-position: center center;"></div>
+        <div class="absolute inset-0 bg-[#800020]/90"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-left">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Bikes</h1>
+            <p class="text-lg text-white/80 max-w-2xl">
+                Buy outright or hire by the day. premium bikes ready for the road
+            </p>
+            <div class="flex items-center gap-2 text-sm text-white/70 mt-6">
+                <a href="/" class="hover:text-[#FFD600] transition-colors">Home</a>
+                <i class="fas fa-angle-right text-xs"></i>
+                <span class="text-white">Bikes</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         @if($bikes->isEmpty())
@@ -43,7 +49,7 @@
                                     Available For Hire
                                 </span>
                             @else
-                                <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-600 text-white shadow-md">Unavailable For Hire</span>
+                                <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-600 text-white shadow-md">For Sale Only</span>
                             @endif
                         </a>
                         <div class="p-5 flex-1 flex flex-col">

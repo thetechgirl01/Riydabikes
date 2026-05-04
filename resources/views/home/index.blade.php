@@ -6,272 +6,114 @@
 
 @section('content')
 
-<!-- Hero Section - Mobile optimized with horizontal cards -->
-<section class="relative min-h-screen flex items-center overflow-hidden" x-data="{ currentSlide: 0, slides: 3 }" x-init="setInterval(() => { currentSlide = (currentSlide + 1) % slides }, 5000)">
-    <!-- Background Video/Images -->
-    <div class="absolute inset-0 z-0 overflow-hidden">
-
-        <!-- Desktop / Large Screen Layout (PERFECTLY PRESERVED) -->
-        <div class="hidden lg:flex absolute inset-0 w-full h-full">
-            <!-- Left White Space -->
-            <div class="w-[40%] bg-white relative z-10"></div>
-
-            <!-- Right Media Area -->
-            <div class="w-[60%] relative overflow-hidden">
-                <!-- Slide 1 -->
-                <div x-show="currentSlide === 0" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
-
-                <!-- Slide 2 -->
-                <div x-show="currentSlide === 1" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
-
-                <!-- Slide 3 -->
-                <div x-show="currentSlide === 2" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/home-main.jpg');"></div>
-
-                <!-- Soft Blend Into White -->
-                <div class="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-white via-white/70 to-transparent z-10"></div>
-            </div>
-        </div>
-
-        <!-- Mobile / Tablet Layout (UNCHANGED BACKGROUND) -->
-        <div class="lg:hidden absolute inset-0">
-            <!-- Slide 1 -->
-            <div x-show="currentSlide === 0" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
-                <video autoplay muted loop playsinline class="w-full h-full object-cover object-center">
-                    <source src="temp/custom/images/slider/airplane_takeoff.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <!-- Slide 2 -->
-            <div x-show="currentSlide === 1" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
-
-            <!-- Slide 3 -->
-            <div x-show="currentSlide === 2" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/home-main.jpg');"></div>
-
-            <!-- Mobile Dark Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/55"></div>
-        </div>
-    </div>
-
-    <!-- Content Section -->
-    <div class="relative z-10 w-full py-8 sm:py-12 md:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:w-[70%]">
-                <div class="lg:bg-gradient-to-r lg:from-white lg:via-white/95 lg:to-transparent lg:p-8 lg:rounded-2xl lg:-ml-8">
-                    <!-- Centered content for mobile, left-aligned for desktop -->
-                    <div class="animate-fade-in text-center lg:text-left">
-                        
-                        <!-- Headlines -->
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight text-white lg:text-gray-900">
-                            <span x-show="currentSlide === 0" x-cloak x-transition:enter="transition-all duration-1000 delay-300" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
-                                Rent a Bike,<br><span class="text-[#800020]">Ride Free</span>
-                            </span>
-                            <span x-show="currentSlide === 1" x-cloak x-transition:enter="transition-all duration-1000 delay-300" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
-                                Fast & Reliable<br><span class="text-[#800020]">Delivery Service</span>
-                            </span>
-                            <span x-show="currentSlide === 2" x-cloak x-transition:enter="transition-all duration-1000 delay-300" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0">
-                                Buy & Sell Bikes<br><span class="text-[#800020]">Best Deals</span>
-                            </span>
+<!-- NEW HERO SECTION: Fresh statement layout with original background images preserved -->
+<section class="relative bg-white overflow-hidden py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <!-- left side message with rotating content -->
+            <div class="order-2 lg:order-1" x-data="{ currentText: 0, texts: ['book', 'rent', 'buy'] }" x-init="setInterval(() => { currentText = (currentText + 1) % texts.length }, 5000)">
+                <div class="inline-flex items-center gap-2 bg-[#800020]/5 rounded-full px-4 py-1.5 text-[#800020] text-sm font-medium mb-5">
+                    <i class="fas fa-bolt text-[#FFD600] drop-shadow-sm"></i> <span>Best Bike mobility in Nigeria</span>
+                </div>
+                
+                <!-- Rotating Headline - Increased height to prevent button overlap -->
+                <div class="relative h-40 sm:h-44 md:h-48 lg:h-52">
+                    <!-- Book Delivery Text -->
+                    <div x-show="currentText === 0" x-cloak x-transition:enter="transition-all duration-700 ease-out" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition-all duration-500 ease-in" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-8" class="absolute inset-0">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-gray-900">
+                            Fast & Reliable<br> 
+                            <span class="text-[#800020] border-b-4 border-[#FFD600] inline-block">Book Delivery</span>
                         </h1>
-                        
-                        <!-- Description text -->
-                        <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed text-white lg:text-gray-700">
-                            <span x-show="currentSlide === 0" x-cloak>Choose from our wide range of premium bikes. Flexible rental plans for daily, weekly, or monthly needs.</span>
-                            <span x-show="currentSlide === 1" x-cloak>Get your packages delivered fast and reliably with our dedicated bike delivery fleet across the city.</span>
-                            <span x-show="currentSlide === 2" x-cloak>Find your perfect ride or sell your bike with RydaBikes. Trusted marketplace for quality bikes.</span>
+                        <p class="text-gray-600 text-lg mt-4 max-w-lg leading-relaxed">
+                            Get your packages delivered fast and reliably with our dedicated bike delivery fleet. Same-day delivery across major cities in Nigeria.
                         </p>
-                        
-                        <!-- Buttons - Equal width on mobile -->
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch sm:items-center max-w-md mx-auto lg:mx-0 lg:max-w-none">
-                            <a href="{{ route('home.shipments.create') }}" class="bg-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-primary-700 transition-all duration-300 font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 text-center flex items-center justify-center gap-2 min-w-[200px] sm:min-w-0">
-                                Book Delivery <i class="fas fa-arrow-right text-sm"></i>
-                            </a>
-                            <a href="contact" class="bg-transparent border-2 border-white lg:border-[#800020] text-white lg:text-[#800020] px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-[#800020] hover:text-white transition-all duration-300 font-semibold text-base sm:text-lg flex items-center justify-center gap-2 min-w-[200px] sm:min-w-0">
-                                <i class="fas fa-motorcycle"></i> Rent / Buy a Bike
-                            </a>
-                        </div>
+                    </div>
 
-                        <!-- Feature Cards - Horizontal scroll on mobile, grid on tablet, flex on desktop -->
-                        <div class="mt-8 sm:mt-12 lg:mt-12">
-                            <!-- Mobile: Horizontal scrollable cards -->
-                            <div class="lg:hidden overflow-x-auto pb-4 -mx-4 px-4">
-                                <div class="flex gap-3 min-w-max">
-                                    <!-- Card 1 -->
-                                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20 w-40 flex-shrink-0">
-                                        <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-motorcycle text-[#800020] text-base"></i>
-                                        </div>
-                                        <span class="text-gray-800 font-semibold text-xs text-left">Wide range of bikes</span>
-                                    </div>
-                                    
-                                    <!-- Card 2 -->
-                                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20 w-44 flex-shrink-0">
-                                        <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-truck-fast text-[#800020] text-base"></i>
-                                        </div>
-                                        <span class="text-gray-800 font-semibold text-xs text-left">Fast delivery anywhere</span>
-                                    </div>
-                                    
-                                    <!-- Card 3 -->
-                                    <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20 w-44 flex-shrink-0">
-                                        <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                            <i class="fas fa-shield-alt text-[#800020] text-base"></i>
-                                        </div>
-                                        <span class="text-gray-800 font-semibold text-xs text-left">Safe and secure rides</span>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- Rent Bikes Text -->
+                    <div x-show="currentText === 1" x-cloak x-transition:enter="transition-all duration-700 ease-out" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition-all duration-500 ease-in" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-8" class="absolute inset-0">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-gray-900">
+                            Ride Smart,<br> 
+                            <span class="text-[#800020] border-b-4 border-[#FFD600] inline-block">Rent a Bike</span>
+                        </h1>
+                        <p class="text-gray-600 text-lg mt-4 max-w-lg leading-relaxed">
+                            No stress. No long-term commitment. Choose from our premium fleet for daily hire or weekly flex. Flexible plans from ₦2,500/day.
+                        </p>
+                    </div>
 
-                            <!-- Tablet (md): 3 column grid -->
-                            <div class="hidden lg:hidden md:grid md:grid-cols-3 gap-4">
-                                <!-- Card 1 -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20">
-                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <i class="fas fa-motorcycle text-[#800020] text-lg"></i>
-                                    </div>
-                                    <span class="text-gray-800 font-semibold text-sm">Wide range of bikes</span>
-                                </div>
-                                
-                                <!-- Card 2 -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20">
-                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <i class="fas fa-truck-fast text-[#800020] text-lg"></i>
-                                    </div>
-                                    <span class="text-gray-800 font-semibold text-sm">Fast delivery anywhere</span>
-                                </div>
-                                
-                                <!-- Card 3 -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 border border-white/20">
-                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <i class="fas fa-shield-alt text-[#800020] text-lg"></i>
-                                    </div>
-                                    <span class="text-gray-800 font-semibold text-sm">Safe and secure rides</span>
-                                </div>
-                            </div>
+                    <!-- Buy Bikes Text -->
+                    <div x-show="currentText === 2" x-cloak x-transition:enter="transition-all duration-700 ease-out" x-transition:enter-start="opacity-0 translate-y-8" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition-all duration-500 ease-in" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-8" class="absolute inset-0">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-gray-900">
+                            Own Your Ride,<br> 
+                            <span class="text-[#800020] border-b-4 border-[#FFD600] inline-block">Buy a Bike</span>
+                        </h1>
+                        <p class="text-gray-600 text-lg mt-4 max-w-lg leading-relaxed">
+                            Find your perfect bike with our trusted marketplace. Quality new and used bikes at transparent prices. Buy outright with secure payment.
+                        </p>
+                    </div>
+                </div>
 
-                            <!-- Desktop (lg): Original flex row -->
-                            <div class="hidden lg:flex lg:flex-row lg:gap-6 lg:justify-start">
-                                <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
-                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-motorcycle text-[#800020] text-lg"></i>
-                                    </div>
-                                    <span class="text-gray-800 font-medium text-sm">Wide range of bikes</span>
-                                </div>
-                                <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
-                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-truck-fast text-[#800020] text-lg"></i>
-                                    </div>
-                                    <span class="text-gray-800 font-medium text-sm">Fast delivery anywhere</span>
-                                </div>
-                                <div class="flex items-center gap-3 bg-white/90 lg:bg-white/80 backdrop-blur-sm rounded-full px-5 py-2 shadow-md">
-                                    <div class="w-10 h-10 bg-[#800020]/10 rounded-full flex items-center justify-center">
-                                        <i class="fas fa-shield-alt text-[#800020] text-lg"></i>
-                                    </div>
-                                    <span class="text-gray-800 font-medium text-sm">Safe and secure rides</span>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Two Buttons Only - Added margin-top to push down -->
+                <div class="flex flex-wrap gap-4 mt-12">
+                    <a href="{{ route('home.shipments.create') }}" class="bg-[#800020] hover:bg-[#6b001a] text-white px-7 py-3.5 rounded-full font-bold text-base shadow-md transition flex items-center gap-2 btn-press">
+                        <i class="fas fa-truck-fast"></i> Book Delivery
+                    </a>
+                    <a href="{{ route('home.bikes.index') }}" class="border-2 border-gray-300 hover:border-[#800020] hover:text-[#800020] px-7 py-3.5 rounded-full font-semibold text-gray-700 transition flex items-center gap-2 btn-press">
+                        <i class="fas fa-motorcycle"></i> Rent / Buy a Bike
+                    </a>
+                </div>
+
+                <!-- micro stats -->
+                <div class="flex gap-6 mt-10 text-sm text-gray-500">
+                    <div><span class="font-black text-gray-800 text-xl">20+</span> models</div>
+                    <div><span class="font-black text-gray-800 text-xl">24h</span> support</div>
+                    <div><span class="font-black text-gray-800 text-xl">100%</span> inspected</div>
+                </div>
+            </div>
+
+            <!-- right visual: original slider images as background/carousel preserved -->
+            <div class="order-1 lg:order-2 flex justify-center relative" x-data="{ currentSlide: 0, slides: 3 }" x-init="setInterval(() => { currentSlide = (currentSlide + 1) % slides }, 5000)">
+                <div class="relative w-full max-w-md mx-auto">
+                    <div class="bg-[#F9F9F9] rounded-3xl shadow-xl overflow-hidden border border-gray-100 relative h-80 md:h-96">
+                        <!-- Slide 1 -->
+                        <div x-show="currentSlide === 0" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/ryd2.jpeg');"></div>
+                        <!-- Slide 2 -->
+                        <div x-show="currentSlide === 1" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/ryd1.jpeg');"></div>
+                        <!-- Slide 3 -->
+                        <div x-show="currentSlide === 2" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-cover bg-center" style="background-image: url('temp/custom/images/slider/home-main.jpg');"></div>
+                    </div>
+                    <div class="absolute -bottom-5 -right-3 bg-white rounded-2xl shadow-lg p-3 flex items-center gap-2 border border-gray-100">
+                        <div class="bg-[#FFD600] w-8 h-8 rounded-full flex items-center justify-center"><i class="fas fa-motorcycle text-[#800020] text-sm"></i></div>
+                        <div><div class="text-xs font-bold">Quick delivery</div><div class="text-[10px] text-gray-500">same-day in Lagos</div></div>
+                    </div>
+                    <!-- Slide Indicators -->
+                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-1 z-20">
+                        <template x-for="i in slides" :key="i">
+                            <button @click="currentSlide = i - 1" :class="currentSlide === (i - 1) ? 'bg-[#800020] w-4' : 'bg-white bg-opacity-50 w-2'" class="h-1.5 rounded-full transition-all duration-300"></button>
+                        </template>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Slide Indicators -->
-    <div class="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-        <template x-for="i in slides" :key="i">
-            <button @click="currentSlide = i - 1" :class="currentSlide === (i - 1) ? 'bg-[#800020] w-6' : 'bg-white bg-opacity-50 w-2'" class="h-2 rounded-full transition-all duration-300"></button>
-        </template>
     </div>
 </section>
 
-<style>
-    /* Hide scrollbar on mobile but keep functionality */
-    .overflow-x-auto {
-        scrollbar-width: thin;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .overflow-x-auto::-webkit-scrollbar {
-        height: 4px;
-    }
-    
-    .overflow-x-auto::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-    }
-    
-    .overflow-x-auto::-webkit-scrollbar-thumb {
-        background: rgba(128, 0, 32, 0.5);
-        border-radius: 10px;
-    }
-    
-    /* Smooth transitions */
-    .transition-all {
-        transition-property: all;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transition-duration: 300ms;
-    }
-    
-    [x-cloak] {
-        display: none !important;
-    }
-    
-    /* Ensure buttons have consistent hover effects */
-    .bg-primary-600, .border-white {
-        transition: all 0.3s ease;
-    }
-    
-    /* Desktop original styles preserved */
-    @media (min-width: 1024px) {
-        .desktop-left-links a {
-            position: relative;
-        }
-    }
-</style>
-
-<!-- Track & Trace Section - Updated for RydaBikes Delivery -->
-<section class="relative -mt-16 z-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10">
-            @if (Session::has('error'))
-            <div class="mb-6 bg-red-50 border-l-4 border-red-400 p-4 rounded-xl">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <i class="fas fa-exclamation-triangle text-red-400"></i>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm text-red-700">
-                            <strong>Oops!</strong> The delivery ID you entered appears to be incorrect. Please try again.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            @endif
-            
-            <div class="text-center mb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Track Your Delivery in Real Time</h2>
-                <p class="text-gray-600 text-lg">Got a delivery on the way? Enter your unique tracking ID below and see exactly where your package is right now.</p>
-            </div>
-            
-            <form method="POST" action="{{ route('trackingresult') }}" class="max-w-2xl mx-auto">
+<!-- NEW FLOW ELEMENT: QUICK ACTION CARD (track & rent dual lane) replaces big track box -->
+<div class="max-w-6xl mx-auto px-5 sm:px-8 -mt-4 relative z-10">
+    <div class="bg-white rounded-2xl shadow-md border border-gray-200 p-5 flex flex-wrap md:flex-nowrap gap-5 items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="bg-[#800020]/10 w-12 h-12 rounded-full flex items-center justify-center"><i class="fas fa-box-open text-[#800020] text-xl"></i></div>
+            <div><h3 class="font-bold text-gray-800">Track your delivery</h3><p class="text-xs text-gray-500">Enter your tracking ID</p></div>
+        </div>
+        <div class="flex-1 w-full min-w-[200px]">
+            <form method="POST" action="{{ route('trackingresult') }}" class="flex flex-col sm:flex-row gap-2">
                 @csrf
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <div class="flex-1">
-                        <input type="text" 
-                               name="trackingnumber" 
-                               placeholder="e.g., RYD-123456789" 
-                               class="w-full px-6 py-4 text-lg border border-gray-300 rounded-full focus:ring-2 focus:ring-[#800020] focus:border-transparent transition-all outline-none" 
-                               required>
-                    </div>
-                    <button type="submit" 
-                            class="bg-[#800020] text-white px-8 py-4 rounded-full hover:bg-[#6b001a] transition-all duration-300 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 inline-flex items-center justify-center gap-2">
-                        <i class="fas fa-location-dot text-white"></i> Track Now
-                    </button>
-                </div>
+                <input type="text" name="trackingnumber" placeholder="e.g., RI-7952-FE0365QF" class="border border-gray-300 rounded-full py-2.5 px-5 text-sm w-full focus:border-[#800020] focus:ring-1 focus:ring-[#800020] transition" required>
+                <button type="submit" class="bg-[#800020] hover:bg-[#6b001a] text-white px-5 py-2 rounded-full text-sm font-semibold transition flex items-center justify-center gap-1"><i class="fas fa-location-dot"></i> Track now</button>
             </form>
         </div>
+        <div class="text-right"><span class="text-xs text-gray-400"><i class="fas fa-shield-alt"></i> Secure real-time</span></div>
     </div>
-</section>
+</div>
 
 <!-- Bikes Showcase Section -->
 @if(isset($latestBikes) && $latestBikes->count() > 0)
@@ -312,7 +154,7 @@
                                     @if($bike->available_for_hire)
                                         <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full bg-[#800020] text-white shadow-md">
                                             <span class="w-1.5 h-1.5 rounded-full bg-[#FFD600] mr-1.5 animate-pulse"></span>
-                                            Available Now
+                                            Available For Hire
                                         </span>
                                     @else
                                         <span class="absolute top-3 right-3 inline-flex items-center px-3 py-1.5 text-xs font-semibold rounded-full bg-gray-600 text-white shadow-md">For Sale Only</span>
@@ -490,143 +332,145 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Air Freight -->
-            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div class="p-5 flex flex-row gap-5 items-start">
-                    <!-- Image/Icon Box -->
-                    <div class="flex-shrink-0">
-                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
-                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service1.jpg');"></div>
-                            <i class="fas fa-plane text-3xl text-[#800020] group-hover:text-white transition-all duration-300 hidden absolute"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Text Content Column -->
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Air Freight</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
-                            {{$settings->site_name}}, as an IATA-endorsed air forwarder, offers professional and reliable global air-freight solutions.
-                        </p>
-                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
-                            Learn More 
-                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
-                        </a>
-                    </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Bike Rentals -->
+    <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <div class="p-5 flex flex-row gap-5 items-start">
+            <div class="flex-shrink-0">
+                <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                    <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service3.jpg');"></div>
                 </div>
             </div>
-
-            <!-- Sea/Ocean Freight -->
-            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div class="p-5 flex flex-row gap-5 items-start">
-                    <div class="flex-shrink-0">
-                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
-                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service2.jpg');"></div>
-                        </div>
-                    </div>
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Sea/Ocean Freight</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
-                            International ocean freight shipping import and export services. FCL, LCL shipments, port to port or door to door.
-                        </p>
-                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
-                            Learn More 
-                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Road Transportation -->
-            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div class="p-5 flex flex-row gap-5 items-start">
-                    <div class="flex-shrink-0">
-                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
-                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service3.jpg');"></div>
-                        </div>
-                    </div>
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Road Transportation</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
-                            Highly experienced and dependable, {{$settings->site_name}} is a trusted partner in domestic road transportation.
-                        </p>
-                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
-                            Learn More 
-                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Diplomatic Services -->
-            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div class="p-5 flex flex-row gap-5 items-start">
-                    <div class="flex-shrink-0">
-                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
-                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service4.jpg');"></div>
-                        </div>
-                    </div>
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Diplomatic & Secure Logistics</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
-                            Global secure mail and equipment delivery service with complete confidence and security.
-                        </p>
-                        <a href="diplomatic" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
-                            Learn More 
-                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Warehousing -->
-            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div class="p-5 flex flex-row gap-5 items-start">
-                    <div class="flex-shrink-0">
-                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
-                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service5.jpg');"></div>
-                        </div>
-                    </div>
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Warehousing</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
-                            Shared and dedicated warehousing solutions supported by state-of-the-art technology and warehouse services.
-                        </p>
-                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
-                            Learn More 
-                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Packaging & Storage -->
-            <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
-                <div class="p-5 flex flex-row gap-5 items-start">
-                    <div class="flex-shrink-0">
-                        <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
-                            <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service6.jpg');"></div>
-                        </div>
-                    </div>
-                    <div class="flex-1 flex flex-col">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Packaging & Storage</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-3">
-                            Professional packaging and storage solutions for raw materials, electronics, and finished goods with cargo insurance.
-                        </p>
-                        <a href="services" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
-                            Learn More 
-                            <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Bike Rentals</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                    Flexible daily, weekly, and monthly rental plans. Choose from our premium fleet of well-maintained bikes for any occasion.
+                </p>
+                <a href="{{ route('home.bikes.index') }}" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                    Rent Now 
+                    <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                </a>
             </div>
         </div>
+    </div>
+
+    <!-- Bike Sales -->
+    <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <div class="p-5 flex flex-row gap-5 items-start">
+            <div class="flex-shrink-0">
+                <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                    <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service4.jpg');"></div>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Buy & Sell Bikes</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                    Trusted marketplace to buy quality new and used bikes or sell your own. Transparent pricing and secure transactions.
+                </p>
+                <a href="{{ route('home.bikes.index') }}" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                    Browse Bikes 
+                    <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bike Delivery Service -->
+    <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <div class="p-5 flex flex-row gap-5 items-start">
+            <div class="flex-shrink-0">
+                <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                    <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service5.jpg');"></div>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Bike Delivery Service</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                    Fast and reliable bike delivery across the city. Get your rented or purchased bike delivered to your doorstep same-day.
+                </p>
+                <a href="{{ route('home.shipments.create') }}" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                    Request Delivery 
+                    <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Maintenance & Repair -->
+    <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <div class="p-5 flex flex-row gap-5 items-start">
+            <div class="flex-shrink-0">
+                <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                    <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service6.jpg');"></div>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Maintenance & Repair</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                    Expert bike servicing, repairs, and spare parts. Keep your ride in top condition with our certified mechanics.
+                </p>
+                <a href="contact" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                    Book Service 
+                    <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Safety Gear & Accessories -->
+    <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <div class="p-5 flex flex-row gap-5 items-start">
+            <div class="flex-shrink-0">
+                <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                    <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service1.jpg');"></div>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Safety Gear & Accessories</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                    Premium helmets, protective gear, and bike accessories available. Ride safe with our certified safety equipment.
+                </p>
+                <a href="contact" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                    Shop Gear 
+                    <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group & Corporate Rentals -->
+    <div class="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+        <div class="p-5 flex flex-row gap-5 items-start">
+            <div class="flex-shrink-0">
+                <div class="w-20 h-20 bg-[#800020]/10 rounded-2xl flex items-center justify-center overflow-hidden group-hover:bg-[#800020] transition-all duration-300">
+                    <div class="w-16 h-16 bg-cover bg-center rounded-xl" style="background-image: url('temp/custom/images/services/service2.jpg');"></div>
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#800020] transition-colors">Group & Corporate Rentals</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                    Special fleet discounts for groups, events, and corporate clients. Customized rental solutions for your organization.
+                </p>
+                <a href="contact" class="inline-flex items-center text-[#800020] hover:text-[#6b001a] font-semibold text-sm group/link mt-1">
+                    Contact Us 
+                    <i class="fas fa-arrow-right ml-1 text-xs transition-transform group-hover/link:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
 </section>
 
 <!-- Why Choose Us Section -->
-<section class="py-20 bg-[#800020]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="relative py-20 bg-[#800020] overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
+        <div class="absolute inset-0 bg-[#800020]/90"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <span class="inline-block px-4 py-1.5 bg-[#FFD600]/20 text-[#FFD600] rounded-full text-sm font-semibold mb-4">
                 <i class="fas fa-star mr-1"></i> Why Ride With Us
@@ -719,8 +563,6 @@
     </div>
 </section>
 
-
-
 <!-- Testimonials Section -->
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -807,8 +649,6 @@
     </div>
 </section>
 
-
-
 <!-- Call to Action Section -->
 <section class="py-20 bg-gradient-to-r from-[#800020] to-[#6b001a]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -833,5 +673,18 @@
         </div>
     </div>
 </section>
+
+<style>
+    /* Additional styles for new components */
+    [x-cloak] {
+        display: none !important;
+    }
+    .btn-press {
+        transition: transform 0.1s ease;
+    }
+    .btn-press:active {
+        transform: scale(0.97);
+    }
+</style>
 
 @endsection

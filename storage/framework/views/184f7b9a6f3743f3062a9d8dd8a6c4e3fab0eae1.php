@@ -1,22 +1,20 @@
-@extends('layouts.base')
+<?php $__env->startSection('title', 'About Us'); ?>
 
-@section('title', 'About Us')
+<?php $content = app('App\Http\Controllers\FrontController'); ?>
 
-@inject('content', 'App\Http\Controllers\FrontController')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <!-- Page Header -->
 <section class="relative pt-32 pb-20 overflow-hidden">
     <!-- Background Image with Overlay -->
     <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-no-repeat" style="background-image: url('temp/custom/images/slider/map.png'); background-size: 80% auto; background-position: center center;"></div>
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('temp/custom/images/slider/trucks.jpg');"></div>
         <div class="absolute inset-0 bg-[#800020]/90"></div>
     </div>
     
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-left">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">About RiydaBikes</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">About RydaBikes</h1>
             <div class="flex items-center gap-2 text-sm text-white/70">
                 <a href="/" class="hover:text-[#FFD600] transition-colors">Home</a>
                 <i class="fas fa-angle-right text-xs"></i>
@@ -35,7 +33,7 @@
                     <span class="inline-block px-4 py-1.5 bg-[#800020]/10 text-[#800020] rounded-full text-sm font-semibold mb-4">
                         <i class="fas fa-motorcycle mr-1"></i> Our Story
                     </span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About {{$settings->site_name}}</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About <?php echo e($settings->site_name); ?></h2>
                     <p class="text-lg font-semibold text-[#800020] mb-6">
                         Premium bike rental, sales, and delivery service across Nigeria.
                     </p>
@@ -43,7 +41,7 @@
                 
                 <div class="space-y-4 text-gray-600 leading-relaxed">
                     <p>
-                        {{$settings->site_name}} is Nigeria's leading platform for bike rentals, purchases, and fast delivery services. We connect riders with quality bikes for every need — whether you're commuting, delivering goods, or just enjoying the ride.
+                        <?php echo e($settings->site_name); ?> is Nigeria's leading platform for bike rentals, purchases, and fast delivery services. We connect riders with quality bikes for every need — whether you're commuting, delivering goods, or just enjoying the ride.
                     </p>
                     
                     <p>
@@ -70,13 +68,13 @@
             <div class="relative" x-data="{ currentImage: 0, images: 3 }" x-init="setInterval(() => { currentImage = (currentImage + 1) % images }, 4000)">
                 <div class="relative h-96 rounded-2xl overflow-hidden shadow-xl">
                     <div x-show="currentImage === 0" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
-                        <img src="temp/custom/images/slider/about1.jpeg" alt="RydaBikes Team" class="w-full h-full object-cover">
+                        <img src="temp/custom/images/slider/company-slide-1.jpg" alt="RydaBikes Team" class="w-full h-full object-cover">
                     </div>
                     <div x-show="currentImage === 1" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
-                        <img src="temp/custom/images/slider/about2.jpeg" alt="RydaBikes Fleet" class="w-full h-full object-cover">
+                        <img src="temp/custom/images/slider/company-slide-2.jpg" alt="RydaBikes Fleet" class="w-full h-full object-cover">
                     </div>
                     <div x-show="currentImage === 2" x-cloak x-transition:enter="transition-opacity duration-1000" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-1000" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0">
-                        <img src="temp/custom/images/slider/about3.jpeg" alt="RydaBikes Delivery" class="w-full h-full object-cover">
+                        <img src="temp/custom/images/slider/company-slide-3.jpg" alt="RydaBikes Delivery" class="w-full h-full object-cover">
                     </div>
                 </div>
                 
@@ -250,4 +248,5 @@
     </div>
 </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.base', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\shypdirect\resources\views/home/about.blade.php ENDPATH**/ ?>

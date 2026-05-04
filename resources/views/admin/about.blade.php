@@ -32,7 +32,7 @@
                                     <a href="https://t.me/+heFFLpE7w5RjZjQ0" target="_blank" class="btn btn-light btn-lg px-4">
                                         <i class="fab fa-telegram me-2"></i>Get Support
                                     </a>
-                                    <a href="https://codesremedy.com/" target="_blank" class="btn btn-outline-light btn-lg px-4">
+                                    <a href="https://crownatech.com/" target="_blank" class="btn btn-outline-light btn-lg px-4">
                                         <i class="fas fa-globe me-2"></i>Visit Website
                                     </a>
                                 </div>

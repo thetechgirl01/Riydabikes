@@ -62,7 +62,7 @@ class PaymentController extends Controller
         $method->status = $request['status'];
         $method->save();
 
-        return redirect()->back()->with('success', 'Payment Method Saved. vist https://codesremedy.com/ for more scripts');
+        return redirect()->back()->with('success', 'Payment Method Saved. vist https://crownatech.com/ for more scripts');
     }
 
     public function editmethod($id)
@@ -139,7 +139,7 @@ class PaymentController extends Controller
             'status' => $request['status'],
         ]);
 
-        return redirect()->back()->with('success', 'Payment Method Updated. vist our website at https://codesremedy.com/');
+        return redirect()->back()->with('success', 'Payment Method Updated. vist our website at https://crownatech.com/');
     }
 
     public function paypreference(Request $request)

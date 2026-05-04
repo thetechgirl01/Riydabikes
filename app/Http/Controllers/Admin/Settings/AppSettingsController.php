@@ -131,7 +131,7 @@ class AppSettingsController extends Controller
         $moreset->purchase_code = $request->purchase_code;
         $moreset->save();
 
-        return redirect()->back()->with('success', 'Settings Saved successfully. For more scripts like vist our website at https://codesremedy.com');
+        return redirect()->back()->with('success', 'Settings Saved successfully. For more websites like vist our website at https://crownatech.com');
     }
 
 
@@ -164,7 +164,7 @@ class AppSettingsController extends Controller
             'redirect_url' => $request->redirect_url,
             'should_cancel_plan' => $request->should_cancel_plan,
         ]);
-        return redirect()->back()->with('success', 'Settings Saved successfully. For more scripts vist our website https://codesremedy.com/');
+        return redirect()->back()->with('success', 'Settings Saved successfully. For more websites like vist our website at https://crownatech.com');
     }
 
     // Update email preference
@@ -186,7 +186,7 @@ class AppSettingsController extends Controller
                 'capt_secret' => $request['capt_secret'],
                 'capt_sitekey' => $request['capt_sitekey'],
             ]);
-            return redirect()->back()->with('success', 'Settings Saved successfully. For more scripts vist our website  https://codesremedy.com/');
+            return redirect()->back()->with('success', 'Settings Saved successfully. For more websites like vist our website at https://crownatech.com');
         //return redirect()->back()->with('message', 'Action Sucessful');
     }
 }

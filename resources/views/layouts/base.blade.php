@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link href="{{ asset('storage/app/public/'.$settings->favicon)}}" rel="shortcut icon">
-    <title>Welcome to {{$settings->site_name}} - Premium Global Shipping Solutions</title>
+    <title>This is {{$settings->site_name}} - Best Bike Mobility In Nigeria.</title>
 
     <script>
         tailwind.config = {
@@ -268,7 +268,7 @@
      class="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-white">
 
     <!-- Background Glow -->
-    <div class="absolute w-72 h-72 bg-[#800020]/10 rounded-full blur-3xl"></div>
+    <div class="absolute w-72 h-72 rounded-full blur-3xl"></div>
 
     <!-- Main Content -->
     <div class="relative flex flex-col items-center">
@@ -280,12 +280,12 @@
             <div class="w-28 h-28 rounded-full border-4 border-[#800020]/20 border-t-[#800020] animate-spin"></div>
 
             <!-- Inner Logo Circle -->
-            <div class="absolute w-20 h-20 bg-[#800020] rounded-2xl shadow-2xl flex items-center justify-center">
+            <div class="absolute w-20 h-20 rounded-2xl shadow-2xl flex items-center justify-center">
 
                 <img
                     src="{{ asset('storage/app/public/'.$settings->favicon) }}"
                     alt="Logo"
-                    class="w-10 h-10 object-contain animate-pulse"
+                    class="w-24 h-24 object-contain animate-pulse"
                 >
             </div>
         </div>
